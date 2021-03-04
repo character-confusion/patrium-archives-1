@@ -1,0 +1,1872 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Grand Republic of Patrium - military-vetting</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/1bc2e127d7550c5599b037df3295a7d5.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Grand Republic of Patrium</div>
+        <div class="preamble__entry">Military Actions / military-vetting</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 03:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="711702556438691862" id="message-711702556438691862">
+                <div class="chatlog__content">
+                    <div class="markdown">What role is for this. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711702843270103142" id="message-711702843270103142">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Svem Bremder#1848">@Svem Bremder</span> What time will work for you? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/df1f8da264d0cf90f79603c4c5357540.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Svem Bremder#1848" data-user-id="606541981945954305" style="">Svem Bremder</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 03:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="711703198779572276" id="message-711703198779572276">
+                <div class="chatlog__content">
+                    <div class="markdown">I&#39;m in the GMT+1 time zone, but I have 15 minutes of time rn </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 03:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="711703339397677117" id="message-711703339397677117">
+                <div class="chatlog__content">
+                    <div class="markdown">Okay, we&#39;ll talk tomorrow, okay? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/df1f8da264d0cf90f79603c4c5357540.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Svem Bremder#1848" data-user-id="606541981945954305" style="">Svem Bremder</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 03:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="711703908476518400" id="message-711703908476518400">
+                <div class="chatlog__content">
+                    <div class="markdown">Aight </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="711761324287328309" id="message-711761324287328309">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Silver Moon Gaming#4820">@Silver Moon Gaming</span> Hello. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711761344021528587" id="message-711761344021528587">
+                <div class="chatlog__content">
+                    <div class="markdown">Tell me when you&#39;re ready to interview. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/14b2aee68a669ca7a303cbc864d61eea.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Moon Gaming#4820" data-user-id="250763652657840129" style="">Silver Moon Gaming</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="711761507238674513" id="message-711761507238674513">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Ele~#6997">@Consul Augustus Ricochet</span> Guten Tag </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="711761552507666463" id="message-711761552507666463">
+                <div class="chatlog__content">
+                    <div class="markdown">Are you ready? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/14b2aee68a669ca7a303cbc864d61eea.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Moon Gaming#4820" data-user-id="250763652657840129" style="">Silver Moon Gaming</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="711761604424761405" id="message-711761604424761405">
+                <div class="chatlog__content">
+                    <div class="markdown">I hope i am, yes i am </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711762395185545289" id="message-711762395185545289">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Ele~#6997">@Consul Augustus Ricochet</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="711762455768072243" id="message-711762455768072243">
+                <div class="chatlog__content">
+                    <div class="markdown">oh, sorry </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711762482196119553" id="message-711762482196119553">
+                <div class="chatlog__content">
+                    <div class="markdown">Okay, do you know any military tactics/history. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/14b2aee68a669ca7a303cbc864d61eea.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Moon Gaming#4820" data-user-id="250763652657840129" style="">Silver Moon Gaming</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="711762594545008640" id="message-711762594545008640">
+                <div class="chatlog__content">
+                    <div class="markdown">I am a History buff, mainly Military History (Asian History mostly) <span class="chatlog__edited-timestamp" title="17-May-20 07:10 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="711762663235125328" id="message-711762663235125328">
+                <div class="chatlog__content">
+                    <div class="markdown">Cool. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711762690497839165" id="message-711762690497839165">
+                <div class="chatlog__content">
+                    <div class="markdown">Do you know who we&#39;re fighting? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/14b2aee68a669ca7a303cbc864d61eea.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Moon Gaming#4820" data-user-id="250763652657840129" style="">Silver Moon Gaming</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="711762852729585677" id="message-711762852729585677">
+                <div class="chatlog__content">
+                    <div class="markdown">I know the main enemy the fake senate (PLP) also the Jacobins </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="711763141960269824" id="message-711763141960269824">
+                <div class="chatlog__content">
+                    <div class="markdown">Can you elaborate asian military history? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711763154178277481" id="message-711763154178277481">
+                <div class="chatlog__content">
+                    <div class="markdown">Like what time period? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/14b2aee68a669ca7a303cbc864d61eea.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Moon Gaming#4820" data-user-id="250763652657840129" style="">Silver Moon Gaming</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="711763696313172039" id="message-711763696313172039">
+                <div class="chatlog__content">
+                    <div class="markdown">Mainly Chinese Military History, (i.e. Sun Tzu, the Waring States period, the Three Kingdoms Period, and the some of the modern Warlord era) </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711763881718186027" id="message-711763881718186027">
+                <div class="chatlog__content">
+                    <div class="markdown">Although there where more than one Waring States periods <span class="chatlog__edited-timestamp" title="17-May-20 07:15 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711764071011057696" id="message-711764071011057696">
+                <div class="chatlog__content">
+                    <div class="markdown">I also have knowledge of Japanese History, WW2 mainly </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="711764091366277142" id="message-711764091366277142">
+                <div class="chatlog__content">
+                    <div class="markdown">I&#39;m supposed to do this to deter spies but I kinda know you from the polcompball server so I think you&#39;re good. <img class="emoji " alt="👍" title="👍" src="https://twemoji.maxcdn.com/2/72x72/1f44d.png"> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711764129697759297" id="message-711764129697759297">
+                <div class="chatlog__content">
+                    <div class="markdown">What rank do you want? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/14b2aee68a669ca7a303cbc864d61eea.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Moon Gaming#4820" data-user-id="250763652657840129" style="">Silver Moon Gaming</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="711764174216233074" id="message-711764174216233074">
+                <div class="chatlog__content">
+                    <div class="markdown">What is there </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711764178632704021" id="message-711764178632704021">
+                <div class="chatlog__content">
+                    <div class="markdown">? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="711764278201548861" id="message-711764278201548861">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="B_illyB03#3806">@Consul Vasilios Waller</span> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711764332396150865" id="message-711764332396150865">
+                <div class="chatlog__content">
+                    <div class="markdown">I think most people here are Lieutendent Colonels tho. <span class="chatlog__edited-timestamp" title="17-May-20 07:17 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="711764354470641726" id="message-711764354470641726">
+                <div class="chatlog__content">
+                    <div class="markdown">ye </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711764374506700921" id="message-711764374506700921">
+                <div class="chatlog__content">
+                    <div class="markdown">do you want army or navy </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/14b2aee68a669ca7a303cbc864d61eea.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Moon Gaming#4820" data-user-id="250763652657840129" style="">Silver Moon Gaming</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="711764397021855744" id="message-711764397021855744">
+                <div class="chatlog__content">
+                    <div class="markdown">Army </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="711764422577750107" id="message-711764422577750107">
+                <div class="chatlog__content">
+                    <div class="markdown">ok </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711764598256304148" id="message-711764598256304148">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Silver Moon Gaming#4820">@Silver Moon Gaming</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/14b2aee68a669ca7a303cbc864d61eea.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Moon Gaming#4820" data-user-id="250763652657840129" style="">Silver Moon Gaming</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="711764672826572932" id="message-711764672826572932">
+                <div class="chatlog__content">
+                    <div class="markdown">I agree with this </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="711764706628730937" id="message-711764706628730937">
+                <div class="chatlog__content">
+                    <div class="markdown">based </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/14b2aee68a669ca7a303cbc864d61eea.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Moon Gaming#4820" data-user-id="250763652657840129" style="">Silver Moon Gaming</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="711764725242789940" id="message-711764725242789940">
+                <div class="chatlog__content">
+                    <div class="markdown">lul </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="713657079725817866" id="message-713657079725817866">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Geewillickers#2289">@Geewillickers</span> hello </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/b1d7e140e4781a50db11c3fa0a88a4e0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Geewillickers#2289" data-user-id="311394307309568000" style="">Geewillickers</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="713657171925139507" id="message-713657171925139507">
+                <div class="chatlog__content">
+                    <div class="markdown">hello </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="713657199913861172" id="message-713657199913861172">
+                <div class="chatlog__content">
+                    <div class="markdown">I&#39;m technically supposed to interview you to make it more difficult to catch spies </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713657240984223754" id="message-713657240984223754">
+                <div class="chatlog__content">
+                    <div class="markdown">But I&#39;ll give you an expedited process since I trust you </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713657350422265877" id="message-713657350422265877">
+                <div class="chatlog__content">
+                    <div class="markdown">What are your skills for the military <span class="chatlog__edited-timestamp" title="23-May-20 12:39 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/b1d7e140e4781a50db11c3fa0a88a4e0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Geewillickers#2289" data-user-id="311394307309568000" style="">Geewillickers</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="713657391543091211" id="message-713657391543091211">
+                <div class="chatlog__content">
+                    <div class="markdown">ummm </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="713657398476144722" id="message-713657398476144722">
+                <div class="chatlog__content">
+                    <div class="markdown">Like what are you good at </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713657419607179325" id="message-713657419607179325">
+                <div class="chatlog__content">
+                    <div class="markdown">Naval/army/air force </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/b1d7e140e4781a50db11c3fa0a88a4e0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Geewillickers#2289" data-user-id="311394307309568000" style="">Geewillickers</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="713657437487497247" id="message-713657437487497247">
+                <div class="chatlog__content">
+                    <div class="markdown">oh </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713657471822200852" id="message-713657471822200852">
+                <div class="chatlog__content">
+                    <div class="markdown">Army </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713657488737828906" id="message-713657488737828906">
+                <div class="chatlog__content">
+                    <div class="markdown">Im not a coward </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713657543976681532" id="message-713657543976681532">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="😎" title="😎" src="https://twemoji.maxcdn.com/2/72x72/1f60e.png"> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="713657705474162732" id="message-713657705474162732">
+                <div class="chatlog__content">
+                    <div class="markdown">We need an actual navy commodore :( </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713657714886180904" id="message-713657714886180904">
+                <div class="chatlog__content">
+                    <div class="markdown">One day... </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/b1d7e140e4781a50db11c3fa0a88a4e0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Geewillickers#2289" data-user-id="311394307309568000" style="">Geewillickers</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="713657790773592084" id="message-713657790773592084">
+                <div class="chatlog__content">
+                    <div class="markdown">Idk anything about Naval combat </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713657814379397171" id="message-713657814379397171">
+                <div class="chatlog__content">
+                    <div class="markdown">and Airforce command is useless </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713657832611774491" id="message-713657832611774491">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;go there&quot; </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713657849087000596" id="message-713657849087000596">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;good job&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="713657981379674179" id="message-713657981379674179">
+                <div class="chatlog__content">
+                    <div class="markdown">What rank do you want </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/b1d7e140e4781a50db11c3fa0a88a4e0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Geewillickers#2289" data-user-id="311394307309568000" style="">Geewillickers</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="713658028431245342" id="message-713658028431245342">
+                <div class="chatlog__content">
+                    <div class="markdown">what ranks are there </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="713658088531558432" id="message-713658088531558432">
+                <div class="chatlog__content">
+                    <div class="markdown">I think we start off with Liutendent Colonel </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713658246870728764" id="message-713658246870728764">
+                <div class="chatlog__content">
+                    <div class="markdown">Since it&#39;s more appropriate to give you a briefing here </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713658296266915901" id="message-713658296266915901">
+                <div class="chatlog__content">
+                    <div class="markdown">Do you want to get tl:;Dr of the conflict and the sides involved? <span class="chatlog__edited-timestamp" title="23-May-20 12:43 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/b1d7e140e4781a50db11c3fa0a88a4e0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Geewillickers#2289" data-user-id="311394307309568000" style="">Geewillickers</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="713658326730145863" id="message-713658326730145863">
+                <div class="chatlog__content">
+                    <div class="markdown">yes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="713659412786446358" id="message-713659412786446358">
+                <div class="chatlog__content">
+                    <div class="markdown">Basically there was a military council who did military things. We had a terrorist attack on a city that spiraled into open fighting so we evacuated the city and fought them. When it wasn&#39;t enough, we decided to use bombs against them. We arrested a person in the council who was leaking info, got mad that we did, leaked info about the military did that was bad (mainly about this issue) and the Senate wanted to arrest the people on the council. Military said no and it kinda spiralled out of control into a civil war. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/b1d7e140e4781a50db11c3fa0a88a4e0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Geewillickers#2289" data-user-id="311394307309568000" style="">Geewillickers</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="713659749450907730" id="message-713659749450907730">
+                <div class="chatlog__content">
+                    <div class="markdown">ok so we are the military loyalists? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713659821617971200" id="message-713659821617971200">
+                <div class="chatlog__content">
+                    <div class="markdown">are there any maps? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713659868367683644" id="message-713659868367683644">
+                <div class="chatlog__content">
+                    <div class="markdown">do we have estimations of our strength and theirs? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="713659881730736218" id="message-713659881730736218">
+                <div class="chatlog__content">
+                    <div class="markdown">Yes </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713660076329795584" id="message-713660076329795584">
+                <div class="chatlog__content">
+                    <div class="markdown">The factions are Military Loyalists and MMR vs. Jacobins, PDC, and Senate </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713660111586852935" id="message-713660111586852935">
+                <div class="chatlog__content">
+                    <div class="markdown">And there&#39;s also NAM who is a neutral faction </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/b1d7e140e4781a50db11c3fa0a88a4e0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Geewillickers#2289" data-user-id="311394307309568000" style="">Geewillickers</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="713660141232193568" id="message-713660141232193568">
+                <div class="chatlog__content">
+                    <div class="markdown">MMR? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713660197947572234" id="message-713660197947572234">
+                <div class="chatlog__content">
+                    <div class="markdown">Might makes right </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="713660258588819496" id="message-713660258588819496">
+                <div class="chatlog__content">
+                    <div class="markdown">Yes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/b1d7e140e4781a50db11c3fa0a88a4e0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Geewillickers#2289" data-user-id="311394307309568000" style="">Geewillickers</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="713660316902359111" id="message-713660316902359111">
+                <div class="chatlog__content">
+                    <div class="markdown">I read the death stats </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713660387345825792" id="message-713660387345825792">
+                <div class="chatlog__content">
+                    <div class="markdown">have we inflicted twice as many casualties on to them as they have onto us? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="713660538957332550" id="message-713660538957332550">
+                <div class="chatlog__content">
+                    <div class="markdown">Yes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/b1d7e140e4781a50db11c3fa0a88a4e0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Geewillickers#2289" data-user-id="311394307309568000" style="">Geewillickers</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="713660575615287357" id="message-713660575615287357">
+                <div class="chatlog__content">
+                    <div class="markdown">is manpower an issue for them? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="713660763230961694" id="message-713660763230961694">
+                <div class="chatlog__content">
+                    <div class="markdown">Manpower is an issue for us imo </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713660959289376769" id="message-713660959289376769">
+                <div class="chatlog__content">
+                    <div class="markdown">Since they have alot of money they can draw from </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713661030714179604" id="message-713661030714179604">
+                <div class="chatlog__content">
+                    <div class="markdown">Anyways, since you know the full story more or less, are you sure you want to join the military? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20military-vetting%20%5B711686921260236931%5D.html_Files/b1d7e140e4781a50db11c3fa0a88a4e0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Geewillickers#2289" data-user-id="311394307309568000" style="">Geewillickers</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 12:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="713661170434965504" id="message-713661170434965504">
+                <div class="chatlog__content">
+                    <div class="markdown">Ja </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 78 message(s)</div>
+</div>
+
+</body>
+</html>
