@@ -1,0 +1,2391 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PATRIUM NATIONALIST COALITION - policy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/968534d3d1fa99a582a0c66abd4fd0f0.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">PATRIUM NATIONALIST COALITION</div>
+        <div class="preamble__entry">General / policy</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/a_941ad4e54347dbf87e0a46cf4090e103.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SunoBeta#1776" data-user-id="531290216044953620" style="">SunoBeta</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 10:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="715981275495792640" id="message-715981275495792640">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="😭" title="😭" src="https://twemoji.maxcdn.com/2/72x72/1f62d.png"> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 12:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="716014550495002625" id="message-716014550495002625">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span>  Nationalist Coalition gets priority over all coalitions your in </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/e36ddd9247af7a53f895c44a19cc5dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Arksiane#0142" data-user-id="203781815964532736" style="">Arksiane</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 12:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="716014619180793877" id="message-716014619180793877">
+                <div class="chatlog__content">
+                    <div class="markdown">No </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/20e70ace75c3c9c91caf8d01ad0b69c4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saruman#1823" data-user-id="467316769992998912" style="">Saruman</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 12:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="716014629125357620" id="message-716014629125357620">
+                <div class="chatlog__content">
+                    <div class="markdown">why </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="716014653980803212" id="message-716014653980803212">
+                <div class="chatlog__content">
+                    <div class="markdown">convince us </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 12:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="716017656632967188" id="message-716017656632967188">
+                <div class="chatlog__content">
+                    <div class="markdown">Because how can we expand our terrirory without working together? <span class="mention" title="Saruman#1823">@Saruman</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/20e70ace75c3c9c91caf8d01ad0b69c4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saruman#1823" data-user-id="467316769992998912" style="">Saruman</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 12:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="716017812271005707" id="message-716017812271005707">
+                <div class="chatlog__content">
+                    <div class="markdown">that has nothing to do with it </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="716017823008161915" id="message-716017823008161915">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="😂" title="😂" src="https://twemoji.maxcdn.com/2/72x72/1f602.png"> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 12:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="716017832130904147" id="message-716017832130904147">
+                <div class="chatlog__content">
+                    <div class="markdown">If we are either stuck listening too our aithoritarian group or the lib group it will divide us <span class="chatlog__edited-timestamp" title="29-May-20 12:59 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/20e70ace75c3c9c91caf8d01ad0b69c4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saruman#1823" data-user-id="467316769992998912" style="">Saruman</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 01:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="716018639777562704" id="message-716018639777562704">
+                <div class="chatlog__content">
+                    <div class="markdown">okay </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="716018749366337586" id="message-716018749366337586">
+                <div class="chatlog__content">
+                    <div class="markdown">but why should we prioritize this one over our other allegiances? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="716018786112897055" id="message-716018786112897055">
+                <div class="chatlog__content">
+                    <div class="markdown">for example I am in the auth coalition too </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="716018823190544485" id="message-716018823190544485">
+                <div class="chatlog__content">
+                    <div class="markdown">why should I side with one over the other </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 01:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="716018851879321637" id="message-716018851879321637">
+                <div class="chatlog__content">
+                    <div class="markdown">You don’t </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="716018987221385348" id="message-716018987221385348">
+                <div class="chatlog__content">
+                    <div class="markdown">On issues of state power, vote with the auths. On issues of national interest, vote with us. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 01:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="716019382563897424" id="message-716019382563897424">
+                <div class="chatlog__content">
+                    <div class="markdown">Ye fair </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="716019416663326771" id="message-716019416663326771">
+                <div class="chatlog__content">
+                    <div class="markdown">Most of us here are auths </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 01:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="716019437068877976" id="message-716019437068877976">
+                <div class="chatlog__content">
+                    <div class="markdown">True </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">30-May-20 02:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="716400456582037525" id="message-716400456582037525">
+                <div class="chatlog__content">
+                    <div class="markdown">Lets remove the centrist guys </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="716400475641085952" id="message-716400475641085952">
+                <div class="chatlog__content">
+                    <div class="markdown">They are outsiders </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">03-Jun-20 03:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="717681857147306085" id="message-717681857147306085">
+                <div class="chatlog__content">
+                    <div class="markdown">Ik we arent all auth </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="717681935148646402" id="message-717681935148646402">
+                <div class="chatlog__content">
+                    <div class="markdown">But we gonna di a proposale fir the thing </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">04-Jun-20 02:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="718208163412967455" id="message-718208163412967455">
+                <div class="chatlog__content">
+                    <div class="markdown">The NLF has created a simple, practical, non-partisan proposal for the purpose of avoiding the agenda-pushing that often happens within the senate. We have the support of many parties, and hope to gain all of your support as well. <a href="https://docs.google.com/document/d/10JBOshzQQhar-uKeVhb5sW7AkCnVgaDHef64wLdQbz4/edit?usp=sharing">https://docs.google.com/document/d/10JBOshzQQhar-uKeVhb5sW7AkCnVgaDHef64wLdQbz4/edit?usp=sharing</a> </div>
+                </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+                                        <div class="chatlog__embed-title">
+                                                <a class="chatlog__embed-title-link" href="https://docs.google.com/document/d/10JBOshzQQhar-uKeVhb5sW7AkCnVgaDHef64wLdQbz4/edit?usp=sharing">
+                                                    <div class="markdown">Non-Partisan Farmer Plan</div>
+                                                </a>
+                                        </div>
+
+                                        <div class="chatlog__embed-description">
+                                            <div class="markdown">National Labor Front Proposal: For Tax Decreases, Reform of the Agricultural Department, and Anti-Corruption Measures  Endorsed by: National Labor Front United Monarcho-Leftists Patrium Party for Equality Libertarian Nationalism Party Peace and Independence Party  We write thi...</div>
+                                        </div>
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/6dCTHeXNX6tF7I8QGDlLGSo13r7TULBsWa3H325N2unVDnkBvb">
+                                            <img class="chatlog__embed-thumbnail" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/6dCTHeXNX6tF7I8QGDlLGSo13r7TULBsWa3H325N2unVDnkBvb" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">12-Jun-20 11:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="721074167113449512" id="message-721074167113449512">
+                <div class="chatlog__content">
+                    <div class="markdown">also we can discuss without the diplomats, if you guys like </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="721074259455246389" id="message-721074259455246389">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">are y&#39;all planning something similar to my thing
+from season 1
+</div><span class="mention" title="Mr.Korrupto#8023">@Mr.Korrupto</span> do <em>you</em> want this? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/33192181ee14f782f3f5f1959d0d2120.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr.Korrupto#8023" data-user-id="171274876991176705" style="color: rgb(241,196,15)">Mr.Korrupto</span>
+
+
+        <span class="chatlog__timestamp">12-Jun-20 11:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="721074367584403534" id="message-721074367584403534">
+                <div class="chatlog__content">
+                    <div class="markdown">sounds nice if y&#39;all dont fuck it up </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">12-Jun-20 11:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="721074427848163328" id="message-721074427848163328">
+                <div class="chatlog__content">
+                    <div class="markdown">lmao </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="721074445308919858" id="message-721074445308919858">
+                <div class="chatlog__content">
+                    <div class="markdown">we&#39;re not gonna do that shit </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="722470420007223417" id="message-722470420007223417">
+                <div class="chatlog__content">
+                    <div class="markdown">We doing a closed borders thing </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="722470461526769747" id="message-722470461526769747">
+                <div class="chatlog__content">
+                    <div class="markdown">we can&#39;t </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722470489376686080" id="message-722470489376686080">
+                <div class="chatlog__content">
+                    <div class="markdown">casue bill says we&#39;re supposed to have open ones </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722470519026483202" id="message-722470519026483202">
+                <div class="chatlog__content">
+                    <div class="markdown">but we&#39;re doing border patrol and shit </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="722470564559847464" id="message-722470564559847464">
+                <div class="chatlog__content">
+                    <div class="markdown">Fucking globalists </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/33192181ee14f782f3f5f1959d0d2120.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr.Korrupto#8023" data-user-id="171274876991176705" style="color: rgb(241,196,15)">Mr.Korrupto</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="722470638953955408" id="message-722470638953955408">
+                <div class="chatlog__content">
+                    <div class="markdown">OH SHIT CAM IS ALIVE? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="722470674853003356" id="message-722470674853003356">
+                <div class="chatlog__content">
+                    <div class="markdown">Yep </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="722470677755723847" id="message-722470677755723847">
+                <div class="chatlog__content">
+                    <div class="markdown">CAM&#39;S ALIVE </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722470819468410975" id="message-722470819468410975">
+                <div class="chatlog__content">
+                    <div class="markdown">oh btw your friend wide putin came through a few days ago looking for you </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722470928054747158" id="message-722470928054747158">
+                <div class="chatlog__content">
+                    <div class="markdown"><a href="https://discordapp.com/channels/705637850967834665/705637850967834668/720342949665439805" onclick="scrollToMessage(event, '720342949665439805')">https://discordapp.com/channels/705637850967834665/705637850967834668/720342949665439805</a> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="722471451818459188" id="message-722471451818459188">
+                <div class="chatlog__content">
+                    <div class="markdown">Lol memeds sick </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="722471507967869000" id="message-722471507967869000">
+                <div class="chatlog__content">
+                    <div class="markdown">hm? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="722471526586384384" id="message-722471526586384384">
+                <div class="chatlog__content">
+                    <div class="markdown">Wait no </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722471534790311936" id="message-722471534790311936">
+                <div class="chatlog__content">
+                    <div class="markdown">Fucks sake </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722471543640293427" id="message-722471543640293427">
+                <div class="chatlog__content">
+                    <div class="markdown">Ugh </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/33192181ee14f782f3f5f1959d0d2120.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr.Korrupto#8023" data-user-id="171274876991176705" style="color: rgb(241,196,15)">Mr.Korrupto</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="722471631527608401" id="message-722471631527608401">
+                <div class="chatlog__content">
+                    <div class="markdown">no funding from me this time </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/unknown.png">
+                                    <img class="chatlog__attachment-thumbnail" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/unknown.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722471638213328896" id="message-722471638213328896">
+                <div class="chatlog__content">
+                    <div class="markdown">no and no </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722471668747862098" id="message-722471668747862098">
+                <div class="chatlog__content">
+                    <div class="markdown">go find an another sugar daddy </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="722471921391894568" id="message-722471921391894568">
+                <div class="chatlog__content">
+                    <div class="markdown">They do this shit to confuse me i swear <span class="mention" title="character-confusion#4343">@character-confusion</span> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/20200616_162424.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/20200616_162424.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="722471958058500218" id="message-722471958058500218">
+                <div class="chatlog__content">
+                    <div class="markdown">lmao </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="722472588277710928" id="message-722472588277710928">
+                <div class="chatlog__content">
+                    <div class="markdown">Ok i figured out who wide putin is </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="722472669332635700" id="message-722472669332635700">
+                <div class="chatlog__content">
+                    <div class="markdown">did you tell him you&#39;re alive? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="722472686873346058" id="message-722472686873346058">
+                <div class="chatlog__content">
+                    <div class="markdown">Yeee </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="722472709031854100" id="message-722472709031854100">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="👍" title="👍" src="https://twemoji.maxcdn.com/2/72x72/1f44d.png"> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="722472718984937523" id="message-722472718984937523">
+                <div class="chatlog__content">
+                    <div class="markdown">Hes not online tho </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(116,5,5)">someguyinshorts</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="722473787655979090" id="message-722473787655979090">
+                <div class="chatlog__content">
+                    <div class="markdown">Oh shit cams back </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722473833407315968" id="message-722473833407315968">
+                <div class="chatlog__content">
+                    <div class="markdown">Honestly got a little worried </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="722473834028204162" id="message-722473834028204162">
+                <div class="chatlog__content">
+                    <div class="markdown">Hello </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722473858371682456" id="message-722473858371682456">
+                <div class="chatlog__content">
+                    <div class="markdown">Yee its ok </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="722475800229838998" id="message-722475800229838998">
+                <div class="chatlog__content">
+                    <div class="markdown">Ok for the next debate which is tomorrow what are we doing? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="722476859887058974" id="message-722476859887058974">
+                <div class="chatlog__content">
+                    <div class="markdown">we kinda made a policy </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="722478977343815761" id="message-722478977343815761">
+                <div class="chatlog__content">
+                    <div class="markdown">Can i see? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 08:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="722479086714486955" id="message-722479086714486955">
+                <div class="chatlog__content">
+                    <div class="markdown"><a href="https://docs.google.com/document/d/1LCxG1heVsxlxnWrIjVZ_WA2FkOGHMA3LhK_48xfA_s8/edit?usp=sharing">https://docs.google.com/document/d/1LCxG1heVsxlxnWrIjVZ_WA2FkOGHMA3LhK_48xfA_s8/edit?usp=sharing</a> </div>
+                </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+                                        <div class="chatlog__embed-title">
+                                                <a class="chatlog__embed-title-link" href="https://docs.google.com/document/d/1LCxG1heVsxlxnWrIjVZ_WA2FkOGHMA3LhK_48xfA_s8/edit?usp=sharing">
+                                                    <div class="markdown">Infrastructure and Border Policy Bill</div>
+                                                </a>
+                                        </div>
+
+                                        <div class="chatlog__embed-description">
+                                            <div class="markdown">Infrastructure and Border Policy Bill  Our goals in drafting this bill are: To help to modernize and improve infrastructure in Patrium. To improve our Patrium’s relationship with Selva. To address the issues of violence near the border as well as smuggling of drugs and human t...</div>
+                                        </div>
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/pVK0t9cFHQB8KTIcGL30sA5_2Qfzkmr0SxgaKdbNUaabBtZU6x">
+                                            <img class="chatlog__embed-thumbnail" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/pVK0t9cFHQB8KTIcGL30sA5_2Qfzkmr0SxgaKdbNUaabBtZU6x" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+            <div class="chatlog__message " data-message-id="722479103244238858" id="message-722479103244238858">
+                <div class="chatlog__content">
+                    <div class="markdown">it&#39;s SUPER incomplete </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 02:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="722566345648111686" id="message-722566345648111686">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Mr.Korrupto#8023">@Mr.Korrupto</span> so i gotta ask what you want from this bill </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/33192181ee14f782f3f5f1959d0d2120.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr.Korrupto#8023" data-user-id="171274876991176705" style="color: rgb(241,196,15)">Mr.Korrupto</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 02:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="722566513298636891" id="message-722566513298636891">
+                <div class="chatlog__content">
+                    <div class="markdown">eh, I&#39;m acting democratically within my party <span class="chatlog__edited-timestamp" title="16-Jun-20 02:41 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722566568239693925" id="message-722566568239693925">
+                <div class="chatlog__content">
+                    <div class="markdown">I&#39;d be nice if you could have atleast a more.. polished version </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722566579711115284" id="message-722566579711115284">
+                <div class="chatlog__content">
+                    <div class="markdown">for me to share to them </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 02:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="722566595393617963" id="message-722566595393617963">
+                <div class="chatlog__content">
+                    <div class="markdown">yeah ik </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722566659402891314" id="message-722566659402891314">
+                <div class="chatlog__content">
+                    <div class="markdown">the problem is i&#39;ve had many many conversations about what to do about the highway </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722566697390964748" id="message-722566697390964748">
+                <div class="chatlog__content">
+                    <div class="markdown">but no one&#39;s really come to any solid conclusions </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722566799517941832" id="message-722566799517941832">
+                <div class="chatlog__content">
+                    <div class="markdown">do you support this whole &quot;privatize all the roads&quot; thing? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722567068762767402" id="message-722567068762767402">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Mr.Korrupto#8023">@Mr.Korrupto</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/33192181ee14f782f3f5f1959d0d2120.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr.Korrupto#8023" data-user-id="171274876991176705" style="color: rgb(241,196,15)">Mr.Korrupto</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 02:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="722567133736730625" id="message-722567133736730625">
+                <div class="chatlog__content">
+                    <div class="markdown">As I&#39;ve said, I want to act as my party wishes </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722567141580341319" id="message-722567141580341319">
+                <div class="chatlog__content">
+                    <div class="markdown">in this case </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 02:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="722567144725938239" id="message-722567144725938239">
+                <div class="chatlog__content">
+                    <div class="markdown">i know </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722567160764825693" id="message-722567160764825693">
+                <div class="chatlog__content">
+                    <div class="markdown">i want to know if you support that </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/33192181ee14f782f3f5f1959d0d2120.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr.Korrupto#8023" data-user-id="171274876991176705" style="color: rgb(241,196,15)">Mr.Korrupto</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 02:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="722567192511774852" id="message-722567192511774852">
+                <div class="chatlog__content">
+                    <div class="markdown">Personally, might be too chaotic <span class="chatlog__edited-timestamp" title="16-Jun-20 02:44 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 02:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="722567202942746684" id="message-722567202942746684">
+                <div class="chatlog__content">
+                    <div class="markdown">because frankly to me it seems objectively insane </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722567214917484606" id="message-722567214917484606">
+                <div class="chatlog__content">
+                    <div class="markdown">even for rightlibs </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722567256235573248" id="message-722567256235573248">
+                <div class="chatlog__content">
+                    <div class="markdown">i&#39;m just wondering whether my perspective is off </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/33192181ee14f782f3f5f1959d0d2120.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr.Korrupto#8023" data-user-id="171274876991176705" style="color: rgb(241,196,15)">Mr.Korrupto</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 02:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="722567283175719023" id="message-722567283175719023">
+                <div class="chatlog__content">
+                    <div class="markdown">idea seems nice but execution... I dont trust that this can be pulled off smoothly </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 02:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="722567333603835985" id="message-722567333603835985">
+                <div class="chatlog__content">
+                    <div class="markdown">we&#39;re still paying for it after all </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/33192181ee14f782f3f5f1959d0d2120.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr.Korrupto#8023" data-user-id="171274876991176705" style="color: rgb(241,196,15)">Mr.Korrupto</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 02:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="722567365006721105" id="message-722567365006721105">
+                <div class="chatlog__content">
+                    <div class="markdown">wait </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 02:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="722567366201835560" id="message-722567366201835560">
+                <div class="chatlog__content">
+                    <div class="markdown">and we completely lose control of our own country </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/33192181ee14f782f3f5f1959d0d2120.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr.Korrupto#8023" data-user-id="171274876991176705" style="color: rgb(241,196,15)">Mr.Korrupto</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 02:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="722567374280065034" id="message-722567374280065034">
+                <div class="chatlog__content">
+                    <div class="markdown">wait wait wait </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722567397772623963" id="message-722567397772623963">
+                <div class="chatlog__content">
+                    <div class="markdown">So we&#39;re paying for it, as a country </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722567424368705637" id="message-722567424368705637">
+                <div class="chatlog__content">
+                    <div class="markdown">And we sell it off afterwards? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 02:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="722567496481243227" id="message-722567496481243227">
+                <div class="chatlog__content">
+                    <div class="markdown">i think it&#39;s more like we pay for it (slightly discounted) then they own it for 15 years </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/33192181ee14f782f3f5f1959d0d2120.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr.Korrupto#8023" data-user-id="171274876991176705" style="color: rgb(241,196,15)">Mr.Korrupto</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 02:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="722567722864476250" id="message-722567722864476250">
+                <div class="chatlog__content">
+                    <div class="markdown">...jesus christ </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722567748655513671" id="message-722567748655513671">
+                <div class="chatlog__content">
+                    <div class="markdown">now I can agree that it is insane </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 02:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="722567749079007263" id="message-722567749079007263">
+                <div class="chatlog__content">
+                    <div class="markdown">that is diesel&#39;s plan </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722567771891957813" id="message-722567771891957813">
+                <div class="chatlog__content">
+                    <div class="markdown">thank you, okay </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/33192181ee14f782f3f5f1959d0d2120.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr.Korrupto#8023" data-user-id="171274876991176705" style="color: rgb(241,196,15)">Mr.Korrupto</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 02:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="722567801801408584" id="message-722567801801408584">
+                <div class="chatlog__content">
+                    <div class="markdown">I thought it was just letting them invest </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722567820021465171" id="message-722567820021465171">
+                <div class="chatlog__content">
+                    <div class="markdown">not that we PAY for it </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722567850337763388" id="message-722567850337763388">
+                <div class="chatlog__content">
+                    <div class="markdown">like we&#39;re fucking mexico </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722567874048294963" id="message-722567874048294963">
+                <div class="chatlog__content">
+                    <div class="markdown">paying for Trumps wall </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-20 02:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="722567892213825658" id="message-722567892213825658">
+                <div class="chatlog__content">
+                    <div class="markdown">yeah kinda </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">22-Jun-20 10:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="724682753580204083" id="message-724682753580204083">
+                <div class="chatlog__content">
+                    <div class="markdown">Hey there everyone! Can we interest you in comprehensive reform to improve our country&#39;s educational system? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">22-Jun-20 10:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="724684627494830082" id="message-724684627494830082">
+                <div class="chatlog__content">
+                    <div class="markdown">make sure noone gets any unfair advantages </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">23-Jun-20 03:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="725118928770171010" id="message-725118928770171010">
+                <div class="chatlog__content">
+                    <div class="markdown">Hey everyone, I’d encourage you to support the extradition bill currently in bill-voting to make sure foreign slights against our country don’t go unpunished. <span class="chatlog__edited-timestamp" title="23-Jun-20 03:43 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(116,5,5)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">26-Jun-20 08:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="726274432829751358" id="message-726274432829751358">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" style="color: rgb(25, 178, 211); background-color: rgba(25, 178, 211, 0.1);">@Nationalist</span> Hello, all! Please vote for our plan to improve education, number 1! <a href="https://discordapp.com/channels/705637850967834665/719285463692607558/726271745652162631" onclick="scrollToMessage(event, '726271745652162631')">https://discordapp.com/channels/705637850967834665/719285463692607558/726271745652162631</a> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="">Ele~</span>
+
+
+        <span class="chatlog__timestamp">01-Jul-20 01:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="727807313540284446" id="message-727807313540284446">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/quote-to-overcome-of-our-enemies-we-must-have-our-.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/quote-to-overcome-of-our-enemies-we-must-have-our-.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="PATRIUM%20NATIONALIST%20COALITION%20-%20General%20-%20policy%20%5B715980431056568448%5D.html_Files/5cd69eefe154b81009c41b54e916a52a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="toaster#1510" data-user-id="289042202573799424" style="color: rgb(116,5,5)">toaster</span>
+
+
+        <span class="chatlog__timestamp">01-Jul-20 06:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="727883325959831634" id="message-727883325959831634">
+                <div class="chatlog__content">
+                    <div class="markdown">Based </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 102 message(s)</div>
+</div>
+
+</body>
+</html>
