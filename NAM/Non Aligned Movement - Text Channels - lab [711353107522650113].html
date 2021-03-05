@@ -1,0 +1,4414 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Non Aligned Movement - lab</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/0.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Non Aligned Movement</div>
+        <div class="preamble__entry">Text Channels / lab</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 04:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="711353410296741940" id="message-711353410296741940">
+                <div class="chatlog__content">
+                    <div class="markdown">Fuck yeah </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711353572037492748" id="message-711353572037492748">
+                <div class="chatlog__content">
+                    <div class="markdown">Multi-spectral camouflage isn’t hard to “invent” because it already exists
+We just have to make it <span class="chatlog__edited-timestamp" title="16-May-20 04:05 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 04:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="711353775666757684" id="message-711353775666757684">
+                <div class="chatlog__content">
+                    <div class="markdown">Isn&#39;t there a special paint that lowers your radar signature? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711353830423658587" id="message-711353830423658587">
+                <div class="chatlog__content">
+                    <div class="markdown">Something like that </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 04:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="711353974137028620" id="message-711353974137028620">
+                <div class="chatlog__content">
+                    <div class="markdown">That’s multi-spectral camouflage </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711354327083515934" id="message-711354327083515934">
+                <div class="chatlog__content">
+                    <div class="markdown">I.e. some tree frogs both blend into the tree and match the infrared signature, it can be done with ship paint </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 04:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="711354497980694560" id="message-711354497980694560">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Well, i know that radar is diffracted by sharp edges like the f-35 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711354873597394954" id="message-711354873597394954">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;If the radar hits the sides and it is angled in a way that it is sort of odd it can actually lose detection. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711354984951709727" id="message-711354984951709727">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;It is how stealth fighters are made. Plus there is a special coating they use.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 04:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="711356012677955706" id="message-711356012677955706">
+                <div class="chatlog__content">
+                    <div class="markdown">“Hmm, that’s a good idea— we can combine that with multi-spectral camouflage, it’ll make our ships undetectable unless they see it with their own eyes” </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 04:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="711362631511965859" id="message-711362631511965859">
+                <div class="chatlog__content">
+                    <div class="markdown">exactly </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711362667004297236" id="message-711362667004297236">
+                <div class="chatlog__content">
+                    <div class="markdown">but the primary thing is to do this with subs </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711362726940901486" id="message-711362726940901486">
+                <div class="chatlog__content">
+                    <div class="markdown">as they will be scouting out our naval perimeter </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 04:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="711362913402617948" id="message-711362913402617948">
+                <div class="chatlog__content">
+                    <div class="markdown">Yea I know, I poked Ozy </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/fb7ef395616c0752e4189c61214507dc.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="J.P. Wilson#2077" data-user-id="460242058234560513" style="color: rgb(76,104,118)">John Carmen-Allen</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 06:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="711385330414256159" id="message-711385330414256159">
+                <div class="chatlog__content">
+                    <div class="markdown">I want to use sustainable agricultural development to make sure that our farmlands and crop yields hold up even when we&#39;re under siege. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 06:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="711388894947442800" id="message-711388894947442800">
+                <div class="chatlog__content">
+                    <div class="markdown">Are you okay with GMOs, by any chance? If not it makes your request significantly harder </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711389362109022239" id="message-711389362109022239">
+                <div class="chatlog__content">
+                    <div class="markdown">“
+Well, almost all modern-day crops are GMOs via artificial selection... I mean lab GMOs </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/446235d1faacf874e6e0c01a4403d73f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dinoboy#8179" data-user-id="369204009489399811" style="">Dinoboy</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 09:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="711430215414579251" id="message-711430215414579251">
+                <div class="chatlog__content">
+                    <div class="markdown">GMOs are amazing <span class="chatlog__edited-timestamp" title="16-May-20 09:09 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711430347228708947" id="message-711430347228708947">
+                <div class="chatlog__content">
+                    <div class="markdown">So are things like indoor farming </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 09:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="711434841366724659" id="message-711434841366724659">
+                <div class="chatlog__content">
+                    <div class="markdown">I know I keep gushing about thermite but im still trying to figure it out fully and I found this </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/RPReplay_Final1589689391.mov">
+Attachment: RPReplay_Final1589689391.mov (2.04 MB)                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/fb7ef395616c0752e4189c61214507dc.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="J.P. Wilson#2077" data-user-id="460242058234560513" style="color: rgb(76,104,118)">John Carmen-Allen</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 08:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="711599820405473281" id="message-711599820405473281">
+                <div class="chatlog__content">
+                    <div class="markdown">To my mind, GMOs are permissible if used with extra caution to protect plant diversity. Having a field of genetically identical bananas could lead to a plant disease completely wiping them out. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 08:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="711606288093806603" id="message-711606288093806603">
+                <div class="chatlog__content">
+                    <div class="markdown">(Stand by while I do a fuckton of research because I don’t know the first thing about agriculture, I’ve only ever grown carnivorous plants and succulents before) <span class="chatlog__edited-timestamp" title="17-May-20 08:49 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 09:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="711619787402510346" id="message-711619787402510346">
+                <div class="chatlog__content">
+                    <div class="markdown">As far as audible sonar if we can manage to make our submarines sound like wales or something </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 09:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="711619989026898021" id="message-711619989026898021">
+                <div class="chatlog__content">
+                    <div class="markdown">(Let me check the species of whales in the Indian Ocean) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 09:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="711620081158717460" id="message-711620081158717460">
+                <div class="chatlog__content">
+                    <div class="markdown">Or better yet make it sound like something that uses sonar to navigate the ocean </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711620145306533978" id="message-711620145306533978">
+                <div class="chatlog__content">
+                    <div class="markdown">I don’t remember what animals do that </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 09:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="711620636346417182" id="message-711620636346417182">
+                <div class="chatlog__content">
+                    <div class="markdown">Dolphins </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711620715786272859" id="message-711620715786272859">
+                <div class="chatlog__content">
+                    <div class="markdown">Every type of toothed whale </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711620969978003498" id="message-711620969978003498">
+                <div class="chatlog__content">
+                    <div class="markdown">Might be wise for us to do sonar based off of one of the toothed whales in this area
+(Still on the agriculture stuff tho, send help) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 09:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="711623572925448236" id="message-711623572925448236">
+                <div class="chatlog__content">
+                    <div class="markdown">Or we could you know, use the stealth modes on subs </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 09:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="711623983589752886" id="message-711623983589752886">
+                <div class="chatlog__content">
+                    <div class="markdown">We are 
+We just need the damn money </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 10:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="711624252109095043" id="message-711624252109095043">
+                <div class="chatlog__content">
+                    <div class="markdown">Thats why im telling all the army folks to not spend all of it on soldiers </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711624315212136483" id="message-711624315212136483">
+                <div class="chatlog__content">
+                    <div class="markdown">We need to spend it on r&amp;d </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711624408409702450" id="message-711624408409702450">
+                <div class="chatlog__content">
+                    <div class="markdown">Or save it up for when we need it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 08:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="711785026466873345" id="message-711785026466873345">
+                <div class="chatlog__content">
+                    <div class="markdown">did we already buy the tech for stealth subs? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 08:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="711785133384138762" id="message-711785133384138762">
+                <div class="chatlog__content">
+                    <div class="markdown">No, I was waiting till someone told me to 
+I don’t know if we have the funds yet </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711785209783255150" id="message-711785209783255150">
+                <div class="chatlog__content">
+                    <div class="markdown">Want me to go ahead and buy it? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 08:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="711785554303516763" id="message-711785554303516763">
+                <div class="chatlog__content">
+                    <div class="markdown">do we have the funds delta? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711785600738525286" id="message-711785600738525286">
+                <div class="chatlog__content">
+                    <div class="markdown">or anyone? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711785842737414275" id="message-711785842737414275">
+                <div class="chatlog__content">
+                    <div class="markdown">i THINK we have the funds, but i dont do the money around here </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 08:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="711788274510856252" id="message-711788274510856252">
+                <div class="chatlog__content">
+                    <div class="markdown">Neither do I, I just do the research around here </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 10:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="711813672669937694" id="message-711813672669937694">
+                <div class="chatlog__content">
+                    <div class="markdown">who does the money? <span class="mention" title="&quot;F&quot;#9593">@ΔωΔ</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/8b041c3bddf592ee6d6e1b6b499d9602.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&quot;F&quot;#9593" data-user-id="226497313080606720" style="color: rgb(0,233,70)">ΔωΔ</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 10:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="711813723680931850" id="message-711813723680931850">
+                <div class="chatlog__content">
+                    <div class="markdown">Me or Don really </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 10:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="711813801581871155" id="message-711813801581871155">
+                <div class="chatlog__content">
+                    <div class="markdown">do we have the funds currently to invest in the subs? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 10:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="711813867692621885" id="message-711813867692621885">
+                <div class="chatlog__content">
+                    <div class="markdown">We’re gonna need them <em>soon</em> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/8b041c3bddf592ee6d6e1b6b499d9602.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&quot;F&quot;#9593" data-user-id="226497313080606720" style="color: rgb(0,233,70)">ΔωΔ</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 10:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="711814010651148328" id="message-711814010651148328">
+                <div class="chatlog__content">
+                    <div class="markdown">yeah, we will have the funds </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 10:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="711814073909510247" id="message-711814073909510247">
+                <div class="chatlog__content">
+                    <div class="markdown">Around when, so I know when to message Ozy </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/8b041c3bddf592ee6d6e1b6b499d9602.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&quot;F&quot;#9593" data-user-id="226497313080606720" style="color: rgb(0,233,70)">ΔωΔ</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 10:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="711814374536249444" id="message-711814374536249444">
+                <div class="chatlog__content">
+                    <div class="markdown">is it 10k one time cost? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 10:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="711814529402667061" id="message-711814529402667061">
+                <div class="chatlog__content">
+                    <div class="markdown">Yes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/8b041c3bddf592ee6d6e1b6b499d9602.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&quot;F&quot;#9593" data-user-id="226497313080606720" style="color: rgb(0,233,70)">ΔωΔ</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 10:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="711814568833450084" id="message-711814568833450084">
+                <div class="chatlog__content">
+                    <div class="markdown">we should be able to do it by next turn </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 10:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="711814596670783528" id="message-711814596670783528">
+                <div class="chatlog__content">
+                    <div class="markdown">So tomorrow? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/8b041c3bddf592ee6d6e1b6b499d9602.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&quot;F&quot;#9593" data-user-id="226497313080606720" style="color: rgb(0,233,70)">ΔωΔ</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 10:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="711814614161031198" id="message-711814614161031198">
+                <div class="chatlog__content">
+                    <div class="markdown">gonna chat with military bois for details doe </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711814626613919805" id="message-711814626613919805">
+                <div class="chatlog__content">
+                    <div class="markdown">likely tmw </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 10:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="711814719714885632" id="message-711814719714885632">
+                <div class="chatlog__content">
+                    <div class="markdown">Undetectable are more important for our defenses imo, but I’ll trust you </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/8b041c3bddf592ee6d6e1b6b499d9602.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&quot;F&quot;#9593" data-user-id="226497313080606720" style="color: rgb(0,233,70)">ΔωΔ</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 10:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="711814778141671468" id="message-711814778141671468">
+                <div class="chatlog__content">
+                    <div class="markdown">I know, alrdy sent in plans for today </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711814813235413012" id="message-711814813235413012">
+                <div class="chatlog__content">
+                    <div class="markdown">It will be high priority </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 05:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="711913278137434192" id="message-711913278137434192">
+                <div class="chatlog__content">
+                    <div class="markdown">So 
+Fire paste 
+If you add some diesel and some soap to it you’ll basically be adding <em>actual</em> napalm to the paste 
+And it’ll still be a paste but it’ll be a lot more napalm-y than just acetone and celluloid </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711913543951450172" id="message-711913543951450172">
+                <div class="chatlog__content">
+                    <div class="markdown">I’d say if we want to be REAL assholes here and violate NAP we could add white phosphorus but 
+I hope y’all are aware of what white phosphorus is capable of doing <span class="chatlog__edited-timestamp" title="18-May-20 05:10 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 05:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="711914464487800862" id="message-711914464487800862">
+                <div class="chatlog__content">
+                    <div class="markdown">Why would adding white phosphorus break NAP? We would be using it defensively </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 05:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="711914739852378134" id="message-711914739852378134">
+                <div class="chatlog__content">
+                    <div class="markdown">White phosphorus is <em>very</em> poisonous 
+Inhaling the fumes is excruciatingly painful and will give you lasting eye, brain, and lung damage if exposed to it </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711914836925087804" id="message-711914836925087804">
+                <div class="chatlog__content">
+                    <div class="markdown">It’s incredibly explosive and flammable, yes, but its lethality lies in its poison </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 05:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="711914960485089291" id="message-711914960485089291">
+                <div class="chatlog__content">
+                    <div class="markdown">That’s more of a Geniva convention thing </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/8b041c3bddf592ee6d6e1b6b499d9602.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&quot;F&quot;#9593" data-user-id="226497313080606720" style="color: rgb(0,233,70)">ΔωΔ</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 05:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="711915274915545118" id="message-711915274915545118">
+                <div class="chatlog__content">
+                    <div class="markdown">(so we wont do it so the international community does not vibecheck us) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 05:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="711915293466689568" id="message-711915293466689568">
+                <div class="chatlog__content">
+                    <div class="markdown">Eh, yea, but it’s still something that we likely will not use <span class="chatlog__edited-timestamp" title="18-May-20 05:17 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 05:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="711915413486829569" id="message-711915413486829569">
+                <div class="chatlog__content">
+                    <div class="markdown">If we throw a bottle of it down the hatch of a submarine... night night </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 05:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="711915484483944492" id="message-711915484483944492">
+                <div class="chatlog__content">
+                    <div class="markdown">Because I know Rigel isn’t comfortable with killing people via excruciating poison </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 05:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="711915515135918140" id="message-711915515135918140">
+                <div class="chatlog__content">
+                    <div class="markdown">Oh </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/8b041c3bddf592ee6d6e1b6b499d9602.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&quot;F&quot;#9593" data-user-id="226497313080606720" style="color: rgb(0,233,70)">ΔωΔ</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 05:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="711915542667198556" id="message-711915542667198556">
+                <div class="chatlog__content">
+                    <div class="markdown">And that would not be good optics bro </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 05:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="711915749421088808" id="message-711915749421088808">
+                <div class="chatlog__content">
+                    <div class="markdown">Nobody told Timmy to do it so why would it be reflected on NAM </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 05:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="711915846431146004" id="message-711915846431146004">
+                <div class="chatlog__content">
+                    <div class="markdown">Because we made the weapon </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 05:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="711916047782903870" id="message-711916047782903870">
+                <div class="chatlog__content">
+                    <div class="markdown">Granted </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 05:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="711916382287036447" id="message-711916382287036447">
+                <div class="chatlog__content">
+                    <div class="markdown">Hmm 
+What other stuff could we do 
+Let’s think about other self defense things, like Rigel’s hip flask </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711916501128577184" id="message-711916501128577184">
+                <div class="chatlog__content">
+                    <div class="markdown">What can we arm our senators with for defense because we might need it if we stumble across someone that doesn’t want to win our favor </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 05:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="711916687456206909" id="message-711916687456206909">
+                <div class="chatlog__content">
+                    <div class="markdown">Smart contact lens? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711917086250631279" id="message-711917086250631279">
+                <div class="chatlog__content">
+                    <div class="markdown">Capable of pulling up the schematics to any building and city they can find themselves in and a camera so we can see what they see </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711917261564149791" id="message-711917261564149791">
+                <div class="chatlog__content">
+                    <div class="markdown">Nobody checks for contacts when they search someone </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/8b041c3bddf592ee6d6e1b6b499d9602.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&quot;F&quot;#9593" data-user-id="226497313080606720" style="color: rgb(0,233,70)">ΔωΔ</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 05:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="711917715949879416" id="message-711917715949879416">
+                <div class="chatlog__content">
+                    <div class="markdown">def gonna have to dm ozy on if thats allowed or not </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 05:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="711919177753165865" id="message-711919177753165865">
+                <div class="chatlog__content">
+                    <div class="markdown">That sounds expensive and hard to make and we don’t have the budget right now I don’t think </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 06:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="711928777067986945" id="message-711928777067986945">
+                <div class="chatlog__content">
+                    <div class="markdown">Ok, what kind of shit can I pack into a cigarette </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711929095449215088" id="message-711929095449215088">
+                <div class="chatlog__content">
+                    <div class="markdown">Lizard brain went “make them like those popper things” 
+Which is useless but just
+Pop cigarettes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 06:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="711934237774970940" id="message-711934237774970940">
+                <div class="chatlog__content">
+                    <div class="markdown">Cigarette smoke/flash bangs </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/446235d1faacf874e6e0c01a4403d73f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dinoboy#8179" data-user-id="369204009489399811" style="">Dinoboy</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 09:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="712158761812492329" id="message-712158761812492329">
+                <div class="chatlog__content">
+                    <div class="markdown">Its time to commit war crimes jimbo </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 09:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="712158967174004826" id="message-712158967174004826">
+                <div class="chatlog__content">
+                    <div class="markdown">Ammonia+bleach= ??? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/446235d1faacf874e6e0c01a4403d73f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dinoboy#8179" data-user-id="369204009489399811" style="">Dinoboy</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 09:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="712159060346142721" id="message-712159060346142721">
+                <div class="chatlog__content">
+                    <div class="markdown">Fun </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 09:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="712160044145180713" id="message-712160044145180713">
+                <div class="chatlog__content">
+                    <div class="markdown">If you really want to cause damage, mustard gas is easily blocked by gas masks </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712160175766896641" id="message-712160175766896641">
+                <div class="chatlog__content">
+                    <div class="markdown">I forgot the name of another one, but it’s more effective and can surpass gas masks due to its small atomical size </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 09:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="712161976868143105" id="message-712161976868143105">
+                <div class="chatlog__content">
+                    <div class="markdown">Hydrogen cyanide, I think?? 
+Though I really don’t want to use it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/446235d1faacf874e6e0c01a4403d73f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dinoboy#8179" data-user-id="369204009489399811" style="">Dinoboy</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 09:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="712162240840859730" id="message-712162240840859730">
+                <div class="chatlog__content">
+                    <div class="markdown">Can we be the ones to start the corona virus? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 09:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="712162271610011820" id="message-712162271610011820">
+                <div class="chatlog__content">
+                    <div class="markdown">No </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/446235d1faacf874e6e0c01a4403d73f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dinoboy#8179" data-user-id="369204009489399811" style="">Dinoboy</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 09:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="712162284100648981" id="message-712162284100648981">
+                <div class="chatlog__content">
+                    <div class="markdown">Haha jkjk </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 09:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="712162294200795206" id="message-712162294200795206">
+                <div class="chatlog__content">
+                    <div class="markdown">I’m not using bio weapons either </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/446235d1faacf874e6e0c01a4403d73f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dinoboy#8179" data-user-id="369204009489399811" style="">Dinoboy</span>
+
+
+        <span class="chatlog__timestamp">18-May-20 09:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="712162303851888670" id="message-712162303851888670">
+                <div class="chatlog__content">
+                    <div class="markdown">Unless? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712162345773957173" id="message-712162345773957173">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="😳" title="😳" src="https://twemoji.maxcdn.com/2/72x72/1f633.png"> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 05:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="712276745738518528" id="message-712276745738518528">
+                <div class="chatlog__content">
+                    <div class="markdown">Thallium 
+That is all </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712276770665005107" id="message-712276770665005107">
+                <div class="chatlog__content">
+                    <div class="markdown">Thallium weaponized. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 06:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="712290697163833385" id="message-712290697163833385">
+                <div class="chatlog__content">
+                    <div class="markdown">Current list: weapon-wise for defenses n junk 
+-weaponized thermite <img class="emoji " alt="☑" title="☑" src="https://twemoji.maxcdn.com/2/72x72/2611.png">️ 
+-stealthier subs (WIP)
+-white phosphorus (?) 
+-hydrogen cyanide 
+-high quality gas masks 
+-chlorine trifluoride (?) <span class="chatlog__edited-timestamp" title="19-May-20 06:09 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712291186831786044" id="message-712291186831786044">
+                <div class="chatlog__content">
+                    <div class="markdown">Current list: everything else 
+-hidden self defence (WIP) 
+-crop stuff (send help I don’t know how to do crops but I’m trying my best) 
+-trackers on our senators </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 06:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="712293243597094963" id="message-712293243597094963">
+                <div class="chatlog__content">
+                    <div class="markdown">There <em>is</em> a chemical that’s so disgusting it can disarm any troops though without killing them 
+C3H6S, Thioacetone, is a <em>foul</em> smelling chemical, so disgusting that you can smell it from 500 meters away if exposed 
+Anyone within a 200 meter radius would get too sick from the smell to fight because they’re too busy throwing up </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712293635743285318" id="message-712293635743285318">
+                <div class="chatlog__content">
+                    <div class="markdown">Do you think we should use thioacetone </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 07:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="712304039345258581" id="message-712304039345258581">
+                <div class="chatlog__content">
+                    <div class="markdown">I think C3H6S might be useful </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 07:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="712307625152479254" id="message-712307625152479254">
+                <div class="chatlog__content">
+                    <div class="markdown">Stink bomb stink bomb stink bomb <span class="chatlog__edited-timestamp" title="19-May-20 07:16 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/fb7ef395616c0752e4189c61214507dc.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="J.P. Wilson#2077" data-user-id="460242058234560513" style="color: rgb(76,104,118)">John Carmen-Allen</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 09:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="712338720048545874" id="message-712338720048545874">
+                <div class="chatlog__content">
+                    <div class="markdown">Are we really planning to use chemical warfare? I feel like that will turn away any international support we&#39;re seeking. Unless we&#39;re going for Russia or Syria. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 09:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="712338858846584885" id="message-712338858846584885">
+                <div class="chatlog__content">
+                    <div class="markdown">Good point. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/fb7ef395616c0752e4189c61214507dc.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="J.P. Wilson#2077" data-user-id="460242058234560513" style="color: rgb(76,104,118)">John Carmen-Allen</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 09:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="712341495671160883" id="message-712341495671160883">
+                <div class="chatlog__content">
+                    <div class="markdown">Also, because we are a defensive force, the use of chemical weapons could easily hurt our own civilians. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 11:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="712368818206408714" id="message-712368818206408714">
+                <div class="chatlog__content">
+                    <div class="markdown">I really don’t want to, but Junta is </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712369652201685065" id="message-712369652201685065">
+                <div class="chatlog__content">
+                    <div class="markdown">If they use it on us and see that we can’t fight back, nothing can be done and everyone dies 
+Their own troops seems to be made up of drafts, people from all walks of life, if we actually use our weapons we kill them when they could’ve gone back to their families </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712369893307318332" id="message-712369893307318332">
+                <div class="chatlog__content">
+                    <div class="markdown">Junta doesn’t care about killing their youth, they just want to draft them for war effort
+They’re planning to actually use white phosphorus
+They’re planning to use mustard gas </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712370771518816338" id="message-712370771518816338">
+                <div class="chatlog__content">
+                    <div class="markdown">The most I feel comfortable making and using is C3H6S because it’s not a killer, it just disarms them so they can’t fight 
+But if the rumors are true, and if they turn on us? It looks like they don’t care if they gas their <em>own</em> troops </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 11:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="712374241240023112" id="message-712374241240023112">
+                <div class="chatlog__content">
+                    <div class="markdown">Also, we should consider that they will be only able to send a limited number of troops to our island at once. This means that they will send their most elite units, likely infantry because of the hilly terrain. So I doubt we will be facing conscripts at all. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 11:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="712377682826100766" id="message-712377682826100766">
+                <div class="chatlog__content">
+                    <div class="markdown">Is there any gas we can use to neutralize mustard gas and whatnot? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712377871666249759" id="message-712377871666249759">
+                <div class="chatlog__content">
+                    <div class="markdown">To prevent the Junta from committing mass genocide </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712378939636449280" id="message-712378939636449280">
+                <div class="chatlog__content">
+                    <div class="markdown">Like something that can go airborne rapidly and encapsulates toxic gases </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="712380566678274119" id="message-712380566678274119">
+                <div class="chatlog__content">
+                    <div class="markdown">I doubt it. Even if there is it is unlikely we have it in high numbers here. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="712382323043074110" id="message-712382323043074110">
+                <div class="chatlog__content">
+                    <div class="markdown">The only way to get rid of mustard gas is to disperse it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="712383983639461919" id="message-712383983639461919">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="🤔" title="🤔" src="https://twemoji.maxcdn.com/2/72x72/1f914.png"> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="712385053551886368" id="message-712385053551886368">
+                <div class="chatlog__content">
+                    <div class="markdown">maybe we could focus on advanced masks </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712385093246779492" id="message-712385093246779492">
+                <div class="chatlog__content">
+                    <div class="markdown">and a cheap and efficient way to make masks </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="712385736128856178" id="message-712385736128856178">
+                <div class="chatlog__content">
+                    <div class="markdown">(I’ve already asked Ozy about it) yeah, I’ve been researching </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="712385916496248842" id="message-712385916496248842">
+                <div class="chatlog__content">
+                    <div class="markdown">or maybe even capture towers </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712386002282348605" id="message-712386002282348605">
+                <div class="chatlog__content">
+                    <div class="markdown">like in germany ive heard theyve built towers specifically to catoch Carbon dioxide </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712386060360876152" id="message-712386060360876152">
+                <div class="chatlog__content">
+                    <div class="markdown">maybe we could do kind of the same thing </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="712386668577030185" id="message-712386668577030185">
+                <div class="chatlog__content">
+                    <div class="markdown">Hmm, mustard gas can be ridded via hydrolysis and neutralization but it’s too long a process to effectively combat against it
+We can clean it up like that, but they can just keep gassing us while we perform the reaction mid-battle </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712387075843817592" id="message-712387075843817592">
+                <div class="chatlog__content">
+                    <div class="markdown">We can also incinerate it, but that is much more... dangerous </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="712387374293843991" id="message-712387374293843991">
+                <div class="chatlog__content">
+                    <div class="markdown">An amphibious assault is not likely to be able to deploy gas effectively </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712387445068398692" id="message-712387445068398692">
+                <div class="chatlog__content">
+                    <div class="markdown">imo we should just stock up on artillery </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="712387786187210894" id="message-712387786187210894">
+                <div class="chatlog__content">
+                    <div class="markdown">My yacht is retrofit with some small artillery </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="712388005238931530" id="message-712388005238931530">
+                <div class="chatlog__content">
+                    <div class="markdown">I meant towed artillery </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="712388255667978271" id="message-712388255667978271">
+                <div class="chatlog__content">
+                    <div class="markdown">What’s to say they’re not looking into <em>how</em> to use mustard gas in an amphibious assault? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712388500850212884" id="message-712388500850212884">
+                <div class="chatlog__content">
+                    <div class="markdown">Mustard gas reacts with water and creates acids, which makes it harder for them to <em>use</em> on water </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="712388522283368528" id="message-712388522283368528">
+                <div class="chatlog__content">
+                    <div class="markdown">we should instead look into building up the navy so that they will never get that chance </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="712388693993717773" id="message-712388693993717773">
+                <div class="chatlog__content">
+                    <div class="markdown">yes, but even focusing all our efforts into that we will not be able to gain enough ships </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="712388709009326303" id="message-712388709009326303">
+                <div class="chatlog__content">
+                    <div class="markdown">I’ve been asking to use the funds for our submarines for days but it seems our artillery is more important for an island nation </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="712388724910194739" id="message-712388724910194739">
+                <div class="chatlog__content">
+                    <div class="markdown">The problem is not just money </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712388763359248424" id="message-712388763359248424">
+                <div class="chatlog__content">
+                    <div class="markdown">Time is a constraint as well </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712388928963084336" id="message-712388928963084336">
+                <div class="chatlog__content">
+                    <div class="markdown">I&#39;m just saying, we have the smallest army of all the factions </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712388989465919488" id="message-712388989465919488">
+                <div class="chatlog__content">
+                    <div class="markdown">And it&#39;s poorly equipped </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="712389020939714661" id="message-712389020939714661">
+                <div class="chatlog__content">
+                    <div class="markdown">i would say that frankly by building up our naval forces, they wont get the chance to get close to our homeland. the army will be more effecctivve due to early warning systems </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="712389042083201045" id="message-712389042083201045">
+                <div class="chatlog__content">
+                    <div class="markdown">I’m aware of that </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="712389114896580629" id="message-712389114896580629">
+                <div class="chatlog__content">
+                    <div class="markdown">Yes, our focus will be on navy </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712389167488696351" id="message-712389167488696351">
+                <div class="chatlog__content">
+                    <div class="markdown">But we will have money leftover </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="712389200389079040" id="message-712389200389079040">
+                <div class="chatlog__content">
+                    <div class="markdown">maybe you could focus on building defenses for the island </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712389260128288768" id="message-712389260128288768">
+                <div class="chatlog__content">
+                    <div class="markdown">if they are to make a landing, i would reckon ship tearers would be  a good idea </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712389270643671070" id="message-712389270643671070">
+                <div class="chatlog__content">
+                    <div class="markdown">cheap too </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="712389548067520612" id="message-712389548067520612">
+                <div class="chatlog__content">
+                    <div class="markdown">Can you give me a link for more info on ship tearers </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="712389583526166601" id="message-712389583526166601">
+                <div class="chatlog__content">
+                    <div class="markdown">you know those little tripods they had in world war two </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="712389604765859956" id="message-712389604765859956">
+                <div class="chatlog__content">
+                    <div class="markdown">All I get when searching is warhammer </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712389618968035428" id="message-712389618968035428">
+                <div class="chatlog__content">
+                    <div class="markdown">ah </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712389625066422273" id="message-712389625066422273">
+                <div class="chatlog__content">
+                    <div class="markdown">ok </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="712389641256566814" id="message-712389641256566814">
+                <div class="chatlog__content">
+                    <div class="markdown">We can’t afford gas masks </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/image0.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/image0.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="712389686722560010" id="message-712389686722560010">
+                <div class="chatlog__content">
+                    <div class="markdown">oof </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712389767030898698" id="message-712389767030898698">
+                <div class="chatlog__content">
+                    <div class="markdown">I didn&#39;t know that&#39;s what they were called </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="712389787780120652" id="message-712389787780120652">
+                <div class="chatlog__content">
+                    <div class="markdown">we could use those anti-ship tripods </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712389816980865175" id="message-712389816980865175">
+                <div class="chatlog__content">
+                    <div class="markdown">i dont know what they are called either </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712389852741763112" id="message-712389852741763112">
+                <div class="chatlog__content">
+                    <div class="markdown">ship tearer sounds cool </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="712389858508668999" id="message-712389858508668999">
+                <div class="chatlog__content">
+                    <div class="markdown">But I did put &quot;Atlantic wall like defences&quot; in our plan </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712390046321475664" id="message-712390046321475664">
+                <div class="chatlog__content">
+                    <div class="markdown">We could also mine the coast, at least critical parts of it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="712390075765227541" id="message-712390075765227541">
+                <div class="chatlog__content">
+                    <div class="markdown">just not super advanced defenses, just some sea mines, (where our ships would know how to navagate around as well as extreme landing difficulties </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712390125396426803" id="message-712390125396426803">
+                <div class="chatlog__content">
+                    <div class="markdown">though sea mines my pose a problem later on </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="712390198545350726" id="message-712390198545350726">
+                <div class="chatlog__content">
+                    <div class="markdown">Also, one artillery brigade is 1200, it will triple our artillery. It&#39;s not a crazy investment </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="712390257139646515" id="message-712390257139646515">
+                <div class="chatlog__content">
+                    <div class="markdown">artillery is important i agree </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712390294854828122" id="message-712390294854828122">
+                <div class="chatlog__content">
+                    <div class="markdown">one for each port city </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="712390572303712337" id="message-712390572303712337">
+                <div class="chatlog__content">
+                    <div class="markdown">Also, I&#39;m kinda confused with the hexagon map </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712390666356916344" id="message-712390666356916344">
+                <div class="chatlog__content">
+                    <div class="markdown">Our island has a lot of places that are like partway in a hexagon </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="712391145765732831" id="message-712391145765732831">
+                <div class="chatlog__content">
+                    <div class="markdown">We need more artillery tbh </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="712394023620313159" id="message-712394023620313159">
+                <div class="chatlog__content">
+                    <div class="markdown">Mines run the risk of sinking refugees </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 01:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="712396949336096901" id="message-712396949336096901">
+                <div class="chatlog__content">
+                    <div class="markdown">Not if they know the paths to take </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 01:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="712398619067547679" id="message-712398619067547679">
+                <div class="chatlog__content">
+                    <div class="markdown">then it would be easy for other ships to do the same thing </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712398642648055819" id="message-712398642648055819">
+                <div class="chatlog__content">
+                    <div class="markdown">including enemy ships </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 01:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="712399197420126258" id="message-712399197420126258">
+                <div class="chatlog__content">
+                    <div class="markdown">This would funnel them into certain areas that will be more defended </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712399262394089522" id="message-712399262394089522">
+                <div class="chatlog__content">
+                    <div class="markdown">it&#39;s a win win situation </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 01:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="712399505449812139" id="message-712399505449812139">
+                <div class="chatlog__content">
+                    <div class="markdown">I still think stinkbombs is cool to use if we ever get into a battle </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712400761610567731" id="message-712400761610567731">
+                <div class="chatlog__content">
+                    <div class="markdown">Thank fuck they can’t use napalm or white phosphorus readily </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 01:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="712401172945698858" id="message-712401172945698858">
+                <div class="chatlog__content">
+                    <div class="markdown">Bruh, they likely won&#39;t be able to bomb us </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712401193649045516" id="message-712401193649045516">
+                <div class="chatlog__content">
+                    <div class="markdown">They make like no money </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 01:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="712401194814799873" id="message-712401194814799873">
+                <div class="chatlog__content">
+                    <div class="markdown">We already have our resources so we’re good </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 01:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="712401223411826769" id="message-712401223411826769">
+                <div class="chatlog__content">
+                    <div class="markdown">Yeah </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712401250787917844" id="message-712401250787917844">
+                <div class="chatlog__content">
+                    <div class="markdown">Just 1 artil </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712401271809900645" id="message-712401271809900645">
+                <div class="chatlog__content">
+                    <div class="markdown">and everything else </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 01:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="712401298879938601" id="message-712401298879938601">
+                <div class="chatlog__content">
+                    <div class="markdown">We need some more artillery </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 01:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="712401299886571540" id="message-712401299886571540">
+                <div class="chatlog__content">
+                    <div class="markdown">goes to navy and research </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 01:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="712401437627383828" id="message-712401437627383828">
+                <div class="chatlog__content">
+                    <div class="markdown">Aye, I’ll try to use the money for the best possible things
+We should save for gas masks </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712401469915004949" id="message-712401469915004949">
+                <div class="chatlog__content">
+                    <div class="markdown">After we get the stealth mods </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 01:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="712401574432866317" id="message-712401574432866317">
+                <div class="chatlog__content">
+                    <div class="markdown">oh yeah, I forgot artillery can be used as AA <span class="chatlog__edited-timestamp" title="19-May-20 01:29 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 02:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="712421416993161216" id="message-712421416993161216">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji " alt="🤔" title="🤔" src="https://twemoji.maxcdn.com/2/72x72/1f914.png"> it’s looking like taking out Ozy would help our cause... his rules and prices are strangely difficult for anyone other than the military to afford. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/8b041c3bddf592ee6d6e1b6b499d9602.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&quot;F&quot;#9593" data-user-id="226497313080606720" style="color: rgb(0,233,70)">ΔωΔ</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 02:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="712421567442976792" id="message-712421567442976792">
+                <div class="chatlog__content">
+                    <div class="markdown">wdym? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712421622891675858" id="message-712421622891675858">
+                <div class="chatlog__content">
+                    <div class="markdown">He is forcing military to pay at least 2000 because they hawe the carrier </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712421701081890828" id="message-712421701081890828">
+                <div class="chatlog__content">
+                    <div class="markdown">(if they dock the carrier its only 2000) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 02:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="712421795806052363" id="message-712421795806052363">
+                <div class="chatlog__content">
+                    <div class="markdown">The military can double our manpower because we are only allowed a set number of units </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 02:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="712423308767002664" id="message-712423308767002664">
+                <div class="chatlog__content">
+                    <div class="markdown">And? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 03:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="712427052879315014" id="message-712427052879315014">
+                <div class="chatlog__content">
+                    <div class="markdown">Honestly this is so much more balanced </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712427111964606476" id="message-712427111964606476">
+                <div class="chatlog__content">
+                    <div class="markdown">I wouldn&#39;t change too much </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 03:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="712428096082673816" id="message-712428096082673816">
+                <div class="chatlog__content">
+                    <div class="markdown">Yea, it’s good that it got redone! </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 03:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="712428426845487144" id="message-712428426845487144">
+                <div class="chatlog__content">
+                    <div class="markdown">And we also got confirmation that artillery can fire from 1 hex away </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712428495166242868" id="message-712428495166242868">
+                <div class="chatlog__content">
+                    <div class="markdown">This&#39;ll be super useful for us </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 04:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="712804484115464204" id="message-712804484115464204">
+                <div class="chatlog__content">
+                    <div class="markdown">Hell yeah </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712804528470360106" id="message-712804528470360106">
+                <div class="chatlog__content">
+                    <div class="markdown">Getting artillery would be useful </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 05:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="712818339097083916" id="message-712818339097083916">
+                <div class="chatlog__content">
+                    <div class="markdown">//thinks
+Is there anything else or can rigel start working on more personal projects now </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 05:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="712821519453257728" id="message-712821519453257728">
+                <div class="chatlog__content">
+                    <div class="markdown">i mean, do we have the subs up &gt;.&gt; </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712821581872627722" id="message-712821581872627722">
+                <div class="chatlog__content">
+                    <div class="markdown">also, advancing the accuraccy of artilllary may be useful </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 05:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="712823086378123306" id="message-712823086378123306">
+                <div class="chatlog__content">
+                    <div class="markdown">Not yet, still waiting for the go-ahead from the military people to contact ozy about the upgraden </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712823196080013335" id="message-712823196080013335">
+                <div class="chatlog__content">
+                    <div class="markdown">Are there numbers for artillery accuracy or should I ask? I don&#39;t remembee </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 05:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="712823516227174410" id="message-712823516227174410">
+                <div class="chatlog__content">
+                    <div class="markdown">you should ask </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 05:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="712823949465092156" id="message-712823949465092156">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="&quot;F&quot;#9593">@ΔωΔ</span> <span class="mention" title="Don Vito#3439">@Don Vito</span> can we afford the subs yet? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712824042222125155" id="message-712824042222125155">
+                <div class="chatlog__content">
+                    <div class="markdown">So I can work on something else 
+Like improving weapon accuracy just in case we need it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/45299b8b79189604b524dc730077dadd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="JohnnicusGraccus#5681" data-user-id="510375183606087690" style="color: rgb(31,139,76)">ParksBrit</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 05:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="712826619630452808" id="message-712826619630452808">
+                <div class="chatlog__content">
+                    <div class="markdown">I say we should focus on gaining Carrier killing missiles. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 05:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="712826804959969280" id="message-712826804959969280">
+                <div class="chatlog__content">
+                    <div class="markdown">That&#39;s gonna be expensive too, </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/45299b8b79189604b524dc730077dadd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="JohnnicusGraccus#5681" data-user-id="510375183606087690" style="color: rgb(31,139,76)">ParksBrit</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 05:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="712826843555954698" id="message-712826843555954698">
+                <div class="chatlog__content">
+                    <div class="markdown">Cheaper than making and maintaining a fleet. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/8b041c3bddf592ee6d6e1b6b499d9602.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&quot;F&quot;#9593" data-user-id="226497313080606720" style="color: rgb(0,233,70)">ΔωΔ</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 06:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="712842806728851466" id="message-712842806728851466">
+                <div class="chatlog__content">
+                    <div class="markdown">We can afford subs now <span class="chatlog__edited-timestamp" title="20-May-20 06:43 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 07:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="712860079254142997" id="message-712860079254142997">
+                <div class="chatlog__content">
+                    <div class="markdown">Shot a message to Ozy, it’ll happen tomorrow </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 08:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="712874032172892222" id="message-712874032172892222">
+                <div class="chatlog__content">
+                    <div class="markdown">We need to figure out how to compensate for the fact that we aren’t allowed to have the manpower to combat the senate let alone the junta if either decide the largest independent state is better dead than alive... </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 09:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="712880698637287495" id="message-712880698637287495">
+                <div class="chatlog__content">
+                    <div class="markdown">we already have, with our patrolling subs, and our efforts to fortify the island for a major defense </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712880773782306887" id="message-712880773782306887">
+                <div class="chatlog__content">
+                    <div class="markdown">we will have all the intel we will need to fight them off our island </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/ee1398f52bf0a333aa6df11b826096eb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="snypronian#9970" data-user-id="365485652684308480" style="">snypronian</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 05:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="713008254887657492" id="message-713008254887657492">
+                <div class="chatlog__content">
+                    <div class="markdown">What chems are banned by the convention? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/f1faa3f55ec5ba2e1c14efeb58964887.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Don Vito#3439" data-user-id="340609928198881280" style="color: rgb(228,180,0)">Don Vito</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 05:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="713008452749754438" id="message-713008452749754438">
+                <div class="chatlog__content">
+                    <div class="markdown">The useful ones </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 05:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="713008563630374920" id="message-713008563630374920">
+                <div class="chatlog__content">
+                    <div class="markdown">If it was used in the world wars, we can’t use them readily <span class="chatlog__edited-timestamp" title="21-May-20 05:41 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Non%20Aligned%20Movement%20-%20Text%20Channels%20-%20lab%20%5B711353107522650113%5D.html_Files/45299b8b79189604b524dc730077dadd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="JohnnicusGraccus#5681" data-user-id="510375183606087690" style="color: rgb(31,139,76)">ParksBrit</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="713057611699716147" id="message-713057611699716147">
+                <div class="chatlog__content">
+                    <div class="markdown">All of them </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713057642553147413" id="message-713057642553147413">
+                <div class="chatlog__content">
+                    <div class="markdown">Just assume you can&#39;t use it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 217 message(s)</div>
+</div>
+
+</body>
+</html>
