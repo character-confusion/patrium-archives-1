@@ -1,0 +1,2673 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Patrian Confederation - flag-contest</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/19a1160cfd1d73f29a847ad6cb70faaa.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Patrian Confederation</div>
+        <div class="preamble__entry">Contests / flag-contest</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="color: rgb(199,0,0)">&#129408;Delete&#129408;</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 11:34 AM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="710923164930015321" id="message-710923164930015321">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span> We will be hosting a flag contest. Here are some simple rules:
+
+1. No NSFW content, please 
+
+2. The flag must include some sort of symbolism, whether through color, words, or an emblem.
+
+3. No mono-color or lazy designs, put effort into it.
+
+4. Do not insult other people or their designs, stay civil.
+
+You have until Sunday, 12:00pm EST to submit your designs! <span class="chatlog__edited-timestamp" title="15-May-20 11:35 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 12:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="710930347272962199" id="message-710930347272962199">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/banner.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/banner.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710930419557597221" id="message-710930419557597221">
+                <div class="chatlog__content">
+                    <div class="markdown">Stars represent each major city </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710930449328898120" id="message-710930449328898120">
+                <div class="chatlog__content">
+                    <div class="markdown">blue represents bravery </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710930525853843546" id="message-710930525853843546">
+                <div class="chatlog__content">
+                    <div class="markdown">green represents growth and fertility </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710930615993630900" id="message-710930615993630900">
+                <div class="chatlog__content">
+                    <div class="markdown">yellow means freedom, that is created by the combination of both </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710930728417886259" id="message-710930728417886259">
+                <div class="chatlog__content">
+                    <div class="markdown">seeing as this is a confederation we should place the importance of our flag in the localities </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(209,206,51)">Land Emperor</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 12:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="710934544538140672" id="message-710934544538140672">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/Junta_Flag.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/Junta_Flag.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710934656014614549" id="message-710934656014614549">
+                <div class="chatlog__content">
+                    <div class="markdown">The red means anti, the hammer and sickle means communism. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/10d135e63a61beabd1a4490bb3971bae.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="H man#7177" data-user-id="221989918078009344" style="">H man</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 12:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="710934745512411257" id="message-710934745512411257">
+                <div class="chatlog__content">
+                    <div class="markdown">Please dont laugh this is basically my first flag design ever (thanks mc paint) 
+
+I made this way before the contest to it wasnt made for this, but the orange represents will, the blue represents our struggle for peace, and the purple represents courage. The hammer/hatchet and the sextant thing represent labour and science <span class="chatlog__edited-timestamp" title="15-May-20 12:21 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/flag3.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/flag3.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="color: rgb(199,0,0)">&#129408;Delete&#129408;</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 12:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="710935334908723301" id="message-710935334908723301">
+                <div class="chatlog__content">
+                    <div class="markdown">Green represents individualism (it’s also an homage to the FPP)
+
+The dark blue represents our minarchist nature at the moment (that’s our trajectory at least)
+
+The black represents the prominence of anarchist thought in Patrium
+
+And the white represents all the apoliticals just vibin at home
+
+[Thanks to <span class="mention" title="Revlise#2945">@Revlise</span> for making it not look like pixelated garbage) <span class="chatlog__edited-timestamp" title="15-May-20 12:24 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/image0.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/image0.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="color: rgb(199,0,0)">&#129408;Delete&#129408;</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 01:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="710946830849933382" id="message-710946830849933382">
+                <div class="chatlog__content">
+                    <div class="markdown">Very Non-Partisan Flag
+
+The red represents the communist factions, the turquoise the individualist factions. The Navy Blue can represent multiple things, such as minarchism, but on this flag, it represents the water, since we have a heavy emphasis on oceanic trade. </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/image0.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/image0.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="color: rgb(199,0,0)">&#129408;Delete&#129408;</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 01:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="710951149745733674" id="message-710951149745733674">
+                <div class="chatlog__content">
+                    <div class="markdown">This flag emphasizes the key role water plays in Patrium. The light water represents river water and the dark represents ocean water.
+
+The beige represents a sandbar marking the divide between river and ocean. </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/image0%20%281%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/image0%20%281%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 01:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="710955225401524256" id="message-710955225401524256">
+                <div class="chatlog__content">
+                    <div class="markdown">Better version </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/Patrian_Confederation_Flag_A1_1.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/Patrian_Confederation_Flag_A1_1.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710955288811012146" id="message-710955288811012146">
+                <div class="chatlog__content">
+                    <div class="markdown">The blue represents the water and the ocean that Patrium relies upon. The wheel represents movement and direction. Each spoke represents the current 12 states/parties (if more join, then more spokes shall be added) and the arrows represent the direction that each party would lead us on. The circle represents Patrium and the white (a combination of all colors) represents every ideology </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(199,0,0)">Apataz</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 01:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="710955424957988924" id="message-710955424957988924">
+                <div class="chatlog__content">
+                    <div class="markdown">This flag represents the unity of the Confederation. Each star represents one of the parties of the Patrium council as they all face and unify around the La Creature in the middle of them (more stars would be added as more parties join). Over on the side each dot in the white stripe represents each major rightful city of Patrium. <span class="chatlog__edited-timestamp" title="15-May-20 01:43 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/unknown.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/unknown.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 01:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="710956103424409711" id="message-710956103424409711">
+                <div class="chatlog__content">
+                    <div class="markdown">Stars represent each major city
+blue represents solidarity
+White represents Peace and prosperity
+Black represents bravery
+yellow means freedom, that is created by the combination of both
+seeing as this is a confederation we should place the importance of our flag in the localities <span class="chatlog__edited-timestamp" title="15-May-20 01:51 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710956138757226606" id="message-710956138757226606">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/banner%20%281%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/banner%20%281%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(199,0,0)">Apataz</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 01:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="710956767604899881" id="message-710956767604899881">
+                <div class="chatlog__content">
+                    <div class="markdown">2 option all gold </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/unknown%20%281%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/unknown%20%281%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/55450a1df756c0c81da41ee037438910.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Socialist Pelican#6677" data-user-id="391641397557592074" style="">Socialist Pelican</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 02:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="710969734845431859" id="message-710969734845431859">
+                <div class="chatlog__content">
+                    <div class="markdown">This is my submission, it isn&#39;t great but here we go. The background is geography, blue=ocean green=Patrium. The stars mean the same thing they do on Opossum&#39;s flag but here they are lined up on a sword that represents our unity, desire to bring justice to the generals, and our drive to destroy the Junta. </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/flag_3.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/flag_3.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/74ebaa9637cf8595c19e6a0ee7c0b8c0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Yui-chan#1530" data-user-id="247677040512204800" style="">Yui-chan</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 04:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="710993737160982618" id="message-710993737160982618">
+                <div class="chatlog__content">
+                    <div class="markdown">The blue background represents the sea that surrounds us, the white colour representing peace. There are 10 stars in a circle, one for each grand city, and inside of it there&#39;s a hammer, sickle and sword, representing the industry, farmers and military, all of them in the red colour that represents the blood of the fallen, that fought for our country. </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/Patrian_confederation.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/Patrian_confederation.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710994019785900144" id="message-710994019785900144">
+                <div class="chatlog__content">
+                    <div class="markdown">The same, but instead of red, representing the blood of the fallen, we have the yellow, representing the prosperity of our country. </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/Patrian_confederation_2.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/Patrian_confederation_2.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710994683597160540" id="message-710994683597160540">
+                <div class="chatlog__content">
+                    <div class="markdown">(BTW I should mention that I got the inspiration from <span class="mention" title="Amaaroc#9466">@Amaaroc</span>&#39;s flag) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 04:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="710995626430562336" id="message-710995626430562336">
+                <div class="chatlog__content">
+                    <div class="markdown">(I’m glad you did! I’m not submitting my cursed flag here) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 05:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="711007896560730162" id="message-711007896560730162">
+                <div class="chatlog__content">
+                    <div class="markdown">sun flag </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/Patrian_Confederation_Flag_A1.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/Patrian_Confederation_Flag_A1.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/8b041c3bddf592ee6d6e1b6b499d9602.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&quot;F&quot;#9593" data-user-id="226497313080606720" style="color: rgb(182,20,20)">ΔωΔ(THIP boi)</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 07:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="711048808577892392" id="message-711048808577892392">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/CONFED.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/CONFED.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711049546184130621" id="message-711049546184130621">
+                <div class="chatlog__content">
+                    <div class="markdown">I feel like Abdel himself describes this flag best </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/discr.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/discr.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 10:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="711089461039071262" id="message-711089461039071262">
+                <div class="chatlog__content">
+                    <div class="markdown">we shouldnt communist imagery tbh </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711089551099166770" id="message-711089551099166770">
+                <div class="chatlog__content">
+                    <div class="markdown">it would kind of tell others that we are a specific ideology rather than many <span class="chatlog__edited-timestamp" title="15-May-20 10:36 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711089720582733854" id="message-711089720582733854">
+                <div class="chatlog__content">
+                    <div class="markdown">//also, we could hold it off for a bit, i am planning on adding stars for the number of states </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711089803495604318" id="message-711089803495604318">
+                <div class="chatlog__content">
+                    <div class="markdown">//and we arent voting on that rn </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/4bd2dc370e6efa8ca51853bd17d1cb92.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Bucksin6#0134" data-user-id="302983490083880962" style="color: rgb(199,0,0)">Bucksin6</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 10:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="711091353379012639" id="message-711091353379012639">
+                <div class="chatlog__content">
+                    <div class="markdown">I&#39;m not a commie </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711091414645342289" id="message-711091414645342289">
+                <div class="chatlog__content">
+                    <div class="markdown">Just keep the stars and bars </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/8b041c3bddf592ee6d6e1b6b499d9602.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&quot;F&quot;#9593" data-user-id="226497313080606720" style="color: rgb(182,20,20)">ΔωΔ(THIP boi)</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 10:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="711091989457666129" id="message-711091989457666129">
+                <div class="chatlog__content">
+                    <div class="markdown">(dw I know guys, was just a meme) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 10:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="711093979407581215" id="message-711093979407581215">
+                <div class="chatlog__content">
+                    <div class="markdown">Orange stands for our vibrant culture, White for Peace and prosperity, Blue for solidarity, black for bravery, and all of them come together to protect yellow, Freedom. Stars are determined by the amount of states </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/banner%20%282%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/banner%20%282%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/5e7c52dced8bc95c3f1afa5368bc94f5.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Anarchy5partan#1802" data-user-id="132717351761084416" style="">Anarchy5partan</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="711095583322013746" id="message-711095583322013746">
+                <div class="chatlog__content">
+                    <div class="markdown">So like, patrium is a peninsula, and its got 10 major cities... I really just tried to represent that in a flag. </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/Untitled19_20200515235632.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/Untitled19_20200515235632.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 11:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="711095906497200130" id="message-711095906497200130">
+                <div class="chatlog__content">
+                    <div class="markdown">i like this! we could actually change it to be a darker blue, and actually cahnge the stars to symbolise states for when we organise them! </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 03:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="711348635526365184" id="message-711348635526365184">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/image0%20%281%29.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/image0%20%281%29.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="color: rgb(199,0,0)">&#129408;Delete&#129408;</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 03:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="711351673121013830" id="message-711351673121013830">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Ero11#0588">@Ero11</span> that’s cool looking but I think the shield and emblem are a bit too large </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 03:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="711351849252421732" id="message-711351849252421732">
+                <div class="chatlog__content">
+                    <div class="markdown">Gotchu </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 03:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="711351945901899846" id="message-711351945901899846">
+                <div class="chatlog__content">
+                    <div class="markdown">Plus we are african culture </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 03:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="711351948237865069" id="message-711351948237865069">
+                <div class="chatlog__content">
+                    <div class="markdown">Why is there a celtic knot </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 03:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="711351969599717486" id="message-711351969599717486">
+                <div class="chatlog__content">
+                    <div class="markdown">Not north europe </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="color: rgb(199,0,0)">&#129408;Delete&#129408;</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 03:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="711352036179968042" id="message-711352036179968042">
+                <div class="chatlog__content">
+                    <div class="markdown">Because Celtic Knot looks cool </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 03:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="711352055436148766" id="message-711352055436148766">
+                <div class="chatlog__content">
+                    <div class="markdown">I think Sun is the best </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711352119332044910" id="message-711352119332044910">
+                <div class="chatlog__content">
+                    <div class="markdown">Celtic Knot makes no sense tho </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 03:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="711352190526029897" id="message-711352190526029897">
+                <div class="chatlog__content">
+                    <div class="markdown">But the aesthetic </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="color: rgb(199,0,0)">&#129408;Delete&#129408;</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 03:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="711352196633067631" id="message-711352196633067631">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Parmesan The Cheese#9962">@Parmesan The Cheese</span> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/image0%20%282%29.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/image0%20%282%29.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 03:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="711352210339921942" id="message-711352210339921942">
+                <div class="chatlog__content">
+                    <div class="markdown">&#206; yes <span class="chatlog__edited-timestamp" title="16-May-20 03:59 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711352438220652585" id="message-711352438220652585">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">But the aesthetic
+</div><span class="mention" title="Ero11#0588">@Ero11</span> 
+It&#39;s a great flag but it doesn&#39;t have a relationship with Patrium </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711352763203846177" id="message-711352763203846177">
+                <div class="chatlog__content">
+                    <div class="markdown">You can&#39;t plop a good flag from one place onto another </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 04:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="711353240234623016" id="message-711353240234623016">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/image0%20%282%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/image0%20%282%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 04:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="711353781832515584" id="message-711353781832515584">
+                <div class="chatlog__content">
+                    <div class="markdown">Pls put the meaning in ur submission </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711353810194530325" id="message-711353810194530325">
+                <div class="chatlog__content">
+                    <div class="markdown">Cool flag tho </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 04:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="711354354451611689" id="message-711354354451611689">
+                <div class="chatlog__content">
+                    <div class="markdown">Ah </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711354742848225311" id="message-711354742848225311">
+                <div class="chatlog__content">
+                    <div class="markdown">The yellow stands for piss, and the blue stands for leftism. The two ravens because of the union between auth left and lib left, and finally, I put that neat little symbol in the bottom to symbolize Socialism. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 04:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="711355064383569950" id="message-711355064383569950">
+                <div class="chatlog__content">
+                    <div class="markdown">You&#39;re alienating every right-winger here lol </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 04:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="711355158994354197" id="message-711355158994354197">
+                <div class="chatlog__content">
+                    <div class="markdown">Yes i am </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 04:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="711355196227321878" id="message-711355196227321878">
+                <div class="chatlog__content">
+                    <div class="markdown">Based </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 04:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="711355255064887308" id="message-711355255064887308">
+                <div class="chatlog__content">
+                    <div class="markdown">Because they alienate everyone at their border. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 04:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="711355315332841513" id="message-711355315332841513">
+                <div class="chatlog__content">
+                    <div class="markdown">&#206; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/3d7e9cb6817b23ce67dbab8dbd697eaa.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Not_a_Threat#0873" data-user-id="419917289228337153" style="">Not_a_Threat</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 04:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="711358874615021618" id="message-711358874615021618">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Ero11#0588">@Ero11</span> based </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/20e70ace75c3c9c91caf8d01ad0b69c4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saruman#1823" data-user-id="467316769992998912" style="">Saruman</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 04:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="711360864975847516" id="message-711360864975847516">
+                <div class="chatlog__content">
+                    <div class="markdown">Based </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 04:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="711364246017146890" id="message-711364246017146890">
+                <div class="chatlog__content">
+                    <div class="markdown">bro </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711364343203233823" id="message-711364343203233823">
+                <div class="chatlog__content">
+                    <div class="markdown">yeah no, this whole thing is so that we dont attack any ideology,  rather to allow all ideologies at once </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="color: rgb(199,0,0)">&#129408;Delete&#129408;</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 08:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="711422639209447495" id="message-711422639209447495">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/image0%20%283%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/image0%20%283%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 04:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="713177846733864982" id="message-713177846733864982">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/Rough_Draft_of_Patrium_Flag.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/Rough_Draft_of_Patrium_Flag.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713177897212313732" id="message-713177897212313732">
+                <div class="chatlog__content">
+                    <div class="markdown">Something I made for fun </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 05:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="713185793828716575" id="message-713185793828716575">
+                <div class="chatlog__content">
+                    <div class="markdown">Nice </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 06:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="713385749738946663" id="message-713385749738946663">
+                <div class="chatlog__content">
+                    <div class="markdown">Tried my best to include a symbol of every faction member </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713386427366375474" id="message-713386427366375474">
+                <div class="chatlog__content">
+                    <div class="markdown">Plp&#39;s Gear, a protractor for the technocrats, an upside down A for the cappies and the Anarchists, a cutlass for the PPP, a Torch for the Jacobins, stars for the Libs (ten total for each major city, stole that idea), the Symbol of the Adam&#39;s Estate, and the symbol for the Divine Right or Kings at the bottom for the Monarchists and the Knights Templar </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713386542332379167" id="message-713386542332379167">
+                <div class="chatlog__content">
+                    <div class="markdown">It&#39;s only a rough draft for someone better than me to iterate on </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/3d7e9cb6817b23ce67dbab8dbd697eaa.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Not_a_Threat#0873" data-user-id="419917289228337153" style="">Not_a_Threat</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="713412957396271124" id="message-713412957396271124">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="RuneFireheart#6047">@RuneFireheart</span> I like it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="713413057535148033" id="message-713413057535148033">
+                <div class="chatlog__content">
+                    <div class="markdown">Thanks! </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/3d7e9cb6817b23ce67dbab8dbd697eaa.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Not_a_Threat#0873" data-user-id="419917289228337153" style="">Not_a_Threat</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="713413625959809074" id="message-713413625959809074">
+                <div class="chatlog__content">
+                    <div class="markdown">I like that the AE is included </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="713414684149284946" id="message-713414684149284946">
+                <div class="chatlog__content">
+                    <div class="markdown">Ofc </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="713417630475616279" id="message-713417630475616279">
+                <div class="chatlog__content">
+                    <div class="markdown">OCA was not included. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="713418058131046462" id="message-713418058131046462">
+                <div class="chatlog__content">
+                    <div class="markdown">Check again </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713418155334172762" id="message-713418155334172762">
+                <div class="chatlog__content">
+                    <div class="markdown">Notice how the flag is invertable? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713418178776137801" id="message-713418178776137801">
+                <div class="chatlog__content">
+                    <div class="markdown">So you can spin it </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713418223197880383" id="message-713418223197880383">
+                <div class="chatlog__content">
+                    <div class="markdown">Just like the Old C.U.M symbol </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713418326818291743" id="message-713418326818291743">
+                <div class="chatlog__content">
+                    <div class="markdown">It was the best I could come up with tho </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="color: rgb(199,0,0)">&#129408;Delete&#129408;</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="713418460671246387" id="message-713418460671246387">
+                <div class="chatlog__content">
+                    <div class="markdown">When PPP is included but not the 3rd largest party ;-; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="713418678640705617" id="message-713418678640705617">
+                <div class="chatlog__content">
+                    <div class="markdown">All s/he has to do is change the background to dark cyan/teal. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="713418955326226595" id="message-713418955326226595">
+                <div class="chatlog__content">
+                    <div class="markdown">Check again. Notice how the protractor and the sword form an upside down A?
+
+Flip the flag over, and its just an A, for Anarchy </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713419031968874557" id="message-713419031968874557">
+                <div class="chatlog__content">
+                    <div class="markdown">And the Cutlass is explicitly PPP </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="color: rgb(199,0,0)">&#129408;Delete&#129408;</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="713419077611290704" id="message-713419077611290704">
+                <div class="chatlog__content">
+                    <div class="markdown">I made a flag for lib unity </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713419084691144714" id="message-713419084691144714">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/image0%20%284%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/image0%20%284%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="713419130967162941" id="message-713419130967162941">
+                <div class="chatlog__content">
+                    <div class="markdown">That...  is Germany? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="color: rgb(199,0,0)">&#129408;Delete&#129408;</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="713419150332264468" id="message-713419150332264468">
+                <div class="chatlog__content">
+                    <div class="markdown">Belgium* </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="713419163187544185" id="message-713419163187544185">
+                <div class="chatlog__content">
+                    <div class="markdown">Ah </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="color: rgb(199,0,0)">&#129408;Delete&#129408;</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="713419238802587736" id="message-713419238802587736">
+                <div class="chatlog__content">
+                    <div class="markdown">Germany’s flag but good </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="713419392972488744" id="message-713419392972488744">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="wumbologist#4974">@&#129408;Delete&#129408;</span>, you figured something out: libertarians like waffles. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="color: rgb(199,0,0)">&#129408;Delete&#129408;</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="713419754748248184" id="message-713419754748248184">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="MemesOnPizza#0303">@MemesOnPizza</span> could you dm me your plans? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="713419919479537674" id="message-713419919479537674">
+                <div class="chatlog__content">
+                    <div class="markdown">Sure </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/14b2aee68a669ca7a303cbc864d61eea.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Moon Gaming#4820" data-user-id="250763652657840129" style="">Silver Moon Gaming</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 04:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="713896159252578304" id="message-713896159252578304">
+                <div class="chatlog__content">
+                    <div class="markdown">Probably over by now, but just want to put them here </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/Patrium_Republic1.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/Patrium_Republic1.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713896165623463986" id="message-713896165623463986">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/Patrium_Republic2.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/Patrium_Republic2.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/55450a1df756c0c81da41ee037438910.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Socialist Pelican#6677" data-user-id="391641397557592074" style="">Socialist Pelican</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 04:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="713896256438665216" id="message-713896256438665216">
+                <div class="chatlog__content">
+                    <div class="markdown">Actually I think we just postponed it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/14b2aee68a669ca7a303cbc864d61eea.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Moon Gaming#4820" data-user-id="250763652657840129" style="">Silver Moon Gaming</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 04:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="713896289884176446" id="message-713896289884176446">
+                <div class="chatlog__content">
+                    <div class="markdown">Ahhh </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/55450a1df756c0c81da41ee037438910.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Socialist Pelican#6677" data-user-id="391641397557592074" style="">Socialist Pelican</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 04:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="713896307001131021" id="message-713896307001131021">
+                <div class="chatlog__content">
+                    <div class="markdown">Until after the war </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713896355743006721" id="message-713896355743006721">
+                <div class="chatlog__content">
+                    <div class="markdown">For now each battalion has their own flag </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/14b2aee68a669ca7a303cbc864d61eea.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Moon Gaming#4820" data-user-id="250763652657840129" style="">Silver Moon Gaming</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 04:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="713897192359723018" id="message-713897192359723018">
+                <div class="chatlog__content">
+                    <div class="markdown">But are they any good? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/55450a1df756c0c81da41ee037438910.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Socialist Pelican#6677" data-user-id="391641397557592074" style="">Socialist Pelican</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 04:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="713897265676288050" id="message-713897265676288050">
+                <div class="chatlog__content">
+                    <div class="markdown">It’s just all the previous submissions </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/14b2aee68a669ca7a303cbc864d61eea.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Moon Gaming#4820" data-user-id="250763652657840129" style="">Silver Moon Gaming</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 04:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="713897294524579909" id="message-713897294524579909">
+                <div class="chatlog__content">
+                    <div class="markdown">I just threw them together <span class="chatlog__edited-timestamp" title="23-May-20 04:33 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/55450a1df756c0c81da41ee037438910.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Socialist Pelican#6677" data-user-id="391641397557592074" style="">Socialist Pelican</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 04:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="713897321972105247" id="message-713897321972105247">
+                <div class="chatlog__content">
+                    <div class="markdown">Ohh </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713897386841210890" id="message-713897386841210890">
+                <div class="chatlog__content">
+                    <div class="markdown">Yeah your flags are good </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20Contests%20-%20flag-contest%20%5B710920620187058317%5D.html_Files/8b041c3bddf592ee6d6e1b6b499d9602.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&quot;F&quot;#9593" data-user-id="226497313080606720" style="color: rgb(182,20,20)">ΔωΔ(THIP boi)</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 05:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="713911375272869898" id="message-713911375272869898">
+                <div class="chatlog__content">
+                    <div class="markdown">I like the first more </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 107 message(s)</div>
+</div>
+
+</body>
+</html>
