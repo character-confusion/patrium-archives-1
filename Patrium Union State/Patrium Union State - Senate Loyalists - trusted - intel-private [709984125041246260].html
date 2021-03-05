@@ -1,0 +1,1835 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Patrium Union State - Senate Loyalists - intel-private</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/16c74f9b8b2eed46bf463327bbe51226.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Patrium Union State - Senate Loyalists</div>
+        <div class="preamble__entry">trusted / intel-private</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(29,12,138)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 09:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="709988307613778001" id="message-709988307613778001">
+                <div class="chatlog__content">
+                    <div class="markdown">ele confessing to knowing about the bombing ahead of time <span class="chatlog__edited-timestamp" title="12-May-20 10:35 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_5.03.37_PM.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_5.03.37_PM.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709988332884590592" id="message-709988332884590592">
+                <div class="chatlog__content">
+                    <div class="markdown">video footage from the PLP float at the parade, of an attacker matching cam&#39;s description <span class="chatlog__edited-timestamp" title="12-May-20 10:41 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_4.24.30_PM.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_4.24.30_PM.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709988839539736607" id="message-709988839539736607">
+                <div class="chatlog__content">
+                    <div class="markdown">ACA propaganda post-attack, praising the killing <span class="chatlog__edited-timestamp" title="12-May-20 10:40 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Sin_titulo.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Sin_titulo.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709989312409632841" id="message-709989312409632841">
+                <div class="chatlog__content">
+                    <div class="markdown">Israel&#39;s comment during the attack <span class="chatlog__edited-timestamp" title="12-May-20 10:36 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_3.28.36_PM.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_3.28.36_PM.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709990421542993992" id="message-709990421542993992">
+                <div class="chatlog__content">
+                    <div class="markdown">pius sending screenshots of private WUF server chats to someone (israel, shown later) <span class="chatlog__edited-timestamp" title="12-May-20 10:52 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/20200511_131142.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/20200511_131142.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709990456863490089" id="message-709990456863490089">
+                <div class="chatlog__content">
+                    <div class="markdown">cam sending me the above screenshot <span class="chatlog__edited-timestamp" title="12-May-20 10:36 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_9.47.37_PM.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_9.47.37_PM.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709990486894575646" id="message-709990486894575646">
+                <div class="chatlog__content">
+                    <div class="markdown">ele admitting a libright party has a spy in the leftist coalition <span class="chatlog__edited-timestamp" title="12-May-20 10:37 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_5.03.09_PM.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_5.03.09_PM.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(29,12,138)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 09:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="709992439494213642" id="message-709992439494213642">
+                <div class="chatlog__content">
+                    <div class="markdown">pius admitting he has a spy in the leftist coalition <span class="chatlog__edited-timestamp" title="12-May-20 10:37 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_9.56.01_PM.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_9.56.01_PM.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709993464988958732" id="message-709993464988958732">
+                <div class="chatlog__content">
+                    <div class="markdown">pius admitting he sent isreal a screenshot obtained from his spy in the leftist coalition (screenshot shown above) <span class="chatlog__edited-timestamp" title="12-May-20 10:43 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_10.00.05_PM.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_10.00.05_PM.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709993736008106036" id="message-709993736008106036">
+                <div class="chatlog__content">
+                    <div class="markdown">again pius admitting he sent iseal a screenshot obtained from his spy in the leftist coalition (screenshot shown above) <span class="chatlog__edited-timestamp" title="12-May-20 10:38 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_10.01.20_PM.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_10.01.20_PM.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(29,12,138)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 10:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="709995637244035142" id="message-709995637244035142">
+                <div class="chatlog__content">
+                    <div class="markdown">OzymandiasFRToday at 04:03
+This is President Adams. Today, May 12, 2020, at 3 pm, terrorsists attacked the Patrian Unity Parade . As of now, I have been informed that 631 individuals have lost their lives, 2 of which were our very own senators. May Senators @LordPapania and @Senator Traveller 2.0 rest in peace. We are unsure as to who organized this attack, but military intel seems to suggest it was targeting the PLP and its allies. This is a dark day in Patrian History. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709995676427091978" id="message-709995676427091978">
+                <div class="chatlog__content">
+                    <div class="markdown">&gt;military intel seems to suggest it was targeting the PLP and its allies </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(29,12,138)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 10:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="709995778357198858" id="message-709995778357198858">
+                <div class="chatlog__content">
+                    <div class="markdown">ele refusing to give up the name of the future bomber <span class="chatlog__edited-timestamp" title="12-May-20 10:38 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_10.08.49_PM.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_10.08.49_PM.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(29,12,138)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 10:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="709996088203149412" id="message-709996088203149412">
+                <div class="chatlog__content">
+                    <div class="markdown">proof that the attack was specifically directed towards the plp <span class="chatlog__edited-timestamp" title="12-May-20 10:41 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/plpisdirectlyrelatedwtf.PNG">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/plpisdirectlyrelatedwtf.PNG" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709996186714636348" id="message-709996186714636348">
+                <div class="chatlog__content">
+                    <div class="markdown">&gt;military intel seems to suggest it was targeting the PLP and its allies </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(29,12,138)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 10:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="709997869041713163" id="message-709997869041713163">
+                <div class="chatlog__content">
+                    <div class="markdown">ele again refusing to give up the name of the future bomber, and advising me to do nothing about it <span class="chatlog__edited-timestamp" title="12-May-20 10:39 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_10.11.41_PM.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_10.11.41_PM.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709998118783156235" id="message-709998118783156235">
+                <div class="chatlog__content">
+                    <div class="markdown">an anonymous message inviting us to attack someone in order to create political instability <span class="chatlog__edited-timestamp" title="12-May-20 10:40 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-06_at_6.02.52_PM.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-06_at_6.02.52_PM.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(29,12,138)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 10:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="710007682228027443" id="message-710007682228027443">
+                <div class="chatlog__content">
+                    <div class="markdown">straight-currency praising the killings <span class="chatlog__edited-timestamp" title="12-May-20 10:57 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_10.56.21_PM.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_10.56.21_PM.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(29,12,138)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 11:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="710009456376938527" id="message-710009456376938527">
+                <div class="chatlog__content">
+                    <div class="markdown">straight-currency being sinister </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_11.03.22_PM.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_11.03.22_PM.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(29,12,138)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 11:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="710011445915680779" id="message-710011445915680779">
+                <div class="chatlog__content">
+                    <div class="markdown">Israel praising the attack </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_11.11.16_PM.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_11.11.16_PM.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(29,12,138)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 11:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="710013930038231043" id="message-710013930038231043">
+                <div class="chatlog__content">
+                    <div class="markdown">ele admitting to knowing about the attack in advance (screenshot from israel) </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screenshot_20200512-190130_Discord.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screenshot_20200512-190130_Discord.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710014052663033926" id="message-710014052663033926">
+                <div class="chatlog__content">
+                    <div class="markdown">ele admitting to knowing about the attack and who the attackers were (screenshot from israel) </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screenshot_20200512-184821_Discord.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screenshot_20200512-184821_Discord.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710014190122827827" id="message-710014190122827827">
+                <div class="chatlog__content">
+                    <div class="markdown">ele admitted to hearing about the attack in advance from LOLI/ACA informants (screenshot from israel) </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screenshot_20200512-190139_Discord.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screenshot_20200512-190139_Discord.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(29,12,138)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 11:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="710018000182444102" id="message-710018000182444102">
+                <div class="chatlog__content">
+                    <div class="markdown">ele saying he was being threatened into not disclosing the bombers - careful with revealing this one, the senator says he fears for his life (edit: be less careful, ele&#39;s being a dick) <span class="chatlog__edited-timestamp" title="13-May-20 12:58 AM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_11.34.19_PM.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-12_at_11.34.19_PM.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(29,12,138)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 01:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="710045918485020692" id="message-710045918485020692">
+                <div class="chatlog__content">
+                    <div class="markdown">differentiating between unedited and edited photos </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710045968933847073" id="message-710045968933847073">
+                <div class="chatlog__content">
+                    <div class="markdown"><a href="https://cdn.discordapp.com/attachments/705637850967834668/710043269584650260/Screenshot_20200513-031819_ibisPaint_X.jpg">https://cdn.discordapp.com/attachments/705637850967834668/710043269584650260/Screenshot_20200513-031819_ibisPaint_X.jpg</a> </div>
+                </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screenshot_20200513-031819_ibisPaint_X.jpg">
+                                            <img class="chatlog__embed-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screenshot_20200513-031819_ibisPaint_X.jpg" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+            <div class="chatlog__message " data-message-id="710046018967961641" id="message-710046018967961641">
+                <div class="chatlog__content">
+                    <div class="markdown"><a href="https://cdn.discordapp.com/attachments/705637850967834668/710042362440712202/Untitled159_20200513031426.png">https://cdn.discordapp.com/attachments/705637850967834668/710042362440712202/Untitled159_20200513031426.png</a> </div>
+                </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Untitled159_20200513031426.png">
+                                            <img class="chatlog__embed-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Untitled159_20200513031426.png" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+            <div class="chatlog__message " data-message-id="710046094117044254" id="message-710046094117044254">
+                <div class="chatlog__content">
+                    <div class="markdown">the unedited photo have &quot;screenshot&quot; in their url <span class="chatlog__edited-timestamp" title="13-May-20 02:42 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710046217320661083" id="message-710046217320661083">
+                <div class="chatlog__content">
+                    <div class="markdown">the compression doesnt matter, because that comes with screenshots on <em>phones</em> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710046305904230413" id="message-710046305904230413">
+                <div class="chatlog__content">
+                    <div class="markdown"><a href="https://cdn.discordapp.com/attachments/709984125041246260/710013930294214686/Screenshot_20200512-190130_Discord.jpg">https://cdn.discordapp.com/attachments/709984125041246260/710013930294214686/Screenshot_20200512-190130_Discord.jpg</a> </div>
+                </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screenshot_20200512-190130_Discord.jpg">
+                                            <img class="chatlog__embed-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screenshot_20200512-190130_Discord.jpg" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+            <div class="chatlog__message " data-message-id="710046331552661517" id="message-710046331552661517">
+                <div class="chatlog__content">
+                    <div class="markdown">thus this is real </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/1caae3fde90cce89824b0f1a42f81913.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mazilow42#6339" data-user-id="292516628145373184" style="">Mazilow42</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 09:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="710161354341744722" id="message-710161354341744722">
+                <div class="chatlog__content">
+                    <div class="markdown">yup </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(29,12,138)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 09:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="710164303554281553" id="message-710164303554281553">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Mazilow42#6339">@Mazilow42</span> send patriots info </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/1caae3fde90cce89824b0f1a42f81913.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mazilow42#6339" data-user-id="292516628145373184" style="">Mazilow42</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 09:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="710164363050221669" id="message-710164363050221669">
+                <div class="chatlog__content">
+                    <div class="markdown">all the known members </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/unknown.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/unknown.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 09:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="710167365224235129" id="message-710167365224235129">
+                <div class="chatlog__content">
+                    <div class="markdown">A conversation I had with Straight Currancy, where he implied that the Jacobins are next. 
+
+I fear for my safety. </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screenshot_20200513-104132_Reddit.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screenshot_20200513-104132_Reddit.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/1caae3fde90cce89824b0f1a42f81913.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mazilow42#6339" data-user-id="292516628145373184" style="">Mazilow42</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 03:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="710260041864708107" id="message-710260041864708107">
+                <div class="chatlog__content">
+                    <div class="markdown">Amaaroc - Recruiter
+Buttercup - High Council
+MemesOnPizza - High Council
+&quot;Δ&quot; - High Council, Recruiter
+Agent Purple - Royal Lion, High Council
+Cipher - Major Zero, High Council
+Not_a_Threat - High Council, Recruiter
+Pius - High Council
+Larryboi - High Council </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710260068737613844" id="message-710260068737613844">
+                <div class="chatlog__content">
+                    <div class="markdown">known patriot roles </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710260485890506853" id="message-710260485890506853">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="character-confusion#4343">@Senator Character</span> this way we know who&#39;s more important when it comes to their organization </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(29,12,138)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 03:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="710260994995126352" id="message-710260994995126352">
+                <div class="chatlog__content">
+                    <div class="markdown">note from cam </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screenshot_20200513-121207_Discord.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screenshot_20200513-121207_Discord.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/1caae3fde90cce89824b0f1a42f81913.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mazilow42#6339" data-user-id="292516628145373184" style="">Mazilow42</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 07:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="710312163499311194" id="message-710312163499311194">
+                <div class="chatlog__content">
+                    <div class="markdown">they arrested atapaz </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710312179433209896" id="message-710312179433209896">
+                <div class="chatlog__content">
+                    <div class="markdown">oh shit o fuc </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(29,12,138)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 06:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="710476559760228392" id="message-710476559760228392">
+                <div class="chatlog__content">
+                    <div class="markdown">map </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710476578194456606" id="message-710476578194456606">
+                <div class="chatlog__content">
+                    <div class="markdown"><a href="https://cdn.discordapp.com/attachments/705637974540550185/710430683176239154/Patrium_Map.png">https://cdn.discordapp.com/attachments/705637974540550185/710430683176239154/Patrium_Map.png</a> </div>
+                </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Patrium_Map.png">
+                                            <img class="chatlog__embed-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Patrium_Map.png" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(29,12,138)">Revlise (UTC+2)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 06:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="710476845618954271" id="message-710476845618954271">
+                <div class="chatlog__content">
+                    <div class="markdown">The red and senate controlled stripes are railway systems I guess? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710476950929408050" id="message-710476950929408050">
+                <div class="chatlog__content">
+                    <div class="markdown">Damn Junta has some too </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(29,12,138)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 06:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="710477056831520808" id="message-710477056831520808">
+                <div class="chatlog__content">
+                    <div class="markdown">red is road </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(29,12,138)">Revlise (UTC+2)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 06:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="710477110036136008" id="message-710477110036136008">
+                <div class="chatlog__content">
+                    <div class="markdown">Really? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(29,12,138)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 06:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="710477125966364743" id="message-710477125966364743">
+                <div class="chatlog__content">
+                    <div class="markdown">yes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(29,12,138)">Revlise (UTC+2)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 06:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="710477153057243146" id="message-710477153057243146">
+                <div class="chatlog__content">
+                    <div class="markdown">Thought we are bigger than that lol </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(29,12,138)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 06:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="710477196527009902" id="message-710477196527009902">
+                <div class="chatlog__content">
+                    <div class="markdown">i guess these are highways </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(29,12,138)">Revlise (UTC+2)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 06:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="710477196669616138" id="message-710477196669616138">
+                <div class="chatlog__content">
+                    <div class="markdown">Or just super eco-friendly it would be </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710477235357876234" id="message-710477235357876234">
+                <div class="chatlog__content">
+                    <div class="markdown">Oh ok </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(29,12,138)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 06:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="710477319210533026" id="message-710477319210533026">
+                <div class="chatlog__content">
+                    <div class="markdown">but who knows </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(29,12,138)">Revlise (UTC+2)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 06:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="710477379209789620" id="message-710477379209789620">
+                <div class="chatlog__content">
+                    <div class="markdown">Cuz the Junta has the ports.. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/06bbb8b36241f8962fb986dc619ffdf2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="kjsf#4664" data-user-id="476710511954755585" style="">kjsf</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 08:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="710516384001687572" id="message-710516384001687572">
+                <div class="chatlog__content">
+                    <div class="markdown">you could very easily take out their access to New Porto </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710516457481699420" id="message-710516457481699420">
+                <div class="chatlog__content">
+                    <div class="markdown">then jamesville would be dead and without resource </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(29,12,138)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 08:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="710516537420677211" id="message-710516537420677211">
+                <div class="chatlog__content">
+                    <div class="markdown">atlas movement planning on sitting out the war, and asking to rejoin later <span class="chatlog__edited-timestamp" title="14-May-20 08:39 AM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-14_at_8.28.17_AM.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-14_at_8.28.17_AM.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(29,12,138)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 08:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="710516537865535581" id="message-710516537865535581">
+                <div class="chatlog__content">
+                    <div class="markdown">i know </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710516553807954023" id="message-710516553807954023">
+                <div class="chatlog__content">
+                    <div class="markdown">wait </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710516654156808203" id="message-710516654156808203">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Patrium_MapModified.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Patrium_MapModified.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710516699723726942" id="message-710516699723726942">
+                <div class="chatlog__content">
+                    <div class="markdown">red is their weak points </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710516717792526348" id="message-710516717792526348">
+                <div class="chatlog__content">
+                    <div class="markdown">green is ours </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710516743436501194" id="message-710516743436501194">
+                <div class="chatlog__content">
+                    <div class="markdown">pink i uncontrolled </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(29,12,138)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 08:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="710516745483321364" id="message-710516745483321364">
+                <div class="chatlog__content">
+                    <div class="markdown">preliminary atlas membership </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-14_at_8.32.11_AM.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-14_at_8.32.11_AM.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710516832712392714" id="message-710516832712392714">
+                <div class="chatlog__content">
+                    <div class="markdown">LA offer to secretly leave us arms </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-14_at_8.37.35_AM.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Patrium%20Union%20State%20-%20Senate%20Loyalists%20-%20trusted%20-%20intel-private%20%5B709984125041246260%5D.html_Files/Screen_Shot_2020-05-14_at_8.37.35_AM.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 65 message(s)</div>
+</div>
+
+</body>
+</html>
