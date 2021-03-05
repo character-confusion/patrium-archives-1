@@ -1,0 +1,1730 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Patrian Confederation - announcements</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/19a1160cfd1d73f29a847ad6cb70faaa.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Patrian Confederation</div>
+        <div class="preamble__entry">bureaucracy / announcements</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/612d1b5c68ffeac1736a35bdbc269dec.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Retiarius#8081" data-user-id="397858882807922698" style="color: rgb(199,0,0)">Declan Geoffries (Head of LA)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 08:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="710693812145750086" id="message-710693812145750086">
+                <div class="chatlog__content">
+                    <div class="markdown">Ozy has declared that we&#39;ll have a civil war no matter what. Either against the junta, or against the Adams Estate. Or he quits. <span class="chatlog__edited-timestamp" title="14-May-20 08:31 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710694673949392956" id="message-710694673949392956">
+                <div class="chatlog__content">
+                    <div class="markdown">We won&#39;t start anything until tomorrow, though. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 09:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="710884779679154188" id="message-710884779679154188">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span>, amendments are to be proposed 24 hours before ratification. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(199,0,0)">Confederalist Character</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 09:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="710889249897185364" id="message-710889249897185364">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span> if your party leader is currently working with the junta, feel free to nominate a new one for the time being </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 09:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="710889332797341775" id="message-710889332797341775">
+                <div class="chatlog__content">
+                    <div class="markdown">better yet, split off </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="color: rgb(199,0,0)">&#129408;Delete&#129408;</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 11:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="710927379278594189" id="message-710927379278594189">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span> We will be hosting a flag contest. Here are some simple rules:
+
+1. No NSFW content, please 
+
+2. The flag must include some sort of symbolism, whether through color, words, or an emblem.
+
+3. No mono-color or lazy designs, put effort into it.
+
+4. Do not insult other people or their designs, stay civil.
+
+You have until Sunday, 12:00pm EST to submit your designs!
+
+Submit them in the flag contests tab </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 06:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="711027070368743425" id="message-711027070368743425">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span>, all parties have an &quot;-AJA&quot; suffix now. </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127462;" title="&#127462;" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f1e6.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127471;" title="&#127471;" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f1ef.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127344;️" title="&#127344;️" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f170.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="color: rgb(199,0,0)">&#129408;Delete&#129408;</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 11:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="711289607102398494" id="message-711289607102398494">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span> 
+
+We will be postponing the flag competition. Instead, each “coorps” (your party) will be able to design a flag. 
+
+Thanks <span class="mention" title="Dieselkeough#5676">@Dieselkeough</span> for the idea <span class="chatlog__edited-timestamp" title="18-May-20 12:04 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(199,0,0)">Confederalist Character</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 05:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="711730098184912896" id="message-711730098184912896">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span> We&#39;re holding a propaganda contest! Submit your best anti-junta action stuff in <span class="mention">#propaganda-contest</span> ! </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127477;" title="&#127477;" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f1f5.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127476;" title="&#127476;" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f1f4.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127358;️" title="&#127358;️" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f17e.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127359;️" title="&#127359;️" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f17f.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128563;" title="&#128563;" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f633.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(199,0,0)">Confederalist Character</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 10:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="711808018173526107" id="message-711808018173526107">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span> yo ozy&#39;s being freaky about rp channels so don&#39;t type in them or you will literally die </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/4bd2dc370e6efa8ca51853bd17d1cb92.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Bucksin6#0134" data-user-id="302983490083880962" style="color: rgb(199,0,0)">Bucksin6</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 10:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="711808577655930961" id="message-711808577655930961">
+                <div class="chatlog__content">
+                    <div class="markdown">Type in #senate-hall for some BDSM rp </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="✅" title="✅" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/2705.png">
+                                <span class="chatlog__reaction-count">16</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 11:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="712733489442586625" id="message-712733489442586625">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span>, the canon will be unfrozen at 19:00 UTC, or 15:00 Eastern Daylight Time. <span class="chatlog__edited-timestamp" title="20-May-20 11:28 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 12:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="712741667622617229" id="message-712741667622617229">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span>, THE CANON HAS BEEN UNFROZEN. I REPEAT: THE CANON HAS BEEN UNFROZEN. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(199,0,0)">Confederalist Character</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 12:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="712741751873339423" id="message-712741751873339423">
+                <div class="chatlog__content">
+                    <div class="markdown">(please don&#39;t commit suicide by AE) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 12:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="712742381820313661" id="message-712742381820313661">
+                <div class="chatlog__content">
+                    <div class="markdown">(How did AE disband?) </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712742832397484053" id="message-712742832397484053">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span>, on the Polcompball Interactive server, members of the Junta have been nicking themselves as &quot;...&quot; for some reason. This is quite strange. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(199,0,0)">Confederalist Character</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 01:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="712761792106987541" id="message-712761792106987541">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span> We have officially created the Patrium Convention: Rules of War! This document has been signed by all parties barring the Adams Estate. (Yes, even the junta.)
+
+<a href="https://docs.google.com/document/d/1C1LvPDdIljM6vb78eO4PQR3ydpSDZpWXO2h693_PYTQ/edit?usp=sharing">https://docs.google.com/document/d/1C1LvPDdIljM6vb78eO4PQR3ydpSDZpWXO2h693_PYTQ/edit?usp=sharing</a> </div>
+                </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+                                        <div class="chatlog__embed-title">
+                                                <a class="chatlog__embed-title-link" href="https://docs.google.com/document/d/1C1LvPDdIljM6vb78eO4PQR3ydpSDZpWXO2h693_PYTQ/edit?usp=sharing">
+                                                    <div class="markdown">The Patrium Convention: Rules of War</div>
+                                                </a>
+                                        </div>
+
+                                        <div class="chatlog__embed-description">
+                                            <div class="markdown">The Patrium Convention: Rules of War  The use of all weapons of mass destruction is forbidden. Weapons of mass destruction include anything defined as such by the UN: a complete list can be found here. This includes, but is not limited to, nuclear weapons, chemical weapons, bi...</div>
+                                        </div>
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/OJBgGm8huJfdVJ8J2UDu8SyfPwShdC8aXSxBjxunvb2jj1aU3Y">
+                                            <img class="chatlog__embed-thumbnail" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/OJBgGm8huJfdVJ8J2UDu8SyfPwShdC8aXSxBjxunvb2jj1aU3Y" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 06:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="712835938908242012" id="message-712835938908242012">
+                <div class="chatlog__content">
+                    <div class="markdown">Fuck rules. All my homies do war crimes </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127464;" title="&#127464;" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f1e8.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127462;" title="&#127462;" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f1e6.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127477;" title="&#127477;" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f1f5.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127481;" title="&#127481;" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f1f9.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127482;" title="&#127482;" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f1fa.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127479;" title="&#127479;" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f1f7.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127466;" title="&#127466;" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f1ea.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127465;" title="&#127465;" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f1e9.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="713044699551629398" id="message-713044699551629398">
+                <div class="chatlog__content">
+                    <div class="markdown">Based </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 10:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="713082285381124138" id="message-713082285381124138">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span>, PCD&#39;ed is now an official term. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 12:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="713108077741867028" id="message-713108077741867028">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span>, the Party would like to remind you that [RETRACTED] has never existed. </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127479;" title="&#127479;" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f1f7.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127466;" title="&#127466;" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f1ea.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 12:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="713108153192939530" id="message-713108153192939530">
+                <div class="chatlog__content">
+                    <div class="markdown">All hail Big Brother </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 12:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="713108237511163936" id="message-713108237511163936">
+                <div class="chatlog__content">
+                    <div class="markdown">The crab is doubleplusgood. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 12:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="713108281815728220" id="message-713108281815728220">
+                <div class="chatlog__content">
+                    <div class="markdown">All who dissent, present yourselves at the re-education facilty <span class="chatlog__edited-timestamp" title="21-May-20 12:17 PM">(edited)</span></div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="☑️" title="☑️" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/2611.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 12:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="713108354204958771" id="message-713108354204958771">
+                <div class="chatlog__content">
+                    <div class="markdown">[RETRACTED] is a spook. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(199,0,0)">Confederalist Character</span>
+
+
+        <span class="chatlog__timestamp">23-May-20 07:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="713942332528918601" id="message-713942332528918601">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span> vote on this to express your opinion on the war <a href="https://strawpoll.com/dkp2gbka/r">https://strawpoll.com/dkp2gbka/r</a> </div>
+                </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+                                        <div class="chatlog__embed-title">
+                                                <a class="chatlog__embed-title-link" href="https://strawpoll.com/dkp2gbka/r">
+                                                    <div class="markdown">Opinion Poll: Irrespective of the B ... - Poll Results - StrawPoll</div>
+                                                </a>
+                                        </div>
+
+                                        <div class="chatlog__embed-description">
+                                            <div class="markdown">What&#39;s your opinion? Vote now: Can we get back to politics? Please?, I want to die in a waaarr~, I am Neutral on this.</div>
+                                        </div>
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/strawpoll.png">
+                                            <img class="chatlog__embed-thumbnail" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/strawpoll.png" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">24-May-20 04:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="714078194864619563" id="message-714078194864619563">
+                <div class="chatlog__content">
+                    <div class="markdown">Fuck the war. All my homies hate the war </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">24-May-20 07:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="714119333940428870" id="message-714119333940428870">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span>, I will delete the NSFW channels. &lt;/sarcasm&gt; </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128070;" title="&#128070;" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f446.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#129313;" title="&#129313;" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/1f921.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(199,0,0)">Apataz</span>
+
+
+        <span class="chatlog__timestamp">24-May-20 08:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="714142480232349816" id="message-714142480232349816">
+                <div class="chatlog__content">
+                    <div class="markdown">Make them all NSFW channels </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">24-May-20 02:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="714228821251063808" id="message-714228821251063808">
+                <div class="chatlog__content">
+                    <div class="markdown">Silver Moon Gaming has been exposed. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(199,0,0)">Confederalist Character</span>
+
+
+        <span class="chatlog__timestamp">24-May-20 02:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="714233850649247745" id="message-714233850649247745">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span> here is the potential new peace treaty. it has not been made official but please voice any strong objections you have <a href="https://docs.google.com/document/d/151uqbt8HhmJF6_iQY3f6Qybt9l7hU4UdfvWCxM9dKCo/edit">https://docs.google.com/document/d/151uqbt8HhmJF6_iQY3f6Qybt9l7hU4UdfvWCxM9dKCo/edit</a> </div>
+                </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+                                        <div class="chatlog__embed-title">
+                                                <a class="chatlog__embed-title-link" href="https://docs.google.com/document/d/151uqbt8HhmJF6_iQY3f6Qybt9l7hU4UdfvWCxM9dKCo/edit">
+                                                    <div class="markdown">Appotomax Courthouse Agreement</div>
+                                                </a>
+                                        </div>
+
+                                        <div class="chatlog__embed-description">
+                                            <div class="markdown">Peace Treaty  The Military Council and military members will be placed on trial. If they are found guilty, they will be stripped of rank, but not arrested. Charges will be formalized, but may include the bombing of Catalan, negligence, and obstruction of justice. Following the...</div>
+                                        </div>
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/H8CrnMnbu3kw7v4QwtGvy8iHpavBrB9aK9BwV-ChSZAxyiURNW">
+                                            <img class="chatlog__embed-thumbnail" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/H8CrnMnbu3kw7v4QwtGvy8iHpavBrB9aK9BwV-ChSZAxyiURNW" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">24-May-20 03:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="714239805831249953" id="message-714239805831249953">
+                <div class="chatlog__content">
+                    <div class="markdown">Sign that treaty, blin. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">24-May-20 03:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="714243872196263957" id="message-714243872196263957">
+                <div class="chatlog__content">
+                    <div class="markdown">Cyka blyat, idi na hui, sign that to be in the community </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">25-May-20 09:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="714508326364381214" id="message-714508326364381214">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span>, the trial server is now public. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="714508330147643453" id="message-714508330147643453">
+                <div class="chatlog__content">
+                    <div class="markdown"><a href="https://discord.gg/Q8EfUp">https://discord.gg/Q8EfUp</a> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">02-Jul-20 03:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="728375483657355384" id="message-728375483657355384">
+                <div class="chatlog__content">
+                    <div class="markdown">We might use this server again if something bad happens. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="728375557393219724" id="message-728375557393219724">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="👀" title="👀" src="https://twemoji.maxcdn.com/2/72x72/1f440.png"> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/27f2ce2f42ea6564d4b115c8d0c9cdbd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frank De Voosere#0551" data-user-id="530153917254860801" style="color: rgb(233,30,99)">Frank De Voosere</span>
+
+
+        <span class="chatlog__timestamp">24-Jul-20 09:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="736266004254031960" id="message-736266004254031960">
+                <div class="chatlog__content">
+                    <div class="markdown">no </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">24-Aug-20 12:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="747534484668153957" id="message-747534484668153957">
+                <div class="chatlog__content">
+                    <div class="markdown"><a href="https://media.tenor.com/images/b255f344566c3a512d376c5678ccad69/tenor.gif?@everyone">https://media.tenor.com/images/b255f344566c3a512d376c5678ccad69/tenor.gif?@everyone</a> </div>
+                </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/tenor.gif">
+                                            <img class="chatlog__embed-thumbnail" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/tenor.gif" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="boohooo" title="boohooo" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/726613212233203735.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="cringe" title="cringe" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/727829235078791288.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="untroll" title="untroll" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/735698298941341728.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="Sad" title="Sad" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/731955888004530248.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="ree" title="ree" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/697562579777617920.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="REEEEEEEE" title="REEEEEEEE" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/707494949045796867.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="pepeREEE" title="pepeREEE" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/528439554718433290.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="pepeREEEE" title="pepeREEEE" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/528439567062138881.gif">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="pepeREEEEE" title="pepeREEEEE" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/528439553980235785.gif">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="pepeREEEEEE" title="pepeREEEEEE" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/528439554122842122.gif">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="PES_Reeee" title="PES_Reeee" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/493353112321523722.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="PES_ReeePing" title="PES_ReeePing" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/667743725010812975.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="PES_HyperReee" title="PES_HyperReee" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/585741737964863489.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="ping_lurk_FB" title="ping_lurk_FB" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/519318770272174080.gif">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="ping_peek_FB" title="ping_peek_FB" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/704421717044494356.gif">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="FeelsTooPingedMan" title="FeelsTooPingedMan" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/501024637849698315.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="PandaPingRee" title="PandaPingRee" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/569006532142825472.gif">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="aPES_AngeryEveryonePing" title="aPES_AngeryEveryonePing" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/693519556039147581.gif">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="CH_pinghammer" title="CH_pinghammer" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/715578711801462865.gif">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="Frwn" title="Frwn" src="Patrian%20Confederation%20-%20bureaucracy%20-%20announcements%20%5B710693340433088625%5D.html_Files/724775334721093652.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 39 message(s)</div>
+</div>
+
+</body>
+</html>
