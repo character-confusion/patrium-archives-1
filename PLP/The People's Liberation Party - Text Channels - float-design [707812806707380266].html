@@ -1,0 +1,3588 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>The People&#39;s Liberation Party - float-design</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/f16d8ab1567a79609e3c320f12b54809.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">The People&#39;s Liberation Party</div>
+        <div class="preamble__entry">Text Channels / float-design</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(143,0,0)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">06-May-20 09:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="707812832259080222" id="message-707812832259080222">
+                <div class="chatlog__content">
+                    <div class="markdown">so </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="707812844246401075" id="message-707812844246401075">
+                <div class="chatlog__content">
+                    <div class="markdown">plp? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="707812850672074803" id="message-707812850672074803">
+                <div class="chatlog__content">
+                    <div class="markdown">or </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="707812869370019891" id="message-707812869370019891">
+                <div class="chatlog__content">
+                    <div class="markdown">patrium? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(143,0,0)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">06-May-20 09:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="707812961833713714" id="message-707812961833713714">
+                <div class="chatlog__content">
+                    <div class="markdown">Plp and patrium </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(143,0,0)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">06-May-20 09:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="707813076367310898" id="message-707813076367310898">
+                <div class="chatlog__content">
+                    <div class="markdown">o.O music contest? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="707813090875408395" id="message-707813090875408395">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">#music</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(143,0,0)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">06-May-20 09:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="707813138711707668" id="message-707813138711707668">
+                <div class="chatlog__content">
+                    <div class="markdown">Yeah! </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">06-May-20 11:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="707837926066618378" id="message-707837926066618378">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/Screenshot_20200507-081439_Samsung_Internet.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/Screenshot_20200507-081439_Samsung_Internet.jpg" alt="Attachment">
+                            </a>
+                    </div>
+                    <div class="chatlog__attachment">
+                            <a href="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/Screenshot_20200507-081459_Samsung_Internet.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/Screenshot_20200507-081459_Samsung_Internet.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="707837980575793174" id="message-707837980575793174">
+                <div class="chatlog__content">
+                    <div class="markdown">Google isn&#39;t of much help. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">06-May-20 11:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="707841732120674374" id="message-707841732120674374">
+                <div class="chatlog__content">
+                    <div class="markdown">We could make a flag of Patrium, surrounded by a bunch of interracial people (I don’t know what the demographics here are but diversity is based) holding hands, and below that we could write &quot;THE PEOPLE FIRST&quot;. We shouldn’t mention our party because party pride = pride of giving power over a large amount of people to a small amount of people. People shouldn’t be proud of their parties and so shouldn’t the party members be proud of themselves. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(143,0,0)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">06-May-20 11:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="707846172399894549" id="message-707846172399894549">
+                <div class="chatlog__content">
+                    <div class="markdown">look up parade floats </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="707846191425257482" id="message-707846191425257482">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Revlise#2945">@Revlise</span> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="707846369167147069" id="message-707846369167147069">
+                <div class="chatlog__content">
+                    <div class="markdown">military parade floats to be exact </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="707846512054501396" id="message-707846512054501396">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Frog (The Toad)#8310">@Frog (The Toad)</span> do we have to submit a 3d model or what? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">06-May-20 11:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="707847346473664582" id="message-707847346473664582">
+                <div class="chatlog__content">
+                    <div class="markdown">I hope not </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="707847599947776023" id="message-707847599947776023">
+                <div class="chatlog__content">
+                    <div class="markdown">That would be over our capabilities and would indeed blow minds, but I think that&#39;s really not what they imagined </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="707847628905381890" id="message-707847628905381890">
+                <div class="chatlog__content">
+                    <div class="markdown">But we caaan... </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="707848267865522246" id="message-707848267865522246">
+                <div class="chatlog__content">
+                    <div class="markdown">If anyone is better with Blender or something else, you&#39;re free to do what you wish </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(143,0,0)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">06-May-20 11:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="707848483582771250" id="message-707848483582771250">
+                <div class="chatlog__content">
+                    <div class="markdown">i think it&#39;s just like a drawing </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">06-May-20 11:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="707848496555753543" id="message-707848496555753543">
+                <div class="chatlog__content">
+                    <div class="markdown">I could maybe do it irl, I probably have most of the necessities, but we should plan it first </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(143,0,0)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">06-May-20 11:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="707848510065868801" id="message-707848510065868801">
+                <div class="chatlog__content">
+                    <div class="markdown">though 3d would be based af </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">06-May-20 11:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="707848703528140870" id="message-707848703528140870">
+                <div class="chatlog__content">
+                    <div class="markdown">And send it to the mods address hah <span class="chatlog__edited-timestamp" title="06-May-20 11:58 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="707848959137284176" id="message-707848959137284176">
+                <div class="chatlog__content">
+                    <div class="markdown">Okay, let&#39;s brainstorm the plan first </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 12:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="707851521894907914" id="message-707851521894907914">
+                <div class="chatlog__content">
+                    <div class="markdown">But the problem is if you wanted something that would be impossible to redraw, but rather just printable, then I could not proceed, because the printshops are all closed because of coronavirus and I don&#39;t have printer oof
+
+
+I&#39;ll be able to redraw stuff or even sew it. I&#39;ve also got some communist stuff (pins etc) but I agree that it shouldn&#39;t be party glorification coup <span class="chatlog__edited-timestamp" title="07-May-20 12:09 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 11:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="708020840196735006" id="message-708020840196735006">
+                <div class="chatlog__content">
+                    <div class="markdown">So,
+1. Atapaz daddy will make the float glorious </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128077;" title="&#128077;" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/1f44d.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="708020868638310400" id="message-708020868638310400">
+                <div class="chatlog__content">
+                    <div class="markdown">Agree? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 11:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="708021036276252753" id="message-708021036276252753">
+                <div class="chatlog__content">
+                    <div class="markdown">I don’t want the float praising anybody, let’s be revolutionary and praise the people for being the people </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708021068991955045" id="message-708021068991955045">
+                <div class="chatlog__content">
+                    <div class="markdown">We are their servants not leaders </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 11:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="708021147215724554" id="message-708021147215724554">
+                <div class="chatlog__content">
+                    <div class="markdown">The worker </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 11:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="708021355655987280" id="message-708021355655987280">
+                <div class="chatlog__content">
+                    <div class="markdown">We should have a flag of Patrium and under it we could write something like &quot;THE PEOPLE FIRST&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(143,0,0)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 11:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="708021487776432188" id="message-708021487776432188">
+                <div class="chatlog__content">
+                    <div class="markdown">That would be cool </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 11:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="708021929352626288" id="message-708021929352626288">
+                <div class="chatlog__content">
+                    <div class="markdown">I generally think we should support an agenda of no self-pride. It’s not like self-pride is necessarily bad, but when you are a senator it’s more like &quot;I’m so cool because I’m in a high rank of an unjust hierarchy&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 11:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="708022303849447475" id="message-708022303849447475">
+                <div class="chatlog__content">
+                    <div class="markdown">Okay, anything else to put on it? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 11:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="708022535391805561" id="message-708022535391805561">
+                <div class="chatlog__content">
+                    <div class="markdown">We could put our party symbol, but I want it to be more &quot;yey Socialism&quot; than &quot;yey PLP&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 11:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="708022619391262751" id="message-708022619391262751">
+                <div class="chatlog__content">
+                    <div class="markdown">Yeah, e can use some more generic ones </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708022641591844895" id="message-708022641591844895">
+                <div class="chatlog__content">
+                    <div class="markdown">That will fit better </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 11:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="708022664832352269" id="message-708022664832352269">
+                <div class="chatlog__content">
+                    <div class="markdown">Oh I have one! </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708022686554521630" id="message-708022686554521630">
+                <div class="chatlog__content">
+                    <div class="markdown">An idea I made </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708023360272990329" id="message-708023360272990329">
+                <div class="chatlog__content">
+                    <div class="markdown">It could be a group of black ants making up together one big ant on a red field. We could also add &quot;DON&#39;T TREAD ON US&quot; below. The ants represent the workers that together are powerful just like ants together can create amazing things. Don’t tread on us is a reference to the Gadsden Flag because ants don’t like being treaded on as well but they are not selfish so they work together so no one would get treaded on </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 11:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="708023481022939176" id="message-708023481022939176">
+                <div class="chatlog__content">
+                    <div class="markdown">Interesting </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 11:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="708023601554522197" id="message-708023601554522197">
+                <div class="chatlog__content">
+                    <div class="markdown">I adopted it as the flag of Libertarian Marxism, but it could also work as Libertarian Socialism as a whole </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 11:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="708023703849664653" id="message-708023703849664653">
+                <div class="chatlog__content">
+                    <div class="markdown">I don&#39;t have ideas for the rest, but I&#39;ve thought of making a small towery thing somewhere on it and making the synbol of Patrium(flower) on top of it </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708023747424157707" id="message-708023747424157707">
+                <div class="chatlog__content">
+                    <div class="markdown">Perhaps surrounded by some socialistic symbols </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708023768110334013" id="message-708023768110334013">
+                <div class="chatlog__content">
+                    <div class="markdown">Or having them carved into it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 11:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="708024024369987684" id="message-708024024369987684">
+                <div class="chatlog__content">
+                    <div class="markdown">We could have stuff like the ant, hammer and sickle, Anarchy A, feminist fist, De-Leonism arm, red star </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 11:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="708024583655129199" id="message-708024583655129199">
+                <div class="chatlog__content">
+                    <div class="markdown">I&#39;ve also thought of statues of two workers, one holding hammer, second sickle around the Patrium symbol in some cool poses </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708024726110470244" id="message-708024726110470244">
+                <div class="chatlog__content">
+                    <div class="markdown">I would use some things from Patriun lore, but welp </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708024840937930892" id="message-708024840937930892">
+                <div class="chatlog__content">
+                    <div class="markdown">It&#39;s existence is not that big as of now </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 11:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="708025046219620354" id="message-708025046219620354">
+                <div class="chatlog__content">
+                    <div class="markdown">The Ants can also make the Patrium symbol </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708025075692994560" id="message-708025075692994560">
+                <div class="chatlog__content">
+                    <div class="markdown">Or just workers </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708025091904241674" id="message-708025091904241674">
+                <div class="chatlog__content">
+                    <div class="markdown">Like make up </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 11:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="708025135092727929" id="message-708025135092727929">
+                <div class="chatlog__content">
+                    <div class="markdown">The ants would be difficult to create maybe though oof </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708025183113314335" id="message-708025183113314335">
+                <div class="chatlog__content">
+                    <div class="markdown">It would depend on their size ofc </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 11:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="708025190637895681" id="message-708025190637895681">
+                <div class="chatlog__content">
+                    <div class="markdown">Yeah that’s a problem with this </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/fb7ef395616c0752e4189c61214507dc.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="J.P. Wilson#2077" data-user-id="460242058234560513" style="">J.P. Wilson</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 01:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="708049112070619145" id="message-708049112070619145">
+                <div class="chatlog__content">
+                    <div class="markdown">Oh add the GFL hoe and gear. I&#39;ll share it in the chat </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708049263183265883" id="message-708049263183265883">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/eb0dn12466831.png">
+                                    <img class="chatlog__attachment-thumbnail" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/eb0dn12466831.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(143,0,0)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 05:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="708108043887575171" id="message-708108043887575171">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/unknown.png">
+                                    <img class="chatlog__attachment-thumbnail" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/unknown.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708108132706156675" id="message-708108132706156675">
+                <div class="chatlog__content">
+                    <div class="markdown">float idea you guys had </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/0ce54ae083d1c1c9fff20f3deee82ad9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Koboldski#3350" data-user-id="318486263395254294" style="">Koboldski</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 05:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="708119381326037012" id="message-708119381326037012">
+                <div class="chatlog__content">
+                    <div class="markdown">We need to add the good ol&#39; black cat </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/0ce54ae083d1c1c9fff20f3deee82ad9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Koboldski#3350" data-user-id="318486263395254294" style="">Koboldski</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 06:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="708121664025657494" id="message-708121664025657494">
+                <div class="chatlog__content">
+                    <div class="markdown">Wobbly cat best cat </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(143,0,0)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">07-May-20 07:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="708146167158013986" id="message-708146167158013986">
+                <div class="chatlog__content">
+                    <div class="markdown">Ofc </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 01:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="708241678405730356" id="message-708241678405730356">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="OpossumMan#7861">@OpossumMan</span> Your float is just what I imagined! </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708241714476875839" id="message-708241714476875839">
+                <div class="chatlog__content">
+                    <div class="markdown">I love it </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708241755660877844" id="message-708241755660877844">
+                <div class="chatlog__content">
+                    <div class="markdown">But, like exactly lol </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708241797628821587" id="message-708241797628821587">
+                <div class="chatlog__content">
+                    <div class="markdown">Wobbly cat yes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(143,0,0)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 10:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="708375128035164251" id="message-708375128035164251">
+                <div class="chatlog__content">
+                    <div class="markdown">do we want to have anyone on the float? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708375166345936967" id="message-708375166345936967">
+                <div class="chatlog__content">
+                    <div class="markdown">like some senators or somthing? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 10:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="708375603451002904" id="message-708375603451002904">
+                <div class="chatlog__content">
+                    <div class="markdown">I mean, well, we possibly could. Though I am not that much fond of this idea. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708375725740392448" id="message-708375725740392448">
+                <div class="chatlog__content">
+                    <div class="markdown">But I am not strictly <em>against</em> it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(143,0,0)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 10:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="708375843184967741" id="message-708375843184967741">
+                <div class="chatlog__content">
+                    <div class="markdown">why are you not for it? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(143,0,0)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 10:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="708375871794184274" id="message-708375871794184274">
+                <div class="chatlog__content">
+                    <div class="markdown">i thought we wanted a people-based float </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708375909618548864" id="message-708375909618548864">
+                <div class="chatlog__content">
+                    <div class="markdown">like we could just stick some citizens up there </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(143,0,0)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 10:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="708376012563677295" id="message-708376012563677295">
+                <div class="chatlog__content">
+                    <div class="markdown">good idea </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708376065256587284" id="message-708376065256587284">
+                <div class="chatlog__content">
+                    <div class="markdown">just some workers </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 10:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="708376114724339713" id="message-708376114724339713">
+                <div class="chatlog__content">
+                    <div class="markdown">I am for the workers </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(143,0,0)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 10:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="708376217807487027" id="message-708376217807487027">
+                <div class="chatlog__content">
+                    <div class="markdown">can all stand up there with their tools and work clothes. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 10:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="708376452231463012" id="message-708376452231463012">
+                <div class="chatlog__content">
+                    <div class="markdown">But not exactly for senators, you know.
+If we&#39;re not putting Atapaz there, then the senators have no place on the float.
+Also, <em>which</em> ones. That would be another problem.
+And, althought I believe it is not possible yet, such event would be perfect for assasination. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(143,0,0)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 10:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="708376940234408067" id="message-708376940234408067">
+                <div class="chatlog__content">
+                    <div class="markdown">which is why I don&#39;t think Apataz should be on the float </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708376973235191960" id="message-708376973235191960">
+                <div class="chatlog__content">
+                    <div class="markdown">to protect him </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708377032597438608" id="message-708377032597438608">
+                <div class="chatlog__content">
+                    <div class="markdown">as well as to avoid him having a political side </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 10:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="708377299128418314" id="message-708377299128418314">
+                <div class="chatlog__content">
+                    <div class="markdown">W̶e̶ ̶n̶e̶e̶d̶ ̶t̶o̶ ̶p̶r̶o̶t̶e̶c̶t̶ ̶o̶u̶r̶ ̶p̶r̶e̶c̶i̶o̶u̶s̶ ̶c̶i̶n̶n̶a̶m̶o̶n̶ ̶r̶o̶l̶l̶
+Yeah, that point&#39;s fair. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/0ce54ae083d1c1c9fff20f3deee82ad9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Koboldski#3350" data-user-id="318486263395254294" style="">Koboldski</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 11:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="708381859041509446" id="message-708381859041509446">
+                <div class="chatlog__content">
+                    <div class="markdown">Yeah, I think a float based on worker unity would be a good idea. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/fb7ef395616c0752e4189c61214507dc.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="J.P. Wilson#2077" data-user-id="460242058234560513" style="">J.P. Wilson</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 11:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="708384363762548787" id="message-708384363762548787">
+                <div class="chatlog__content">
+                    <div class="markdown">I&#39;m nervous about putting anyone onto the float due to threats from the ACA </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(143,0,0)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 12:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="708398477037666427" id="message-708398477037666427">
+                <div class="chatlog__content">
+                    <div class="markdown">yea </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(143,0,0)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 02:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="708436549712478310" id="message-708436549712478310">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/unknown%20%281%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/unknown%20%281%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128077;" title="&#128077;" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/1f44d.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="708436645757714465" id="message-708436645757714465">
+                <div class="chatlog__content">
+                    <div class="markdown">would be more workers </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 02:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="708436657631920178" id="message-708436657631920178">
+                <div class="chatlog__content">
+                    <div class="markdown">Awesome </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(143,0,0)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 02:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="708436709137711145" id="message-708436709137711145">
+                <div class="chatlog__content">
+                    <div class="markdown">just didn&#39;t want to draw them </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="708436727651369031" id="message-708436727651369031">
+                <div class="chatlog__content">
+                    <div class="markdown">thnx </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 01:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="709324029504389170" id="message-709324029504389170">
+                <div class="chatlog__content">
+                    <div class="markdown">So, how&#39;s it going? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709324064702857268" id="message-709324064702857268">
+                <div class="chatlog__content">
+                    <div class="markdown">Mods say it&#39;s time to submit <span class="chatlog__edited-timestamp" title="11-May-20 01:40 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709324261805785180" id="message-709324261805785180">
+                <div class="chatlog__content">
+                    <div class="markdown">Did you submit it? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709324280973754398" id="message-709324280973754398">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" style="color: rgb(143, 0, 0); background-color: rgba(143, 0, 0, 0.1);">@Worker</span> <span class="chatlog__edited-timestamp" title="11-May-20 01:41 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709324341334114355" id="message-709324341334114355">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/Screenshot_20200511-104054_Discord.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/Screenshot_20200511-104054_Discord.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(143,0,0)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 01:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="709324347537358889" id="message-709324347537358889">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" style="color: rgb(143, 0, 0); background-color: rgba(143, 0, 0, 0.1);">@Worker</span> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709324364629147740" id="message-709324364629147740">
+                <div class="chatlog__content">
+                    <div class="markdown">ghost pings don&#39;t work </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 01:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="709324422175260682" id="message-709324422175260682">
+                <div class="chatlog__content">
+                    <div class="markdown">Just realised oof </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(143,0,0)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 10:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="709457815437049948" id="message-709457815437049948">
+                <div class="chatlog__content">
+                    <div class="markdown">have we submitted the float? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 10:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="709457866775461898" id="message-709457866775461898">
+                <div class="chatlog__content">
+                    <div class="markdown">We did.. right? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(143,0,0)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 10:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="709457973906505820" id="message-709457973906505820">
+                <div class="chatlog__content">
+                    <div class="markdown">ill do if on one did </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 10:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="709457984501055539" id="message-709457984501055539">
+                <div class="chatlog__content">
+                    <div class="markdown">Who submitted it at 10:41 when Ozy told us to submit it? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709458034274861226" id="message-709458034274861226">
+                <div class="chatlog__content">
+                    <div class="markdown">Yes please then, just in case <span class="chatlog__edited-timestamp" title="11-May-20 10:33 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(143,0,0)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 10:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="709458183298744331" id="message-709458183298744331">
+                <div class="chatlog__content">
+                    <div class="markdown">done just now </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 10:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="709458215024459857" id="message-709458215024459857">
+                <div class="chatlog__content">
+                    <div class="markdown">Oof </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709458278538674249" id="message-709458278538674249">
+                <div class="chatlog__content">
+                    <div class="markdown">Hope it will get accepted if no one submitted it before.. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 02:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="709524204134858892" id="message-709524204134858892">
+                <div class="chatlog__content">
+                    <div class="markdown">Let’s DM frog some description </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 02:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="709524237160939570" id="message-709524237160939570">
+                <div class="chatlog__content">
+                    <div class="markdown">Ok. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 02:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="709524454203588690" id="message-709524454203588690">
+                <div class="chatlog__content">
+                    <div class="markdown">We should come out from a clam with Bat Mitzva music </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709524498210226259" id="message-709524498210226259">
+                <div class="chatlog__content">
+                    <div class="markdown">All wearing mermaid costumes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 02:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="709524666573651969" id="message-709524666573651969">
+                <div class="chatlog__content">
+                    <div class="markdown">I&#39;m up to any shit </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709524748320768050" id="message-709524748320768050">
+                <div class="chatlog__content">
+                    <div class="markdown">But I dont think I&#39;ll be able to come uo wuth anyfhing atm
+So sure </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 02:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="709524881066164324" id="message-709524881066164324">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="OpossumMan#7861">@OpossumMan</span> should wear a rick astley costume and start singing Never Gonna Give You Up </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709525200798220429" id="message-709525200798220429">
+                <div class="chatlog__content">
+                    <div class="markdown">Let’s dance that dance from Victorious when they were in jail in that country </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709525467517943891" id="message-709525467517943891">
+                <div class="chatlog__content">
+                    <div class="markdown"><strong>I know.</strong> let’s put a crossaint and to observers and that’s all </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 03:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="709525487889809409" id="message-709525487889809409">
+                <div class="chatlog__content">
+                    <div class="markdown">Yes </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709525501781213288" id="message-709525501781213288">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/cxq9fbu9xatx.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/cxq9fbu9xatx.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709525513353297931" id="message-709525513353297931">
+                <div class="chatlog__content">
+                    <div class="markdown">Costumes </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709525518478999572" id="message-709525518478999572">
+                <div class="chatlog__content">
+                    <div class="markdown">And </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709525560946065428" id="message-709525560946065428">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/PicsArt_05-06-11.57.22.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/PicsArt_05-06-11.57.22.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 03:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="709526001398448138" id="message-709526001398448138">
+                <div class="chatlog__content">
+                    <div class="markdown">Okay but seriously let’s think of something <span class="mention">@everyone</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 03:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="709526054816972882" id="message-709526054816972882">
+                <div class="chatlog__content">
+                    <div class="markdown">Okay. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709526319305850951" id="message-709526319305850951">
+                <div class="chatlog__content">
+                    <div class="markdown">**The float of the PLP proceeds to jump in, moonlight reflecting on the workers&#39; statues, surrounded by bunch of people dressed in russian retrofuturistic bodysuits carrying a croissant and two observers. <span class="chatlog__edited-timestamp" title="11-May-20 03:04 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 03:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="709526407570522274" id="message-709526407570522274">
+                <div class="chatlog__content">
+                    <div class="markdown">Yes. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709526435278356572" id="message-709526435278356572">
+                <div class="chatlog__content">
+                    <div class="markdown">Send it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 03:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="709526479389589516" id="message-709526479389589516">
+                <div class="chatlog__content">
+                    <div class="markdown">Me no </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709526524050669675" id="message-709526524050669675">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" style="color: rgb(143, 0, 0); background-color: rgba(143, 0, 0, 0.1);">@Worker</span> What shall we do? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709526768574398495" id="message-709526768574398495">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" style="color: rgb(143, 0, 0); background-color: rgba(143, 0, 0, 0.1);">@Worker</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(143,0,0)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 03:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="709526799595470868" id="message-709526799595470868">
+                <div class="chatlog__content">
+                    <div class="markdown">it&#39;s fine </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 03:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="709526836312408145" id="message-709526836312408145">
+                <div class="chatlog__content">
+                    <div class="markdown">Okay then </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 03:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="709526909175726110" id="message-709526909175726110">
+                <div class="chatlog__content">
+                    <div class="markdown">No time for democracy let’s send the damn observers and their corssaint </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709526948409507841" id="message-709526948409507841">
+                <div class="chatlog__content">
+                    <div class="markdown">How the hell do I write it </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709527049672589363" id="message-709527049672589363">
+                <div class="chatlog__content">
+                    <div class="markdown">Austrian bread thingy </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709527575659020369" id="message-709527575659020369">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Revlise#2945">@Revlise</span> did you send it? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 03:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="709528047283470407" id="message-709528047283470407">
+                <div class="chatlog__content">
+                    <div class="markdown">No </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 03:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="709528113801068598" id="message-709528113801068598">
+                <div class="chatlog__content">
+                    <div class="markdown">So I’m gonna do it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 03:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="709528155584594030" id="message-709528155584594030">
+                <div class="chatlog__content">
+                    <div class="markdown">Ok </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/0ce54ae083d1c1c9fff20f3deee82ad9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Koboldski#3350" data-user-id="318486263395254294" style="">Koboldski</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 03:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="709529327162753174" id="message-709529327162753174">
+                <div class="chatlog__content">
+                    <div class="markdown">I am good with it as long as we just have severap black cats runnin around. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709529424520937483" id="message-709529424520937483">
+                <div class="chatlog__content">
+                    <div class="markdown">Both for solidarity and to mess with the superstitious </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709530744103370764" id="message-709530744103370764">
+                <div class="chatlog__content">
+                    <div class="markdown">Oh and a minute or two after we just have a secondary smaller float with an old guy reading anarchist theory outloud. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709530770967887993" id="message-709530770967887993">
+                <div class="chatlog__content">
+                    <div class="markdown">Thats it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 03:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="709530980028776489" id="message-709530980028776489">
+                <div class="chatlog__content">
+                    <div class="markdown">Yss </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 03:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="709531383118430349" id="message-709531383118430349">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Koboldski#3350">@Koboldski</span> he should look like Noam Chomsky </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709531459068624986" id="message-709531459068624986">
+                <div class="chatlog__content">
+                    <div class="markdown">He should BE Noam Chomsky </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 03:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="709531497664610335" id="message-709531497664610335">
+                <div class="chatlog__content">
+                    <div class="markdown"><strong>As the float marches onto the street, numerous black cats run into all directions, compassionately meowing and brushing against the workers&#39; knees.
+The moonlight reflects off the statues on the float, sprinkling to the near and to the far.</strong> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709531527972913202" id="message-709531527972913202">
+                <div class="chatlog__content">
+                    <div class="markdown">Ok </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709531561996845066" id="message-709531561996845066">
+                <div class="chatlog__content">
+                    <div class="markdown">Add Chomsky o this and send it to the mods someone </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 03:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="709531639017111642" id="message-709531639017111642">
+                <div class="chatlog__content">
+                    <div class="markdown">I’ll send it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">11-May-20 03:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="709531729626398751" id="message-709531729626398751">
+                <div class="chatlog__content">
+                    <div class="markdown">Great </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 02:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="709885633354792971" id="message-709885633354792971">
+                <div class="chatlog__content">
+                    <div class="markdown">Did we choose a music? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 02:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="709885699029205053" id="message-709885699029205053">
+                <div class="chatlog__content">
+                    <div class="markdown">Ummm </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709885776334159924" id="message-709885776334159924">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" style="color: rgb(143, 0, 0); background-color: rgba(143, 0, 0, 0.1);">@Worker</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(143,0,0)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 02:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="709885777609359420" id="message-709885777609359420">
+                <div class="chatlog__content">
+                    <div class="markdown">yeah we did </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 02:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="709885791316344844" id="message-709885791316344844">
+                <div class="chatlog__content">
+                    <div class="markdown">Oh ok </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 02:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="709886315344298005" id="message-709886315344298005">
+                <div class="chatlog__content">
+                    <div class="markdown">Is is dong of the united front? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(143,0,0)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 02:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="709886405383290970" id="message-709886405383290970">
+                <div class="chatlog__content">
+                    <div class="markdown">yes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 02:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="709886520294768661" id="message-709886520294768661">
+                <div class="chatlog__content">
+                    <div class="markdown">Why get political choose internationale /s </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(143,0,0)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 02:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="709886543753510953" id="message-709886543753510953">
+                <div class="chatlog__content">
+                    <div class="markdown">lmao </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709886578826149910" id="message-709886578826149910">
+                <div class="chatlog__content">
+                    <div class="markdown">commies chose ussr anthem apperently </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709886646505570355" id="message-709886646505570355">
+                <div class="chatlog__content">
+                    <div class="markdown">although since they&#39;re kil they might not be doing it anymore </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 02:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="709886706865930344" id="message-709886706865930344">
+                <div class="chatlog__content">
+                    <div class="markdown">Maybe there‘s some Catalonian patriotic anarchist song </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(143,0,0)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 02:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="709886842455064577" id="message-709886842455064577">
+                <div class="chatlog__content">
+                    <div class="markdown">i mean there&#39;s always mother anarchy loves her children </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 02:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="709886921769222174" id="message-709886921769222174">
+                <div class="chatlog__content">
+                    <div class="markdown">Anarkhia mama synov svoich lyubi </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 02:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="709886935606493244" id="message-709886935606493244">
+                <div class="chatlog__content">
+                    <div class="markdown">There‘s also Leftist unity by Jreg </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(143,0,0)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 03:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="709888572047622184" id="message-709888572047622184">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" style="color: rgb(143, 0, 0); background-color: rgba(143, 0, 0, 0.1);">@Worker</span> BE ADVISED!!! We&#39;ve received a bomb threat for our parade float. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 03:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="709888618876895383" id="message-709888618876895383">
+                <div class="chatlog__content">
+                    <div class="markdown">Holy Atapaz <span class="chatlog__edited-timestamp" title="12-May-20 03:04 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709888698166018079" id="message-709888698166018079">
+                <div class="chatlog__content">
+                    <div class="markdown">This will make Doomsday clock go ticking.. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 03:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="709888735738724394" id="message-709888735738724394">
+                <div class="chatlog__content">
+                    <div class="markdown">I don‘t care why did <span class="mention" title="OpossumMan#7861">@OpossumMan</span> invite soldiers to protect us with their shirts on </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(143,0,0)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 03:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="709889221195726958" id="message-709889221195726958">
+                <div class="chatlog__content">
+                    <div class="markdown">idk </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709889243593572373" id="message-709889243593572373">
+                <div class="chatlog__content">
+                    <div class="markdown">they changed the order </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709889266288951366" id="message-709889266288951366">
+                <div class="chatlog__content">
+                    <div class="markdown">we were supposed to be next </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(143,0,0)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 03:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="709892580837556335" id="message-709892580837556335">
+                <div class="chatlog__content">
+                    <div class="markdown">bruh </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 03:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="709892901533909074" id="message-709892901533909074">
+                <div class="chatlog__content">
+                    <div class="markdown">Oh they probably did ours last for the event </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(143,0,0)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 03:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="709892965841109063" id="message-709892965841109063">
+                <div class="chatlog__content">
+                    <div class="markdown">yeah </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 03:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="709892967355383818" id="message-709892967355383818">
+                <div class="chatlog__content">
+                    <div class="markdown">UASL had their one tho too. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(143,0,0)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 03:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="709892979518734349" id="message-709892979518734349">
+                <div class="chatlog__content">
+                    <div class="markdown">true </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="709892987827781723" id="message-709892987827781723">
+                <div class="chatlog__content">
+                    <div class="markdown">bruhhhhhhh </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="The%20People%27s%20Liberation%20Party%20-%20Text%20Channels%20-%20float-design%20%5B707812806707380266%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(143,0,0)">Revlise</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 03:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="709893032484405348" id="message-709893032484405348">
+                <div class="chatlog__content">
+                    <div class="markdown">I drew them a fucking car at 2am </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 178 message(s)</div>
+</div>
+
+</body>
+</html>
