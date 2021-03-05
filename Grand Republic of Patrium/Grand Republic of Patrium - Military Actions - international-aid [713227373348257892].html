@@ -1,0 +1,2482 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Grand Republic of Patrium - international-aid</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/1bc2e127d7550c5599b037df3295a7d5.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Grand Republic of Patrium</div>
+        <div class="preamble__entry">Military Actions / international-aid</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="713227521625423983" id="message-713227521625423983">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Bucksin6#0134">@Pius XIII</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/4bd2dc370e6efa8ca51853bd17d1cb92.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Bucksin6#0134" data-user-id="302983490083880962" style="color: rgb(155,89,182)">Pius XIII</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="713227543372890143" id="message-713227543372890143">
+                <div class="chatlog__content">
+                    <div class="markdown">Hi </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="713227554051326074" id="message-713227554051326074">
+                <div class="chatlog__content">
+                    <div class="markdown">i dont want chadius involved tbh </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/4bd2dc370e6efa8ca51853bd17d1cb92.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Bucksin6#0134" data-user-id="302983490083880962" style="color: rgb(155,89,182)">Pius XIII</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="713227582279122995" id="message-713227582279122995">
+                <div class="chatlog__content">
+                    <div class="markdown">Lol </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="713227586154659840" id="message-713227586154659840">
+                <div class="chatlog__content">
+                    <div class="markdown">i deleted the messages incase he didnt see em </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713227631159672862" id="message-713227631159672862">
+                <div class="chatlog__content">
+                    <div class="markdown">if he&#39;s asking ill just say i forgot to add his role </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/4bd2dc370e6efa8ca51853bd17d1cb92.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Bucksin6#0134" data-user-id="302983490083880962" style="color: rgb(155,89,182)">Pius XIII</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="713227632497524816" id="message-713227632497524816">
+                <div class="chatlog__content">
+                    <div class="markdown">True he would piss off diplomats </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="713227660226199643" id="message-713227660226199643">
+                <div class="chatlog__content">
+                    <div class="markdown">indeed </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713227715657990154" id="message-713227715657990154">
+                <div class="chatlog__content">
+                    <div class="markdown">if he joins im gonna have to delete this messages lmao </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713227781986582598" id="message-713227781986582598">
+                <div class="chatlog__content">
+                    <div class="markdown">but, ozy said something about the US </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/4bd2dc370e6efa8ca51853bd17d1cb92.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Bucksin6#0134" data-user-id="302983490083880962" style="color: rgb(155,89,182)">Pius XIII</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="713227811309092965" id="message-713227811309092965">
+                <div class="chatlog__content">
+                    <div class="markdown">Are there any counties or blocs you would like to reach out to? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="713227865117950014" id="message-713227865117950014">
+                <div class="chatlog__content">
+                    <div class="markdown">NATO for sure </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="713227888790601749" id="message-713227888790601749">
+                <div class="chatlog__content">
+                    <div class="markdown">US also for sure. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/4bd2dc370e6efa8ca51853bd17d1cb92.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Bucksin6#0134" data-user-id="302983490083880962" style="color: rgb(155,89,182)">Pius XIII</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="713227913566355597" id="message-713227913566355597">
+                <div class="chatlog__content">
+                    <div class="markdown">And yes some nations of unspecified names will reach out to you in a bit </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="713227954448236544" id="message-713227954448236544">
+                <div class="chatlog__content">
+                    <div class="markdown">any nations wiling to support a liberty loving uprising </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="713228004779884669" id="message-713228004779884669">
+                <div class="chatlog__content">
+                    <div class="markdown">India support would be nice too. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="713228047670706318" id="message-713228047670706318">
+                <div class="chatlog__content">
+                    <div class="markdown">^ </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="713228540535111841" id="message-713228540535111841">
+                <div class="chatlog__content">
+                    <div class="markdown">And obviously, Thuzland, Selva, and Jazira. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713228599452499999" id="message-713228599452499999">
+                <div class="chatlog__content">
+                    <div class="markdown">I believe we already have peaceful relations with Thuzland and Selva. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="713228703529959424" id="message-713228703529959424">
+                <div class="chatlog__content">
+                    <div class="markdown">Selva is kinda through MMR, but we&#39;re getting Thuzi volunteers </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713228820479606784" id="message-713228820479606784">
+                <div class="chatlog__content">
+                    <div class="markdown">(ozy ill have the map for you in a few minutes for ur approval) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="713228871423623302" id="message-713228871423623302">
+                <div class="chatlog__content">
+                    <div class="markdown">Map for what? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="713228899051372585" id="message-713228899051372585">
+                <div class="chatlog__content">
+                    <div class="markdown">thuzi volunteers </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713228929632174081" id="message-713228929632174081">
+                <div class="chatlog__content">
+                    <div class="markdown">we get 1 mech, 2 infantry, and 2 tank </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713228993427669003" id="message-713228993427669003">
+                <div class="chatlog__content">
+                    <div class="markdown">1 mech is going to New Porto per request of shorts, the other 4 are going to the western front </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="713229523294093353" id="message-713229523294093353">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Good evening, this is the representative from the United States. I am here to speak with the Consuls of Patrium.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="713229591799660606" id="message-713229591799660606">
+                <div class="chatlog__content">
+                    <div class="markdown">Ah hello! </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713229614524399709" id="message-713229614524399709">
+                <div class="chatlog__content">
+                    <div class="markdown">welcome Mr...? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="713229638494847046" id="message-713229638494847046">
+                <div class="chatlog__content">
+                    <div class="markdown">Johnson </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="713229670937657374" id="message-713229670937657374">
+                <div class="chatlog__content">
+                    <div class="markdown">Welcome Mr. Johnson </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="713229839389425667" id="message-713229839389425667">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>motions for guard to pull a seat for Mr. Johnson</em> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713229876920057858" id="message-713229876920057858">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>sits down at the table</em> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="713230018439807088" id="message-713230018439807088">
+                <div class="chatlog__content">
+                    <div class="markdown">would you like anything to drink? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="713230052665327648" id="message-713230052665327648">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;No, thank you&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="713230076912599120" id="message-713230076912599120">
+                <div class="chatlog__content">
+                    <div class="markdown">okk very well </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="713230310099386380" id="message-713230310099386380">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;I am here to inform you that American intelligence has recently detected Russian and Chinese activity in the Indian sea along with word of their backing of two of your rival factions&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="713230521458491606" id="message-713230521458491606">
+                <div class="chatlog__content">
+                    <div class="markdown">I had been expecting that the Chinese would help these leftists, but the Russians! Its a shock they would not be supporting Christian Brothers </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="713231033134219295" id="message-713231033134219295">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Yes, quite unfortunate. However, we see this as opportunity to secure NATO&#39;s interests in the Indian Ocean. We have a proposal that may help you.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="713231084812369991" id="message-713231084812369991">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;I agree, are they planning to turn Patrium into just another pawn for their Belt-and-road initiative?&quot; <span class="chatlog__edited-timestamp" title="21-May-20 08:25 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="713231420637577236" id="message-713231420637577236">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Most likely. In response to these new threats, we would like to offer 15K (per turn), 5 tank divisions, 4 Destroyers, 3Artillery, 2 Spec-Ops, and 2 Infantry. All these units&#39; upkeep will be payed by us of course.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="713231485162749983" id="message-713231485162749983">
+                <div class="chatlog__content">
+                    <div class="markdown">And what do we have to do on our end? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713231514586054746" id="message-713231514586054746">
+                <div class="chatlog__content">
+                    <div class="markdown">This is a very very generous offer </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="713231777920974910" id="message-713231777920974910">
+                <div class="chatlog__content">
+                    <div class="markdown">Once you win the war, you will open your nation to both American air and military bases. Additionally, you will end all ties to both Russian and Chinese interests on all fronts, including their companies. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713231874318925844" id="message-713231874318925844">
+                <div class="chatlog__content">
+                    <div class="markdown">Additionally, you may pay us back a sum of 20K in the following years </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="713231953347870790" id="message-713231953347870790">
+                <div class="chatlog__content">
+                    <div class="markdown">Flat out 20k? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="713232191139741697" id="message-713232191139741697">
+                <div class="chatlog__content">
+                    <div class="markdown">Do you want us to refuse to do business with all Chinese companies? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="713232469373222953" id="message-713232469373222953">
+                <div class="chatlog__content">
+                    <div class="markdown">A flat 20K and yes, all business with China </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="713232767072206859" id="message-713232767072206859">
+                <div class="chatlog__content">
+                    <div class="markdown">And you can guarantee the same if not better quality than china for products with somewhat equitable pricing? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="713232867588571137" id="message-713232867588571137">
+                <div class="chatlog__content">
+                    <div class="markdown">I assure you our quality will be far better. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713233058924331111" id="message-713233058924331111">
+                <div class="chatlog__content">
+                    <div class="markdown">(we will resume talks soon I have to go for a bit) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 08:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="713233130726752257" id="message-713233130726752257">
+                <div class="chatlog__content">
+                    <div class="markdown">(ok) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 09:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="713253668308123669" id="message-713253668308123669">
+                <div class="chatlog__content">
+                    <div class="markdown">(i am back) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 09:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="713253748876640276" id="message-713253748876640276">
+                <div class="chatlog__content">
+                    <div class="markdown">(ok) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 09:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="713253889478230076" id="message-713253889478230076">
+                <div class="chatlog__content">
+                    <div class="markdown">So will you accept these terms? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 09:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="713254376780726384" id="message-713254376780726384">
+                <div class="chatlog__content">
+                    <div class="markdown">A blanket ban on Chinese products seems devastating to our economy in the modern era. We would like to propose a tariff instead to accommodate for special needs. <span class="chatlog__edited-timestamp" title="21-May-20 10:02 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 09:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="713254772848984107" id="message-713254772848984107">
+                <div class="chatlog__content">
+                    <div class="markdown">Very well, a tariff will do </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 10:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="713254866381963275" id="message-713254866381963275">
+                <div class="chatlog__content">
+                    <div class="markdown">Awesome, this is great news </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713254869930344458" id="message-713254869930344458">
+                <div class="chatlog__content">
+                    <div class="markdown">So shall we list out the final terms? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 10:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="713255390476894231" id="message-713255390476894231">
+                <div class="chatlog__content">
+                    <div class="markdown">Yes </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713255957584674857" id="message-713255957584674857">
+                <div class="chatlog__content">
+                    <div class="markdown">15K per turn, 5 tank divisions, 4 destroyers, 3 artillery, 2 spec-ops, and 2 infantry. These units will be payed for by the USA along with their upkeep. In return, you will open Patrium to American Naval, Army, and Air bases and place tariffs on all Chinese goods. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 10:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="713256151776493658" id="message-713256151776493658">
+                <div class="chatlog__content">
+                    <div class="markdown">If these are all the terms, I agree wholeheartedly </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 10:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="713256517041913859" id="message-713256517041913859">
+                <div class="chatlog__content">
+                    <div class="markdown">Excellent, pleasure doing business with you </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 10:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="713256630317219850" id="message-713256630317219850">
+                <div class="chatlog__content">
+                    <div class="markdown">very well </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713256649174941737" id="message-713256649174941737">
+                <div class="chatlog__content">
+                    <div class="markdown">will these troops arrive at the beginning of turn 3? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 10:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="713256698298761238" id="message-713256698298761238">
+                <div class="chatlog__content">
+                    <div class="markdown">Turn 2 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 10:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="713256734764040202" id="message-713256734764040202">
+                <div class="chatlog__content">
+                    <div class="markdown">oh so we get them now!? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 10:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="713256755718651944" id="message-713256755718651944">
+                <div class="chatlog__content">
+                    <div class="markdown">yes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 10:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="713256769597603841" id="message-713256769597603841">
+                <div class="chatlog__content">
+                    <div class="markdown">awesome </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713256797481336833" id="message-713256797481336833">
+                <div class="chatlog__content">
+                    <div class="markdown">should i make a map? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713256820608598107" id="message-713256820608598107">
+                <div class="chatlog__content">
+                    <div class="markdown">or are you going to </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 10:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="713256821393064008" id="message-713256821393064008">
+                <div class="chatlog__content">
+                    <div class="markdown">yes </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713256859162771528" id="message-713256859162771528">
+                <div class="chatlog__content">
+                    <div class="markdown">you choose where they go </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 10:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="713256987416199199" id="message-713256987416199199">
+                <div class="chatlog__content">
+                    <div class="markdown">ok </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713257141426716672" id="message-713257141426716672">
+                <div class="chatlog__content">
+                    <div class="markdown">im going to need to stack on the coasts </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713257141804204033" id="message-713257141804204033">
+                <div class="chatlog__content">
+                    <div class="markdown">for this turn </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713257144383832094" id="message-713257144383832094">
+                <div class="chatlog__content">
+                    <div class="markdown">its going to be different stuff </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713257157759336490" id="message-713257157759336490">
+                <div class="chatlog__content">
+                    <div class="markdown">not enough room </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 10:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="713257235136118875" id="message-713257235136118875">
+                <div class="chatlog__content">
+                    <div class="markdown">? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 10:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="713257380766416987" id="message-713257380766416987">
+                <div class="chatlog__content">
+                    <div class="markdown">i need to put stuff in New Porto </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713257391000649749" id="message-713257391000649749">
+                <div class="chatlog__content">
+                    <div class="markdown">not enough coast line </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 10:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="713257498198671390" id="message-713257498198671390">
+                <div class="chatlog__content">
+                    <div class="markdown">(don&#39;t talk here) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 11:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="713451614794416189" id="message-713451614794416189">
+                <div class="chatlog__content">
+                    <div class="markdown">hey i forgot to add 2 tanks to the map </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713451628132433950" id="message-713451628132433950">
+                <div class="chatlog__content">
+                    <div class="markdown">im gonna do that now </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713451634855903314" id="message-713451634855903314">
+                <div class="chatlog__content">
+                    <div class="markdown">sorry </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713451656745975889" id="message-713451656745975889">
+                <div class="chatlog__content">
+                    <div class="markdown">i only added 3 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="713598272073236504" id="message-713598272073236504">
+                <div class="chatlog__content">
+                    <div class="markdown">(<span class="mention" title="Deleted User#0000">@Deleted User</span> you said the Senate pissed you off and you wanted to renegotiate)
+
+Mr. Johnson, word has it you want to have some updates to our deal. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="713598876954918934" id="message-713598876954918934">
+                <div class="chatlog__content">
+                    <div class="markdown">(nvm it&#39;s too late now) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 08:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="713598976229638225" id="message-713598976229638225">
+                <div class="chatlog__content">
+                    <div class="markdown">(turn 3?) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">24-May-20 12:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="714021774492172319" id="message-714021774492172319">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Bucksin6#0134">@Pius XIII</span> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="714021848169578507" id="message-714021848169578507">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">15K per turn, 5 tank divisions, 4 destroyers, 3 artillery, 2 spec-ops, and 2 infantry. These units will be payed for by the USA along with their upkeep. In return, you will open Patrium to American Naval, Army, and Air bases and place tariffs on all Chinese goods.</div> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="714021895904821299" id="message-714021895904821299">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">4 destroyers</div> <span class="chatlog__edited-timestamp" title="24-May-20 12:48 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="714021934412726282" id="message-714021934412726282">
+                <div class="chatlog__content">
+                    <div class="markdown">Ship destroyers </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="714021997784465418" id="message-714021997784465418">
+                <div class="chatlog__content">
+                    <div class="markdown">There&#39;s no more anti-tanks </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="714022089018834944" id="message-714022089018834944">
+                <div class="chatlog__content">
+                    <div class="markdown">Look at the ship classes <span class="chatlog__edited-timestamp" title="24-May-20 12:49 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="714022106966261771" id="message-714022106966261771">
+                <div class="chatlog__content">
+                    <div class="markdown">Destroyer was one of them </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">24-May-20 09:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="714148640158908427" id="message-714148640158908427">
+                <div class="chatlog__content">
+                    <div class="markdown">Does this even matter now? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">25-May-20 12:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="714563404009832541" id="message-714563404009832541">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" style="color: rgb(155, 89, 182); background-color: rgba(155, 89, 182, 0.1);">@mod</span> Can I talk to Jazira to provide asylum for political refugees? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/27f2ce2f42ea6564d4b115c8d0c9cdbd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frank De Voosere#0551" data-user-id="530153917254860801" style="color: rgb(155,89,182)">Frank De Voosere</span>
+
+
+        <span class="chatlog__timestamp">25-May-20 12:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="714563526706069505" id="message-714563526706069505">
+                <div class="chatlog__content">
+                    <div class="markdown">nah </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">25-May-20 12:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="714563876867407922" id="message-714563876867407922">
+                <div class="chatlog__content">
+                    <div class="markdown">Bruh </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/27f2ce2f42ea6564d4b115c8d0c9cdbd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frank De Voosere#0551" data-user-id="530153917254860801" style="color: rgb(155,89,182)">Frank De Voosere</span>
+
+
+        <span class="chatlog__timestamp">25-May-20 12:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="714564083721961593" id="message-714564083721961593">
+                <div class="chatlog__content">
+                    <div class="markdown">People who are going on trial are currently in custody </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">25-May-20 04:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="714617978603307058" id="message-714617978603307058">
+                <div class="chatlog__content">
+                    <div class="markdown">Did Chadius leave the PSS SLURP </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">26-May-20 01:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="714939312994517062" id="message-714939312994517062">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Deleted User#0000">@Deleted User</span> how can the UN try us with treason </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">26-May-20 01:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="714940084343930931" id="message-714940084343930931">
+                <div class="chatlog__content">
+                    <div class="markdown">they installed a government which is trying you for treason </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">26-May-20 01:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="714940287012700262" id="message-714940287012700262">
+                <div class="chatlog__content">
+                    <div class="markdown">??? The UN doesn&#39;t do that, they couldn&#39;t even stabilize South Sudan. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20Military%20Actions%20-%20international-aid%20%5B713227373348257892%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">26-May-20 01:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="714940311499046913" id="message-714940311499046913">
+                <div class="chatlog__content">
+                    <div class="markdown">cool </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 105 message(s)</div>
+</div>
+
+</body>
+</html>
