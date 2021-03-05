@@ -1,0 +1,2553 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Satiristic: Ted 2.0 - guest-area</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/0.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Satiristic: Ted 2.0</div>
+        <div class="preamble__entry">Welcome / guest-area</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-20 02:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="724009892289183808" id="message-724009892289183808">
+                <div class="chatlog__content">
+                    <div class="markdown">//I just be here to watch and see if yall are gettin close// <span class="chatlog__edited-timestamp" title="20-Jun-20 02:16 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(42,42,43)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-20 02:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="724010088494399599" id="message-724010088494399599">
+                <div class="chatlog__content">
+                    <div class="markdown">//just browse all of <span class="mention">#evidence-discussion</span> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="724010941259186226" id="message-724010941259186226">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Dieselkeough#5676">@Dieselkeough</span> do you promise no metagaming? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-20 02:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="724011061342240890" id="message-724011061342240890">
+                <div class="chatlog__content">
+                    <div class="markdown">//i swear by it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(42,42,43)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-20 02:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="724011126513205389" id="message-724011126513205389">
+                <div class="chatlog__content">
+                    <div class="markdown">then you must stop speaking in // </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="724011155743440956" id="message-724011155743440956">
+                <div class="chatlog__content">
+                    <div class="markdown">here you must always be ooc </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/c386e9c58db72f8189f02551186fddb6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dieselkeough#5676" data-user-id="219570630448775170" style="">Dieselkeough</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-20 02:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="724011307434639470" id="message-724011307434639470">
+                <div class="chatlog__content">
+                    <div class="markdown">Ye </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(42,42,43)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 10:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="726677669437112350" id="message-726677669437112350">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Arksiane#0142">@Arksiane</span> doesnt say here mods have to be allowed </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/unknown.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/unknown.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="726677674034069555" id="message-726677674034069555">
+                <div class="chatlog__content">
+                    <div class="markdown">:troll: </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/e36ddd9247af7a53f895c44a19cc5dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Arksiane#0142" data-user-id="203781815964532736" style="">Arksiane</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 10:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="726677918750736435" id="message-726677918750736435">
+                <div class="chatlog__content">
+                    <div class="markdown">u serious? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="726677974782312479" id="message-726677974782312479">
+                <div class="chatlog__content">
+                    <div class="markdown">dont be a liberal </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(42,42,43)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 10:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="726678010044088351" id="message-726678010044088351">
+                <div class="chatlog__content">
+                    <div class="markdown">:troll: </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="color: rgb(42,42,43)">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="726678033779392674" id="message-726678033779392674">
+                <div class="chatlog__content">
+                    <div class="markdown">Yeet him yeet him yeet him </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(42,42,43)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="726678110199873637" id="message-726678110199873637">
+                <div class="chatlog__content">
+                    <div class="markdown">don&#39;t be a cuck who hacks discord cause he gets butthurt people are hiding shit </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/e36ddd9247af7a53f895c44a19cc5dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Arksiane#0142" data-user-id="203781815964532736" style="">Arksiane</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="726678111839715400" id="message-726678111839715400">
+                <div class="chatlog__content">
+                    <div class="markdown">so what the fuck is anti-mccurtney </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/a2ced09ab4f48bcc4e87f72b8a182774.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="easylife123#0020" data-user-id="445594842425458689" style="color: rgb(39,126,205)">easylife123</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="726678156274171935" id="message-726678156274171935">
+                <div class="chatlog__content">
+                    <div class="markdown">Leslie stuff </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="color: rgb(42,42,43)">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="726678203074084874" id="message-726678203074084874">
+                <div class="chatlog__content">
+                    <div class="markdown">Yeah just throw ark out </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/e36ddd9247af7a53f895c44a19cc5dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Arksiane#0142" data-user-id="203781815964532736" style="">Arksiane</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="726678219063033866" id="message-726678219063033866">
+                <div class="chatlog__content">
+                    <div class="markdown">kek </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="color: rgb(42,42,43)">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="726678243842981929" id="message-726678243842981929">
+                <div class="chatlog__content">
+                    <div class="markdown">Boot </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(42,42,43)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="726678266362069042" id="message-726678266362069042">
+                <div class="chatlog__content">
+                    <div class="markdown">no hacking allowed </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="726678278043336735" id="message-726678278043336735">
+                <div class="chatlog__content">
+                    <div class="markdown">:troll: </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(42,42,43)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 11:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="726678284921733150" id="message-726678284921733150">
+                <div class="chatlog__content">
+                    <div class="markdown">kicked </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="color: rgb(42,42,43)">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 11:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="726678311182532649" id="message-726678311182532649">
+                <div class="chatlog__content">
+                    <div class="markdown">:troll: </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/a2ced09ab4f48bcc4e87f72b8a182774.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="easylife123#0020" data-user-id="445594842425458689" style="color: rgb(39,126,205)">easylife123</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 11:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="726678326420439152" id="message-726678326420439152">
+                <div class="chatlog__content">
+                    <div class="markdown">And he&#39;s kicked </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="color: rgb(42,42,43)">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 11:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="726678374336036949" id="message-726678374336036949">
+                <div class="chatlog__content">
+                    <div class="markdown">Finally peace </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(42,42,43)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 11:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="726679518936563754" id="message-726679518936563754">
+                <div class="chatlog__content">
+                    <div class="markdown">lmao inb4 i get kicked from the main server </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="color: rgb(42,42,43)">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 11:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="726680106352902255" id="message-726680106352902255">
+                <div class="chatlog__content">
+                    <div class="markdown">Character got crunched by all the mods </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(42,42,43)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="726998533894307956" id="message-726998533894307956">
+                <div class="chatlog__content">
+                    <div class="markdown">hello <span class="mention" title="Arksiane#0142">@Arksiane</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/5359eec09d665995379e87df595774b7.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jeb#4009" data-user-id="271702648951013398" style="">Jeb</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="727002704840491100" id="message-727002704840491100">
+                <div class="chatlog__content">
+                    <div class="markdown">OOOOOOOOOOOOOOOOOOOO </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/a2ced09ab4f48bcc4e87f72b8a182774.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="easylife123#0020" data-user-id="445594842425458689" style="color: rgb(39,126,205)">easylife123</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="727002820657676358" id="message-727002820657676358">
+                <div class="chatlog__content">
+                    <div class="markdown">Have fun </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(42,42,43)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:29 PM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="727002851125100647" id="message-727002851125100647">
+                <div class="chatlog__content">
+                    <div class="markdown">check <span class="mention">#evidence-discussion</span> <span class="mention">#interrogation</span> and <span class="mention">#secret-talk</span> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="727002879260622868" id="message-727002879260622868">
+                <div class="chatlog__content">
+                    <div class="markdown">oh and <span class="mention">#raid-chat</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/5359eec09d665995379e87df595774b7.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jeb#4009" data-user-id="271702648951013398" style="">Jeb</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="727002884356571137" id="message-727002884356571137">
+                <div class="chatlog__content">
+                    <div class="markdown">ok cool thank </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(42,42,43)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="727002921102999666" id="message-727002921102999666">
+                <div class="chatlog__content">
+                    <div class="markdown">Oh god there’s a lot </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/5359eec09d665995379e87df595774b7.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jeb#4009" data-user-id="271702648951013398" style="">Jeb</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="727002940618833931" id="message-727002940618833931">
+                <div class="chatlog__content">
+                    <div class="markdown">whats this server about anyways </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(42,42,43)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="727002967021977701" id="message-727002967021977701">
+                <div class="chatlog__content">
+                    <div class="markdown">Investigation </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/a2ced09ab4f48bcc4e87f72b8a182774.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="easylife123#0020" data-user-id="445594842425458689" style="color: rgb(39,126,205)">easylife123</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="727002972269314119" id="message-727002972269314119">
+                <div class="chatlog__content">
+                    <div class="markdown">The investigation server </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(42,42,43)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="727003019895373855" id="message-727003019895373855">
+                <div class="chatlog__content">
+                    <div class="markdown">Was made for compiling evidence about Leslie </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727003039445024849" id="message-727003039445024849">
+                <div class="chatlog__content">
+                    <div class="markdown">Repurposed for sat </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(42,42,43)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:30 PM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="727003063755341844" id="message-727003063755341844">
+                <div class="chatlog__content">
+                    <div class="markdown"><a href="https://discordapp.com/channels/723765958384156735/723769997192855563/724162546780733491" onclick="scrollToMessage(event, '724162546780733491')">https://discordapp.com/channels/723765958384156735/723769997192855563/724162546780733491</a> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727003076220682260" id="message-727003076220682260">
+                <div class="chatlog__content">
+                    <div class="markdown">from here </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/5359eec09d665995379e87df595774b7.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jeb#4009" data-user-id="271702648951013398" style="">Jeb</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="727003110500990977" id="message-727003110500990977">
+                <div class="chatlog__content">
+                    <div class="markdown">ohk </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727003457491304539" id="message-727003457491304539">
+                <div class="chatlog__content">
+                    <div class="markdown">oh boye thats long </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/a2ced09ab4f48bcc4e87f72b8a182774.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="easylife123#0020" data-user-id="445594842425458689" style="color: rgb(39,126,205)">easylife123</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="727003482061537291" id="message-727003482061537291">
+                <div class="chatlog__content">
+                    <div class="markdown">Yup </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(42,42,43)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="727003493419843605" id="message-727003493419843605">
+                <div class="chatlog__content">
+                    <div class="markdown">Ya </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727003502458568704" id="message-727003502458568704">
+                <div class="chatlog__content">
+                    <div class="markdown">Can uh </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727003514060144702" id="message-727003514060144702">
+                <div class="chatlog__content">
+                    <div class="markdown">Summarize </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(131,31,24)">someguyinshorts</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="727004143503540225" id="message-727004143503540225">
+                <div class="chatlog__content">
+                    <div class="markdown">Honestly it’s kinda cloudy for me until “THEN THE RED GUARD ARRIVES” part an like, a couple minutes before the rescue op started as an idea </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/e36ddd9247af7a53f895c44a19cc5dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Arksiane#0142" data-user-id="203781815964532736" style="">Arksiane</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="727004279964958862" id="message-727004279964958862">
+                <div class="chatlog__content">
+                    <div class="markdown">Can I also arrive? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(42,42,43)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="727004325682872361" id="message-727004325682872361">
+                <div class="chatlog__content">
+                    <div class="markdown">Yes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/a2ced09ab4f48bcc4e87f72b8a182774.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="easylife123#0020" data-user-id="445594842425458689" style="color: rgb(39,126,205)">easylife123</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="727004339637583872" id="message-727004339637583872">
+                <div class="chatlog__content">
+                    <div class="markdown">Yes </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727004357840732232" id="message-727004357840732232">
+                <div class="chatlog__content">
+                    <div class="markdown">Enjoy reading </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(42,42,43)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="727006818500608021" id="message-727006818500608021">
+                <div class="chatlog__content">
+                    <div class="markdown">Pinned a message. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(131,31,24)">someguyinshorts</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="727007234210398248" id="message-727007234210398248">
+                <div class="chatlog__content">
+                    <div class="markdown">PIP after surviving multiple scandals and some form of physical or reputation as damage to the high ranking members
+<a href="https://cdn.discordapp.com/attachments/726648580273602570/726918736119988264/video0.mp4">https://cdn.discordapp.com/attachments/726648580273602570/726918736119988264/video0.mp4</a> </div>
+                </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/cb905fb5fdda43e66e7d0dac19ae83f2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Elitemagikarp#0999" data-user-id="338769616430170114" style="color: rgb(241,196,15)">Elitemagikarp</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="727007488305791088" id="message-727007488305791088">
+                <div class="chatlog__content">
+                    <div class="markdown">i still have no idea what happened </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(131,31,24)">someguyinshorts</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 08:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="727007606308208691" id="message-727007606308208691">
+                <div class="chatlog__content">
+                    <div class="markdown">Backtrack in multiple chats at the bottom and the meme will make more sense </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727007838341431376" id="message-727007838341431376">
+                <div class="chatlog__content">
+                    <div class="markdown">Just know that PIP got fucking curb pstomped until the ending where they kinda got on top of the situation </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="727010543226978325" id="message-727010543226978325">
+                <div class="chatlog__content">
+                    <div class="markdown">What happened </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(42,42,43)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="727010646264381451" id="message-727010646264381451">
+                <div class="chatlog__content">
+                    <div class="markdown">check pin </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727010672080060426" id="message-727010672080060426">
+                <div class="chatlog__content">
+                    <div class="markdown">read from there </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727010747967733822" id="message-727010747967733822">
+                <div class="chatlog__content">
+                    <div class="markdown">Pinned a message. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727010770197676173" id="message-727010770197676173">
+                <div class="chatlog__content">
+                    <div class="markdown">Pinned a message. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/a2ced09ab4f48bcc4e87f72b8a182774.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="easylife123#0020" data-user-id="445594842425458689" style="color: rgb(39,126,205)">easylife123</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="727012442902888508" id="message-727012442902888508">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" style="color: rgb(241, 196, 15); background-color: rgba(241, 196, 15, 0.1);">@Spectator</span>. So, what do you think about all of this? <span class="chatlog__edited-timestamp" title="28-Jun-20 09:08 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="727013054860099584" id="message-727013054860099584">
+                <div class="chatlog__content">
+                    <div class="markdown">Dumb </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/a2ced09ab4f48bcc4e87f72b8a182774.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="easylife123#0020" data-user-id="445594842425458689" style="color: rgb(39,126,205)">easylife123</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="727013130634264616" id="message-727013130634264616">
+                <div class="chatlog__content">
+                    <div class="markdown">Bruh </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="727013182807474277" id="message-727013182807474277">
+                <div class="chatlog__content">
+                    <div class="markdown">Idk what happened </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727013199454666753" id="message-727013199454666753">
+                <div class="chatlog__content">
+                    <div class="markdown">So it dumb </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(131,31,24)">someguyinshorts</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="727013210414252132" id="message-727013210414252132">
+                <div class="chatlog__content">
+                    <div class="markdown">Read </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="727013227061575700" id="message-727013227061575700">
+                <div class="chatlog__content">
+                    <div class="markdown">No </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727013258820845598" id="message-727013258820845598">
+                <div class="chatlog__content">
+                    <div class="markdown">Monke </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(42,42,43)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="727013317675188297" id="message-727013317675188297">
+                <div class="chatlog__content">
+                    <div class="markdown">We can answer question </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(131,31,24)">someguyinshorts</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="727013326944468993" id="message-727013326944468993">
+                <div class="chatlog__content">
+                    <div class="markdown">You don’t read, you don’t follow along and you call dumb no you dumb </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="727013350365462599" id="message-727013350365462599">
+                <div class="chatlog__content">
+                    <div class="markdown">Lemme sleep rn </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="">B_illyB03</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="727013381672009858" id="message-727013381672009858">
+                <div class="chatlog__content">
+                    <div class="markdown">no ones stopping you </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="727013437757980702" id="message-727013437757980702">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">You don’t read, you don’t follow along and you call dumb no you dumb
+</div><span class="mention" title="someguyinshorts#8871">@someguyinshorts</span> 
+Reading is for virgins </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="color: rgb(42,42,43)">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="727013507496804383" id="message-727013507496804383">
+                <div class="chatlog__content">
+                    <div class="markdown">Bitch </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(131,31,24)">someguyinshorts</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="727013544033255504" id="message-727013544033255504">
+                <div class="chatlog__content">
+                    <div class="markdown">Nah fam, real chads read up on the world and improve their intellect </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/a2ced09ab4f48bcc4e87f72b8a182774.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="easylife123#0020" data-user-id="445594842425458689" style="color: rgb(39,126,205)">easylife123</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="727013731640541276" id="message-727013731640541276">
+                <div class="chatlog__content">
+                    <div class="markdown">^ </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="727013733116674078" id="message-727013733116674078">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">Bitch
+</div><span class="mention" title="Amaaroc#9466">@Amaaroc</span> imagine being literate </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727013760530907167" id="message-727013760530907167">
+                <div class="chatlog__content">
+                    <div class="markdown">Lol </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727013783511498803" id="message-727013783511498803">
+                <div class="chatlog__content">
+                    <div class="markdown">Cringe </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727013920111329312" id="message-727013920111329312">
+                <div class="chatlog__content">
+                    <div class="markdown">You have books and I have monke harem </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="color: rgb(42,42,43)">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="727014058791796819" id="message-727014058791796819">
+                <div class="chatlog__content">
+                    <div class="markdown">Me? Literate? No 
+This is all jut me randomly hitting the keyboard </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/a2ced09ab4f48bcc4e87f72b8a182774.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="easylife123#0020" data-user-id="445594842425458689" style="color: rgb(39,126,205)">easylife123</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="727014163473498193" id="message-727014163473498193">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">Me? Literate? No 
+This is all jut me randomly hitting the keyboard
+</div>Mega in a nutshell </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="727014181395628162" id="message-727014181395628162">
+                <div class="chatlog__content">
+                    <div class="markdown">Yes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/e36ddd9247af7a53f895c44a19cc5dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Arksiane#0142" data-user-id="203781815964532736" style="">Arksiane</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="727018268770172989" id="message-727018268770172989">
+                <div class="chatlog__content">
+                    <div class="markdown">dumb </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="color: rgb(42,42,43)">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="727018330518716516" id="message-727018330518716516">
+                <div class="chatlog__content">
+                    <div class="markdown">You dumb </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/e36ddd9247af7a53f895c44a19cc5dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Arksiane#0142" data-user-id="203781815964532736" style="">Arksiane</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="727018541168984135" id="message-727018541168984135">
+                <div class="chatlog__content">
+                    <div class="markdown">nah </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727018559602950194" id="message-727018559602950194">
+                <div class="chatlog__content">
+                    <div class="markdown">im based </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/a2ced09ab4f48bcc4e87f72b8a182774.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="easylife123#0020" data-user-id="445594842425458689" style="color: rgb(39,126,205)">easylife123</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 09:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="727024823712219146" id="message-727024823712219146">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Bucksin6#0134">@Bucksin6</span> Welcome Pius </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/4bd2dc370e6efa8ca51853bd17d1cb92.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Bucksin6#0134" data-user-id="302983490083880962" style="">Bucksin6</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 10:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="727025576665284619" id="message-727025576665284619">
+                <div class="chatlog__content">
+                    <div class="markdown">Whos pius </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/e36ddd9247af7a53f895c44a19cc5dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Arksiane#0142" data-user-id="203781815964532736" style="">Arksiane</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 10:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="727026190375977012" id="message-727026190375977012">
+                <div class="chatlog__content">
+                    <div class="markdown">hes bucksin </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/4bd2dc370e6efa8ca51853bd17d1cb92.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Bucksin6#0134" data-user-id="302983490083880962" style="">Bucksin6</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 10:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="727026583428268094" id="message-727026583428268094">
+                <div class="chatlog__content">
+                    <div class="markdown">Shhh </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(42,42,43)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 10:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="727026961947295794" id="message-727026961947295794">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/unknown%20%281%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/unknown%20%281%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727026977873068032" id="message-727026977873068032">
+                <div class="chatlog__content">
+                    <div class="markdown">:troll: </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/a2ced09ab4f48bcc4e87f72b8a182774.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="easylife123#0020" data-user-id="445594842425458689" style="color: rgb(39,126,205)">easylife123</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-20 10:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="727029394861981747" id="message-727029394861981747">
+                <div class="chatlog__content">
+                    <div class="markdown">:troll: </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/5359eec09d665995379e87df595774b7.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jeb#4009" data-user-id="271702648951013398" style="">Jeb</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-20 09:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="753102435622453368" id="message-753102435622453368">
+                <div class="chatlog__content">
+                    <div class="markdown">eh </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="753102454261940345" id="message-753102454261940345">
+                <div class="chatlog__content">
+                    <div class="markdown">what </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="753102520011980891" id="message-753102520011980891">
+                <div class="chatlog__content">
+                    <div class="markdown">wait there&#39;s a thuzi island prison? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="753102533945327637" id="message-753102533945327637">
+                <div class="chatlog__content">
+                    <div class="markdown">what&#39;s that for </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/a2ced09ab4f48bcc4e87f72b8a182774.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="easylife123#0020" data-user-id="445594842425458689" style="color: rgb(39,126,205)">easylife123</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-20 09:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="753102555344797706" id="message-753102555344797706">
+                <div class="chatlog__content">
+                    <div class="markdown">S1 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/073fe4c46fe398afbd1f59b8d4d5913b.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ultrackia#1126" data-user-id="430401037380354059" style="color: rgb(188,46,37)">Ultrackia</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-20 09:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="753102593353580615" id="message-753102593353580615">
+                <div class="chatlog__content">
+                    <div class="markdown">Hi </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Satiristic%3A%20Ted%202.0%20-%20Welcome%20-%20guest-area%20%5B723768673332101172%5D.html_Files/6394d252cc4d4320d489bf99c4b04737.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="mihiwihi#9595" data-user-id="731352194548498565" style="color: rgb(247,233,179)">mihiwihi</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-20 09:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="753102958811676683" id="message-753102958811676683">
+                <div class="chatlog__content">
+                    <div class="markdown">Hi </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 103 message(s)</div>
+</div>
+
+</body>
+</html>
