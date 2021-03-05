@@ -1,0 +1,2340 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Grand Republic of Patrium - anti-commie-quotes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/1bc2e127d7550c5599b037df3295a7d5.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Grand Republic of Patrium</div>
+        <div class="preamble__entry">nonsense / anti-commie-quotes</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 11:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="710915735597088808" id="message-710915735597088808">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/unknown.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/unknown.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 11:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="710916770365702255" id="message-710916770365702255">
+                <div class="chatlog__content">
+                    <div class="markdown">based </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 12:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="710941866648141945" id="message-710941866648141945">
+                <div class="chatlog__content">
+                    <div class="markdown">To whom are we going to ask to be forgiven? To the one who tried to kill us? To the one who tried to destroy our country? To whom? They are the ones who must ask to be forgiven for everything they did before September 11. -pinochet </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/a_941ad4e54347dbf87e0a46cf4090e103.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SunoBeta#1776" data-user-id="531290216044953620" style="">SunoBeta</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 12:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="710941942674096208" id="message-710941942674096208">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;hi&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 12:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="710942369553317888" id="message-710942369553317888">
+                <div class="chatlog__content">
+                    <div class="markdown">Everything I did, all my actions, all of the problems I had I dedicate to God and to Chile, because I kept Chile from becoming Communist. -also pinochet </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710943331647094835" id="message-710943331647094835">
+                <div class="chatlog__content">
+                    <div class="markdown">There can be no socialism without a state, and as long as there is a state there is socialism. The state, then, is the very institution that puts socialism into action; and as socialism rests on aggressive violence directed against innocent victims, aggressive violence is the nature of any state. -hoppe </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 12:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="710943661713522701" id="message-710943661713522701">
+                <div class="chatlog__content">
+                    <div class="markdown">^ </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/a_941ad4e54347dbf87e0a46cf4090e103.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SunoBeta#1776" data-user-id="531290216044953620" style="">SunoBeta</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 01:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="710944652832014399" id="message-710944652832014399">
+                <div class="chatlog__content">
+                    <div class="markdown">based </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710944663913103381" id="message-710944663913103381">
+                <div class="chatlog__content">
+                    <div class="markdown">I need to read hoppe </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 01:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="710946378204971044" id="message-710946378204971044">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Socialism is when the government does stuff.&quot;
+     -u/[deleted] </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/3093f2a04632fca1c20b1170988d8636.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chadius Maximus#8462" data-user-id="606045971951910912" style="">Chadius Maximus</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 01:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="710946430457741413" id="message-710946430457741413">
+                <div class="chatlog__content">
+                    <div class="markdown">indeed <span class="mention" title="Deleted User#0000">@Deleted User</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/a_941ad4e54347dbf87e0a46cf4090e103.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SunoBeta#1776" data-user-id="531290216044953620" style="">SunoBeta</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 01:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="710946931802636330" id="message-710946931802636330">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;A well regulated militia, being necessary to the security of a free state, the right of the people to keep and bear arms, shall not be infringed.&quot;
+-U.S. Constitution </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/8b041c3bddf592ee6d6e1b6b499d9602.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&quot;F&quot;#9593" data-user-id="226497313080606720" style="color: rgb(26,188,156)">Ambassador Δ</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 01:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="710948601336954981" id="message-710948601336954981">
+                <div class="chatlog__content">
+                    <div class="markdown">tbf every commie I ever talked to would agree with that quote </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/a_941ad4e54347dbf87e0a46cf4090e103.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SunoBeta#1776" data-user-id="531290216044953620" style="">SunoBeta</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 01:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="710949037792165902" id="message-710949037792165902">
+                <div class="chatlog__content">
+                    <div class="markdown">they secretly don&#39;t </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710949053625532486" id="message-710949053625532486">
+                <div class="chatlog__content">
+                    <div class="markdown">they&#39;re all tankies under the mask </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 01:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="710950077388029962" id="message-710950077388029962">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/Anti-Character.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/Anti-Character.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 02:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="710968508087009401" id="message-710968508087009401">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/Screenshot_20200515-163417.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/Screenshot_20200515-163417.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 02:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="710970596577640468" id="message-710970596577640468">
+                <div class="chatlog__content">
+                    <div class="markdown">democracy /= human rights </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710970648088018994" id="message-710970648088018994">
+                <div class="chatlog__content">
+                    <div class="markdown">ex. germany in the 1920s </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710970760667201606" id="message-710970760667201606">
+                <div class="chatlog__content">
+                    <div class="markdown">im forcing you to vote two pre-elected puppets to govern your life, im the best person in the world <span class="chatlog__edited-timestamp" title="15-May-20 02:44 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710970764438011987" id="message-710970764438011987">
+                <div class="chatlog__content">
+                    <div class="markdown">rome </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710970886806568980" id="message-710970886806568980">
+                <div class="chatlog__content">
+                    <div class="markdown">monarchy /= tyrrany all the time </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710970911284658377" id="message-710970911284658377">
+                <div class="chatlog__content">
+                    <div class="markdown">ex. litchtenstien </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710970998580838470" id="message-710970998580838470">
+                <div class="chatlog__content">
+                    <div class="markdown">constitution = freedom </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710971057334517821" id="message-710971057334517821">
+                <div class="chatlog__content">
+                    <div class="markdown">this^^ </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710971072270434304" id="message-710971072270434304">
+                <div class="chatlog__content">
+                    <div class="markdown">not wether power is choosen by how many ppl </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710971103077728318" id="message-710971103077728318">
+                <div class="chatlog__content">
+                    <div class="markdown">that dont matter </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710971154705285162" id="message-710971154705285162">
+                <div class="chatlog__content">
+                    <div class="markdown">the only thing that gives you rights is the constitution </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/cc65a6ff69a575413fc7938b02c748f3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kadrik0000#1124" data-user-id="688479609565872142" style="color: rgb(17,3,3)">Kadrik0000</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 02:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="710971345181212772" id="message-710971345181212772">
+                <div class="chatlog__content">
+                    <div class="markdown">democracy is the tyranny of the majority </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 02:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="710971409311989831" id="message-710971409311989831">
+                <div class="chatlog__content">
+                    <div class="markdown">YES </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710971437262831658" id="message-710971437262831658">
+                <div class="chatlog__content">
+                    <div class="markdown">OMG YES </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710971473996546090" id="message-710971473996546090">
+                <div class="chatlog__content">
+                    <div class="markdown">This is why we need a dictator </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 02:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="710971505466540172" id="message-710971505466540172">
+                <div class="chatlog__content">
+                    <div class="markdown">yeah, how you choose power really dosn&#39;t matter </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710971576899600417" id="message-710971576899600417">
+                <div class="chatlog__content">
+                    <div class="markdown">how the rest of gov functions does </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710971683942563880" id="message-710971683942563880">
+                <div class="chatlog__content">
+                    <div class="markdown">democracy is the dictatorship os the stupid </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 02:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="710971764376600678" id="message-710971764376600678">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Deleted User#0000">@Deleted User</span>  thats why we need a single smart dictator </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/bd0e3be5ec00192203cf632278dfb7d4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nerdy Squirtle#8980" data-user-id="206708624330981376" style="color: rgb(18,40,90)">Nerdy Squirtle</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 03:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="710975426851504129" id="message-710975426851504129">
+                <div class="chatlog__content">
+                    <div class="markdown">have you seen democracy and kakistocracy in the same room before? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 03:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="710976446046273537" id="message-710976446046273537">
+                <div class="chatlog__content">
+                    <div class="markdown">Yeah, it&#39;s called The Senate </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 03:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="710978128423551051" id="message-710978128423551051">
+                <div class="chatlog__content">
+                    <div class="markdown">kakistocracy was a term invented to make fun of democracy </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710978407470727279" id="message-710978407470727279">
+                <div class="chatlog__content">
+                    <div class="markdown">The confederation is a kakistocracy. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/ab3fb4aa2df87680a2f85f3e93700770.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Fake Bruhe#1796" data-user-id="303942989536034816" style="">Fake Bruhe</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 04:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="711540136571043962" id="message-711540136571043962">
+                <div class="chatlog__content">
+                    <div class="markdown"><a href="https://www.youtube.com/watch?v=zw-FF6CPmvs&t=25s&app=desktop">https://www.youtube.com/watch?v=zw-FF6CPmvs&amp;t=25s&amp;app=desktop</a> </div>
+                </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+                                        <div class="chatlog__embed-author">
+
+                                                <span class="chatlog__embed-author-name">
+                                                        <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UCC3L8QaxqEGUiBC252GHy3w">Stefan Molyneux</a>
+                                                </span>
+                                        </div>
+
+                                        <div class="chatlog__embed-title">
+                                                <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=zw-FF6CPmvs&amp;start=25s">
+                                                    <div class="markdown">SOCIALISM IN 24 HOURS</div>
+                                                </a>
+                                        </div>
+
+                                        <div class="chatlog__embed-description">
+                                            <div class="markdown">Freedomain Mailing List Sign Up: <a href="http://www.fdrurl.com/newsletter">http://www.fdrurl.com/newsletter</a>
+We Need Your Support: <a href="http://www.freedomainradio.com/donate">http://www.freedomainradio.com/donate</a>
+
+So you try again and your retarded system fails but that’s OK because it wasn’t real socialism. So you try again and your retarded system fails but th...</div>
+                                        </div>
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="https://i.ytimg.com/vi/zw-FF6CPmvs/maxresdefault.jpg">
+                                            <img class="chatlog__embed-thumbnail" src="https://i.ytimg.com/vi/zw-FF6CPmvs/maxresdefault.jpg" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 04:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="711544869990039552" id="message-711544869990039552">
+                <div class="chatlog__content">
+                    <div class="markdown">I like that video </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711544890885931069" id="message-711544890885931069">
+                <div class="chatlog__content">
+                    <div class="markdown">I listen to it while i sleep </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/ab3fb4aa2df87680a2f85f3e93700770.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Fake Bruhe#1796" data-user-id="303942989536034816" style="">Fake Bruhe</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 05:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="711549524686143518" id="message-711549524686143518">
+                <div class="chatlog__content">
+                    <div class="markdown"><a href="https://media.discordapp.net/attachments/676953487019474961/711549446248333352/image0.gif">https://media.discordapp.net/attachments/676953487019474961/711549446248333352/image0.gif</a> </div>
+                </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/image0.gif">
+                                            <img class="chatlog__embed-thumbnail" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/image0.gif" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/ab3fb4aa2df87680a2f85f3e93700770.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Fake Bruhe#1796" data-user-id="303942989536034816" style="">Fake Bruhe</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 05:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="711555214712373258" id="message-711555214712373258">
+                <div class="chatlog__content">
+                    <div class="markdown">If you do not believe in Allah, put this on five Discord servers. Do not just ignore this because it says that God is not real. This is the simplest test. If you do not believe in Allah and are not ashamed of it, copy and paste it on five Discord servers. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="711581091860840478" id="message-711581091860840478">
+                <div class="chatlog__content">
+                    <div class="markdown">GOD IS REAL </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711581134366048317" id="message-711581134366048317">
+                <div class="chatlog__content">
+                    <div class="markdown">Allah is just a fake god </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/a8124dcc40c4bb34efcac3e92bc84433.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frog (The Toad)#8310" data-user-id="529550280258486282" style="">Frog (The Toad)</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="711581149293707337" id="message-711581149293707337">
+                <div class="chatlog__content">
+                    <div class="markdown">God is a spook. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="711581152074530838" id="message-711581152074530838">
+                <div class="chatlog__content">
+                    <div class="markdown">A flase god </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/a8124dcc40c4bb34efcac3e92bc84433.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frog (The Toad)#8310" data-user-id="529550280258486282" style="">Frog (The Toad)</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="711581168021274664" id="message-711581168021274664">
+                <div class="chatlog__content">
+                    <div class="markdown">Allah is a spook. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="711581205811822663" id="message-711581205811822663">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Frog (The Toad)#8310">@Frog (The Toad)</span>  i swear to god i will kill u </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711581255141163068" id="message-711581255141163068">
+                <div class="chatlog__content">
+                    <div class="markdown">I put u top of my tier list <span class="chatlog__edited-timestamp" title="17-May-20 07:10 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711581288229765210" id="message-711581288229765210">
+                <div class="chatlog__content">
+                    <div class="markdown">Dont make me swap it with frank </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/a8124dcc40c4bb34efcac3e92bc84433.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frog (The Toad)#8310" data-user-id="529550280258486282" style="">Frog (The Toad)</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="711581362045583431" id="message-711581362045583431">
+                <div class="chatlog__content">
+                    <div class="markdown">The only god is the State.<img class="emoji " alt="👁" title="👁" src="https://twemoji.maxcdn.com/2/72x72/1f441.png">️ </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="711581366902456330" id="message-711581366902456330">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/20200517_091214.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/20200517_091214.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/a8124dcc40c4bb34efcac3e92bc84433.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frog (The Toad)#8310" data-user-id="529550280258486282" style="">Frog (The Toad)</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="711581495692755014" id="message-711581495692755014">
+                <div class="chatlog__content">
+                    <div class="markdown">Does he legit do that? Wtf? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="711581573127995457" id="message-711581573127995457">
+                <div class="chatlog__content">
+                    <div class="markdown">Ye he does </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711581579042095167" id="message-711581579042095167">
+                <div class="chatlog__content">
+                    <div class="markdown">Alot </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/a8124dcc40c4bb34efcac3e92bc84433.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frog (The Toad)#8310" data-user-id="529550280258486282" style="">Frog (The Toad)</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="711581642053124187" id="message-711581642053124187">
+                <div class="chatlog__content">
+                    <div class="markdown">I....I&#39;m going to have to file that to HR. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="711581668502405250" id="message-711581668502405250">
+                <div class="chatlog__content">
+                    <div class="markdown">I all ready did </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="711581691889582121" id="message-711581691889582121">
+                <div class="chatlog__content">
+                    <div class="markdown">Ozy did nothing <span class="chatlog__edited-timestamp" title="17-May-20 07:11 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/a_941ad4e54347dbf87e0a46cf4090e103.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SunoBeta#1776" data-user-id="531290216044953620" style="">SunoBeta</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="711582006747725830" id="message-711582006747725830">
+                <div class="chatlog__content">
+                    <div class="markdown">Ozy is fat </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="711582387896582204" id="message-711582387896582204">
+                <div class="chatlog__content">
+                    <div class="markdown">DONT DISRESPECT OZY </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/a8124dcc40c4bb34efcac3e92bc84433.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frog (The Toad)#8310" data-user-id="529550280258486282" style="">Frog (The Toad)</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="711582968526667798" id="message-711582968526667798">
+                <div class="chatlog__content">
+                    <div class="markdown">Ozy, God Emperor Of Patrium: </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/2.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/2.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/3093f2a04632fca1c20b1170988d8636.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chadius Maximus#8462" data-user-id="606045971951910912" style="">Chadius Maximus</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 01:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="712396188892266496" id="message-712396188892266496">
+                <div class="chatlog__content">
+                    <div class="markdown">njot funny didnt laugh </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="">someguyinshorts</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 01:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="712396367196323930" id="message-712396367196323930">
+                <div class="chatlog__content">
+                    <div class="markdown">Frogs last post: </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/video0.mp4">
+Attachment: video0.mp4 (1.82 MB)                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 07:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="712849788650913843" id="message-712849788650913843">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/Screenshot_20200520-211014.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/Screenshot_20200520-211014.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712849833047883786" id="message-712849833047883786">
+                <div class="chatlog__content">
+                    <div class="markdown">And they say we don&#39;t care about people. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 07:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="712861914694287422" id="message-712861914694287422">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/unknown%20%281%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/unknown%20%281%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 02:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="713141685877735505" id="message-713141685877735505">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/unknown%20%282%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/unknown%20%282%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 04:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="713171569656201267" id="message-713171569656201267">
+                <div class="chatlog__content">
+                    <div class="markdown">lol </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(52,97,52)">Consul Augustus Ricochet</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 06:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="713199817706176512" id="message-713199817706176512">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/Screen_Shot_2020-05-21_at_20.21.10.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/Screen_Shot_2020-05-21_at_20.21.10.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713200213677965412" id="message-713200213677965412">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/Screen_Shot_2020-05-21_at_20.22.51.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/Screen_Shot_2020-05-21_at_20.22.51.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 06:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="713207016340062228" id="message-713207016340062228">
+                <div class="chatlog__content">
+                    <div class="markdown">oh god </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/14b2aee68a669ca7a303cbc864d61eea.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Moon Gaming#4820" data-user-id="250763652657840129" style="">Silver Moon Gaming</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 07:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="713210836226801748" id="message-713210836226801748">
+                <div class="chatlog__content">
+                    <div class="markdown">Ok </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="713210896964386856" id="message-713210896964386856">
+                <div class="chatlog__content">
+                    <div class="markdown">Time for a Firing Squad </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 07:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="713210946843050035" id="message-713210946843050035">
+                <div class="chatlog__content">
+                    <div class="markdown">did someone say firing squad? <span class="chatlog__edited-timestamp" title="21-May-20 07:05 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/3093f2a04632fca1c20b1170988d8636.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chadius Maximus#8462" data-user-id="606045971951910912" style="">Chadius Maximus</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 07:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="713211029441609858" id="message-713211029441609858">
+                <div class="chatlog__content">
+                    <div class="markdown">yes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/14b2aee68a669ca7a303cbc864d61eea.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Moon Gaming#4820" data-user-id="250763652657840129" style="">Silver Moon Gaming</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 07:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="713211040585875497" id="message-713211040585875497">
+                <div class="chatlog__content">
+                    <div class="markdown">Ja </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 07:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="713211084177276949" id="message-713211084177276949">
+                <div class="chatlog__content">
+                    <div class="markdown">heehee </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/303f847dcdb9ac56851868ae86380178.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="B_illyB03#3806" data-user-id="267882076701720578" style="color: rgb(52,97,52)">Consul Vasilios Waller</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 07:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="713215264883474443" id="message-713215264883474443">
+                <div class="chatlog__content">
+                    <div class="markdown">we dont get NAT right, we have the prisoners </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="">someguyinshorts</span>
+
+
+        <span class="chatlog__timestamp">21-May-20 09:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="713254230651174983" id="message-713254230651174983">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/video0%20%281%29.mp4">
+Attachment: video0.mp4 (453.97 KB)                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/a_941ad4e54347dbf87e0a46cf4090e103.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SunoBeta#1776" data-user-id="531290216044953620" style="">SunoBeta</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 05:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="713375291636056245" id="message-713375291636056245">
+                <div class="chatlog__content">
+                    <div class="markdown">bruh that&#39;s too based for me </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="">someguyinshorts</span>
+
+
+        <span class="chatlog__timestamp">24-May-20 10:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="714164583702724638" id="message-714164583702724638">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/image0.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/image0.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/33192181ee14f782f3f5f1959d0d2120.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr.Korrupto#8023" data-user-id="171274876991176705" style="">Mr.Korrupto</span>
+
+
+        <span class="chatlog__timestamp">24-May-20 10:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="714167852394872903" id="message-714167852394872903">
+                <div class="chatlog__content">
+                    <div class="markdown">imagine being so suicidal </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="714167895361454100" id="message-714167895361454100">
+                <div class="chatlog__content">
+                    <div class="markdown">you&#39;d rather die than actually learn how the world works </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="714167897768853565" id="message-714167897768853565">
+                <div class="chatlog__content">
+                    <div class="markdown">smh </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="">someguyinshorts</span>
+
+
+        <span class="chatlog__timestamp">24-May-20 10:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="714168128808026152" id="message-714168128808026152">
+                <div class="chatlog__content">
+                    <div class="markdown">What if that’s why Pinochet “threw” people out of helicopters </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="714168302024523928" id="message-714168302024523928">
+                <div class="chatlog__content">
+                    <div class="markdown">He was actually sending them to an economic education center and when they found out the leftists jumped out on their own accord </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/33192181ee14f782f3f5f1959d0d2120.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr.Korrupto#8023" data-user-id="171274876991176705" style="">Mr.Korrupto</span>
+
+
+        <span class="chatlog__timestamp">24-May-20 10:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="714169200867934268" id="message-714169200867934268">
+                <div class="chatlog__content">
+                    <div class="markdown">He was sending them to classes by the chicago boys </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="714169205125283922" id="message-714169205125283922">
+                <div class="chatlog__content">
+                    <div class="markdown">LMFAO </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Grand%20Republic%20of%20Patrium%20-%20nonsense%20-%20anti-commie-quotes%20%5B710915716034986124%5D.html_Files/df1ca6b87f35e327e0017876d71d213b.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A-Person7#7612" data-user-id="521390409738485762" style="color: rgb(241,196,15)">A-Person7</span>
+
+
+        <span class="chatlog__timestamp">26-May-20 07:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="715030108079128586" id="message-715030108079128586">
+                <div class="chatlog__content">
+                    <div class="markdown">communists are property of the state, not people </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715030137204375564" id="message-715030137204375564">
+                <div class="chatlog__content">
+                    <div class="markdown">so they don&#39;t get human rights </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 93 message(s)</div>
+</div>
+
+</body>
+</html>
