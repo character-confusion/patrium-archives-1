@@ -1,0 +1,3048 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Evidence Locker - general</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/0.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Evidence Locker</div>
+        <div class="preamble__entry">Text Channels / general</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/cc65a6ff69a575413fc7938b02c748f3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kadrik0000#1124" data-user-id="688479609565872142" style="">Kadrik0000</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 07:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="715210389645688912" id="message-715210389645688912">
+                <div class="chatlog__content">
+                    <div class="markdown">Joined the server. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/55450a1df756c0c81da41ee037438910.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Socialist Pelican#6677" data-user-id="391641397557592074" style="">Socialist Pelican</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 07:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="715210597091770378" id="message-715210597091770378">
+                <div class="chatlog__content">
+                    <div class="markdown">Joined the server. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(52,152,219)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 07:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="715210608206807071" id="message-715210608206807071">
+                <div class="chatlog__content">
+                    <div class="markdown">Hello there </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/535d4e587d2e65818ca65922d5575193.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sunstrok#4503" data-user-id="401068744752889856" style="">Sunstrok</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 07:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="715210729514336328" id="message-715210729514336328">
+                <div class="chatlog__content">
+                    <div class="markdown">Joined the server. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 07:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="715210812805087363" id="message-715210812805087363">
+                <div class="chatlog__content">
+                    <div class="markdown">Joined the server. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/908246277dad4446ed747dee05ba39c1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Paralux#8260" data-user-id="249244555675828234" style="">Paralux</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 07:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="715211721102327838" id="message-715211721102327838">
+                <div class="chatlog__content">
+                    <div class="markdown">Joined the server. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 07:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="715217608408039435" id="message-715217608408039435">
+                <div class="chatlog__content">
+                    <div class="markdown">Ey ya’ll help me out I’m gonna try something to show that it is, in fact, real </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715217635620552764" id="message-715217635620552764">
+                <div class="chatlog__content">
+                    <div class="markdown">The evidence </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/e36ddd9247af7a53f895c44a19cc5dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Arksiane#0142" data-user-id="203781815964532736" style="">Arksiane</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 08:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="715218997959983154" id="message-715218997959983154">
+                <div class="chatlog__content">
+                    <div class="markdown">Joined the server. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715219004754755724" id="message-715219004754755724">
+                <div class="chatlog__content">
+                    <div class="markdown">ok </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 08:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="715219177497034812" id="message-715219177497034812">
+                <div class="chatlog__content">
+                    <div class="markdown">Joined the server. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 08:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="715219192407785593" id="message-715219192407785593">
+                <div class="chatlog__content">
+                    <div class="markdown">Basically, what’s gonna happen is we’ll repeat exactly what the document says
+If there is no sign of malplacement or misalignment then it’s real in every aspect </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/56b43a5dd32ae554e7b4137b692c06b8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Duck#5187" data-user-id="700739075170238465" style="">Duck</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 08:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="715219212725125233" id="message-715219212725125233">
+                <div class="chatlog__content">
+                    <div class="markdown">Can i burn this </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 08:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="715219235659448420" id="message-715219235659448420">
+                <div class="chatlog__content">
+                    <div class="markdown">? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 08:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="715219327556649021" id="message-715219327556649021">
+                <div class="chatlog__content">
+                    <div class="markdown">Basically, I need another person to help me repeat this exactly </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/image0.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/image0.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(52,152,219)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 08:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="715219639130521733" id="message-715219639130521733">
+                <div class="chatlog__content">
+                    <div class="markdown">Bruh </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715219648278167623" id="message-715219648278167623">
+                <div class="chatlog__content">
+                    <div class="markdown">Bruh </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715219684261101600" id="message-715219684261101600">
+                <div class="chatlog__content">
+                    <div class="markdown">My internet </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715219696684630106" id="message-715219696684630106">
+                <div class="chatlog__content">
+                    <div class="markdown">Is kil </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715219703215423508" id="message-715219703215423508">
+                <div class="chatlog__content">
+                    <div class="markdown">Kil </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715219716687396965" id="message-715219716687396965">
+                <div class="chatlog__content">
+                    <div class="markdown">Kil </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/a2ced09ab4f48bcc4e87f72b8a182774.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="easylife123#0020" data-user-id="445594842425458689" style="">easylife123</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 08:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="715219827786121276" id="message-715219827786121276">
+                <div class="chatlog__content">
+                    <div class="markdown">Joined the server. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/33192181ee14f782f3f5f1959d0d2120.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr.Korrupto#8023" data-user-id="171274876991176705" style="">Mr.Korrupto</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 08:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="715221341397188679" id="message-715221341397188679">
+                <div class="chatlog__content">
+                    <div class="markdown">Joined the server. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/27f2ce2f42ea6564d4b115c8d0c9cdbd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frank De Voosere#0551" data-user-id="530153917254860801" style="color: rgb(149,165,166)">Frank De Voosere</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 09:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="715240854259892254" id="message-715240854259892254">
+                <div class="chatlog__content">
+                    <div class="markdown">Joined the server. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(52,152,219)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 09:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="715240875529076769" id="message-715240875529076769">
+                <div class="chatlog__content">
+                    <div class="markdown">hello </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/27f2ce2f42ea6564d4b115c8d0c9cdbd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frank De Voosere#0551" data-user-id="530153917254860801" style="color: rgb(149,165,166)">Frank De Voosere</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 09:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="715240878960017448" id="message-715240878960017448">
+                <div class="chatlog__content">
+                    <div class="markdown">based </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/926942ec2b23f84fb69a421165a2c642.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Beatrice#8534" data-user-id="266803529002385408" style="">Beatrice</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="715248194212331590" id="message-715248194212331590">
+                <div class="chatlog__content">
+                    <div class="markdown">Joined the server. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(52,152,219)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="715248423669858395" id="message-715248423669858395">
+                <div class="chatlog__content">
+                    <div class="markdown">welcome </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="715250592351518801" id="message-715250592351518801">
+                <div class="chatlog__content">
+                    <div class="markdown">Welcome! </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715250611590922401" id="message-715250611590922401">
+                <div class="chatlog__content">
+                    <div class="markdown">Enjoy the evidence </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="715251395678306407" id="message-715251395678306407">
+                <div class="chatlog__content">
+                    <div class="markdown">This is good. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715251466969022596" id="message-715251466969022596">
+                <div class="chatlog__content">
+                    <div class="markdown">By the mods seeing this, everything will be reversed. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/27f2ce2f42ea6564d4b115c8d0c9cdbd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frank De Voosere#0551" data-user-id="530153917254860801" style="color: rgb(149,165,166)">Frank De Voosere</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="715253353566961675" id="message-715253353566961675">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="character-confusion#4343">@character-confusion</span>  please delete <span class="mention">#evidence-ae-crimes</span> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715253399817551913" id="message-715253399817551913">
+                <div class="chatlog__content">
+                    <div class="markdown">It&#39;s all fake news </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(52,152,219)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="715253430267936949" id="message-715253430267936949">
+                <div class="chatlog__content">
+                    <div class="markdown">No! </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715253441034715287" id="message-715253441034715287">
+                <div class="chatlog__content">
+                    <div class="markdown">hehe </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/27f2ce2f42ea6564d4b115c8d0c9cdbd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frank De Voosere#0551" data-user-id="530153917254860801" style="color: rgb(149,165,166)">Frank De Voosere</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="715278219561140366" id="message-715278219561140366">
+                <div class="chatlog__content">
+                    <div class="markdown">It&#39;s all against (((Ozy))) tho </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715278237227286607" id="message-715278237227286607">
+                <div class="chatlog__content">
+                    <div class="markdown">idc </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715278265123602472" id="message-715278265123602472">
+                <div class="chatlog__content">
+                    <div class="markdown">You&#39;ll find nothing agaisnt me </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(52,152,219)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="715278294932652113" id="message-715278294932652113">
+                <div class="chatlog__content">
+                    <div class="markdown">ozy&#39;s the one on trial </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="715278295318397059" id="message-715278295318397059">
+                <div class="chatlog__content">
+                    <div class="markdown">Sure </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/27f2ce2f42ea6564d4b115c8d0c9cdbd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frank De Voosere#0551" data-user-id="530153917254860801" style="color: rgb(149,165,166)">Frank De Voosere</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="715278340105175097" id="message-715278340105175097">
+                <div class="chatlog__content">
+                    <div class="markdown">(except pedophelia but I wasn&#39;t accused of that) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="715278388256047135" id="message-715278388256047135">
+                <div class="chatlog__content">
+                    <div class="markdown">HmmmmMmm </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="715278452923826216" id="message-715278452923826216">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Frank De Voosere#0551">@Frank De Voosere</span> calling cam babygirl is weird tho </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(52,152,219)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="715278459324071961" id="message-715278459324071961">
+                <div class="chatlog__content">
+                    <div class="markdown">the UN&#39;s coming to free the concubines in your basement </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/27f2ce2f42ea6564d4b115c8d0c9cdbd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frank De Voosere#0551" data-user-id="530153917254860801" style="color: rgb(149,165,166)">Frank De Voosere</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="715278580610760806" id="message-715278580610760806">
+                <div class="chatlog__content">
+                    <div class="markdown">I called him toddlerwoman </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="715278928473882676" id="message-715278928473882676">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/PicsArt_05-14-06.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/PicsArt_05-14-06.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715278937139314719" id="message-715278937139314719">
+                <div class="chatlog__content">
+                    <div class="markdown">hmmmmmmmmmmmmmmmmmmmmmmm </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715278967690493995" id="message-715278967690493995">
+                <div class="chatlog__content">
+                    <div class="markdown">kinda pedo ngl </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715279045587370044" id="message-715279045587370044">
+                <div class="chatlog__content">
+                    <div class="markdown">you better liberate the underage sexslaves <span class="mention" title="Frank De Voosere#0551">@Frank De Voosere</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/27f2ce2f42ea6564d4b115c8d0c9cdbd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frank De Voosere#0551" data-user-id="530153917254860801" style="color: rgb(149,165,166)">Frank De Voosere</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="715279179788058674" id="message-715279179788058674">
+                <div class="chatlog__content">
+                    <div class="markdown">It was consensual </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="715279389956243487" id="message-715279389956243487">
+                <div class="chatlog__content">
+                    <div class="markdown">yea yea, say that to the judge </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/27f2ce2f42ea6564d4b115c8d0c9cdbd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frank De Voosere#0551" data-user-id="530153917254860801" style="color: rgb(149,165,166)">Frank De Voosere</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="715287520702758923" id="message-715287520702758923">
+                <div class="chatlog__content">
+                    <div class="markdown">I AM THE JUDGE </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="715287565967687731" id="message-715287565967687731">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="😳" title="😳" src="https://twemoji.maxcdn.com/2/72x72/1f633.png"> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="715287578642743306" id="message-715287578642743306">
+                <div class="chatlog__content">
+                    <div class="markdown">Not anymore //inhales judge status </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/27f2ce2f42ea6564d4b115c8d0c9cdbd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frank De Voosere#0551" data-user-id="530153917254860801" style="color: rgb(149,165,166)">Frank De Voosere</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="715287745362395190" id="message-715287745362395190">
+                <div class="chatlog__content">
+                    <div class="markdown">uwu </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="715287807240700035" id="message-715287807240700035">
+                <div class="chatlog__content">
+                    <div class="markdown">Smoll Auth Right </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="715288801781612644" id="message-715288801781612644">
+                <div class="chatlog__content">
+                    <div class="markdown">Press f to pay respects to Ele </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="715288943561801738" id="message-715288943561801738">
+                <div class="chatlog__content">
+                    <div class="markdown">ele did nothing wrong </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715288988939976766" id="message-715288988939976766">
+                <div class="chatlog__content">
+                    <div class="markdown">death to the snake of character </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="715289104362897488" id="message-715289104362897488">
+                <div class="chatlog__content">
+                    <div class="markdown">Ele did 90% wrong </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715289133039223186" id="message-715289133039223186">
+                <div class="chatlog__content">
+                    <div class="markdown">He did have a cool hat tho </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="715289278145364100" id="message-715289278145364100">
+                <div class="chatlog__content">
+                    <div class="markdown">pinochet hat </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715289301780267158" id="message-715289301780267158">
+                <div class="chatlog__content">
+                    <div class="markdown">great leader </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(52,152,219)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="715289418461741186" id="message-715289418461741186">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">Ele did 90% wrong
+</div><span class="mention" title="RuneFireheart#6047">@RuneFireheart</span> whats other 10 per cent? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715289440695877684" id="message-715289440695877684">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">great leader
+</div><span class="mention" title="Deleted User#0000">@Deleted User</span> ok statist </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="715289514616029215" id="message-715289514616029215">
+                <div class="chatlog__content">
+                    <div class="markdown">We was at least somewhat regretful </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715289586833686648" id="message-715289586833686648">
+                <div class="chatlog__content">
+                    <div class="markdown">And he at least <em>tried</em> to enact peace takks </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715289637857263709" id="message-715289637857263709">
+                <div class="chatlog__content">
+                    <div class="markdown">Even if the terms were unreasonable </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(52,152,219)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="715290100560560198" id="message-715290100560560198">
+                <div class="chatlog__content">
+                    <div class="markdown">bruh was he writing rebuttals while the arguments were being said? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715290130889572512" id="message-715290130889572512">
+                <div class="chatlog__content">
+                    <div class="markdown">and is now just copy pasting? <span class="chatlog__edited-timestamp" title="27-May-20 12:47 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="715290300867936367" id="message-715290300867936367">
+                <div class="chatlog__content">
+                    <div class="markdown">Ngl it kinda looks like bullshitting to me but at this point I’m braindead </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="715290709707456512" id="message-715290709707456512">
+                <div class="chatlog__content">
+                    <div class="markdown">It clearly is </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="715290816712671282" id="message-715290816712671282">
+                <div class="chatlog__content">
+                    <div class="markdown">Glad to see my brain still works after frying it for an hour straight </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="715290982546931752" id="message-715290982546931752">
+                <div class="chatlog__content">
+                    <div class="markdown">He&#39;s trying to weezle out by saying that he didn&#39;t <em>personally</em> do the things </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(52,152,219)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="715291133474766968" id="message-715291133474766968">
+                <div class="chatlog__content">
+                    <div class="markdown">yeah </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715291187338281101" id="message-715291187338281101">
+                <div class="chatlog__content">
+                    <div class="markdown">but warcrimes are for leading faction </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/9cf3bc013f510686c3ceb85e0344bf6e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RuneFireheart#6047" data-user-id="388562433976958986" style="">RuneFireheart</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 12:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="715291456168001608" id="message-715291456168001608">
+                <div class="chatlog__content">
+                    <div class="markdown">Which Buttercup is trying to invalidate </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715291476409581669" id="message-715291476409581669">
+                <div class="chatlog__content">
+                    <div class="markdown">For some reason </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715291518486708305" id="message-715291518486708305">
+                <div class="chatlog__content">
+                    <div class="markdown">Go by your own definitions bro </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 01:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="715306011594063924" id="message-715306011594063924">
+                <div class="chatlog__content">
+                    <div class="markdown">//breathes into mic 
+Wack </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/8b041c3bddf592ee6d6e1b6b499d9602.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&quot;F&quot;#9593" data-user-id="226497313080606720" style="color: rgb(52,152,219)">&quot;F&quot;</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 03:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="715324269688651816" id="message-715324269688651816">
+                <div class="chatlog__content">
+                    <div class="markdown">despite the thing that happened in the courtroom.  At least the war is over </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715324342531129384" id="message-715324342531129384">
+                <div class="chatlog__content">
+                    <div class="markdown">jail me if they deem me guilty, idc.  This war needs to end </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715324392308998165" id="message-715324392308998165">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>goes offline to take a nap</em> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/3d7e9cb6817b23ce67dbab8dbd697eaa.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Not_a_Threat#0873" data-user-id="419917289228337153" style="">Not_a_Threat</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 03:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="715326696986771458" id="message-715326696986771458">
+                <div class="chatlog__content">
+                    <div class="markdown"><strong>sleep well</strong> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/8b041c3bddf592ee6d6e1b6b499d9602.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&quot;F&quot;#9593" data-user-id="226497313080606720" style="color: rgb(52,152,219)">&quot;F&quot;</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 09:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="715416497735860316" id="message-715416497735860316">
+                <div class="chatlog__content">
+                    <div class="markdown">JOE BIDEN I STAN </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/Screenshot_20200527-220232_Discord.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/Screenshot_20200527-220232_Discord.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="color: rgb(52,152,219)">SatiristicWretch</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 09:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="715420457792438344" id="message-715420457792438344">
+                <div class="chatlog__content">
+                    <div class="markdown">Is that </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715420465782587392" id="message-715420465782587392">
+                <div class="chatlog__content">
+                    <div class="markdown">Is that </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715420529024172073" id="message-715420529024172073">
+                <div class="chatlog__content">
+                    <div class="markdown">Fully Automated Luxury Aryan Fascism? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(52,152,219)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 09:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="715420557830520852" id="message-715420557830520852">
+                <div class="chatlog__content">
+                    <div class="markdown">LMAO </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715420593570447380" id="message-715420593570447380">
+                <div class="chatlog__content">
+                    <div class="markdown">i&#39;m telling him you called it that </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/e36ddd9247af7a53f895c44a19cc5dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Arksiane#0142" data-user-id="203781815964532736" style="">Arksiane</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441108028489868" id="message-715441108028489868">
+                <div class="chatlog__content">
+                    <div class="markdown">hey you guys </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(52,152,219)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441143642456085" id="message-715441143642456085">
+                <div class="chatlog__content">
+                    <div class="markdown">yo </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/e36ddd9247af7a53f895c44a19cc5dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Arksiane#0142" data-user-id="203781815964532736" style="">Arksiane</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441149221011521" id="message-715441149221011521">
+                <div class="chatlog__content">
+                    <div class="markdown">how would you know about the torture? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(52,152,219)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441152584843335" id="message-715441152584843335">
+                <div class="chatlog__content">
+                    <div class="markdown">hi </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715441162563092481" id="message-715441162563092481">
+                <div class="chatlog__content">
+                    <div class="markdown">what </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715441173174681660" id="message-715441173174681660">
+                <div class="chatlog__content">
+                    <div class="markdown">oh well </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/55450a1df756c0c81da41ee037438910.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Socialist Pelican#6677" data-user-id="391641397557592074" style="">Socialist Pelican</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441189461032970" id="message-715441189461032970">
+                <div class="chatlog__content">
+                    <div class="markdown">Cock and ball? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/e36ddd9247af7a53f895c44a19cc5dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Arksiane#0142" data-user-id="203781815964532736" style="">Arksiane</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441198830977074" id="message-715441198830977074">
+                <div class="chatlog__content">
+                    <div class="markdown">in <span class="mention">#evidence-ae-crimes</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(52,152,219)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441214282924052" id="message-715441214282924052">
+                <div class="chatlog__content">
+                    <div class="markdown">i got some from delete after he was kidnapped and tortured </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/e36ddd9247af7a53f895c44a19cc5dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Arksiane#0142" data-user-id="203781815964532736" style="">Arksiane</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441251486531677" id="message-715441251486531677">
+                <div class="chatlog__content">
+                    <div class="markdown">and how did he contact you? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(52,152,219)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441273334661153" id="message-715441273334661153">
+                <div class="chatlog__content">
+                    <div class="markdown">he&#39;s our admiral </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/e36ddd9247af7a53f895c44a19cc5dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Arksiane#0142" data-user-id="203781815964532736" style="">Arksiane</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441274274054165" id="message-715441274274054165">
+                <div class="chatlog__content">
+                    <div class="markdown">phone hidden in ass? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(52,152,219)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441310131027999" id="message-715441310131027999">
+                <div class="chatlog__content">
+                    <div class="markdown">bruh </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(52,152,219)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441330968330300" id="message-715441330968330300">
+                <div class="chatlog__content">
+                    <div class="markdown">also bruh </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(52,152,219)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441337629016095" id="message-715441337629016095">
+                <div class="chatlog__content">
+                    <div class="markdown">how did you know </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715441382009077852" id="message-715441382009077852">
+                <div class="chatlog__content">
+                    <div class="markdown">thought we hid the phone well </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(52,152,219)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441382726303775" id="message-715441382726303775">
+                <div class="chatlog__content">
+                    <div class="markdown">some of it was public knowledge - the stuff that happened on teh street, fro example </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715441474002747465" id="message-715441474002747465">
+                <div class="chatlog__content">
+                    <div class="markdown">the AE also shared their records of torturing the jacobin to death </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(52,152,219)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441474786820106" id="message-715441474786820106">
+                <div class="chatlog__content">
+                    <div class="markdown">he was arrested </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(52,152,219)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441487546023966" id="message-715441487546023966">
+                <div class="chatlog__content">
+                    <div class="markdown">publically </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(52,152,219)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441513722544178" id="message-715441513722544178">
+                <div class="chatlog__content">
+                    <div class="markdown">and later found dead </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/e36ddd9247af7a53f895c44a19cc5dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Arksiane#0142" data-user-id="203781815964532736" style="">Arksiane</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441527262019655" id="message-715441527262019655">
+                <div class="chatlog__content">
+                    <div class="markdown">on the street yeah </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(52,152,219)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441533725311038" id="message-715441533725311038">
+                <div class="chatlog__content">
+                    <div class="markdown">not my fault they like bragging </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(52,152,219)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441560954601473" id="message-715441560954601473">
+                <div class="chatlog__content">
+                    <div class="markdown">and his fingernails had been pulled off </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/e36ddd9247af7a53f895c44a19cc5dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Arksiane#0142" data-user-id="203781815964532736" style="">Arksiane</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441588872020030" id="message-715441588872020030">
+                <div class="chatlog__content">
+                    <div class="markdown">but reasonably the torture thing would not be known </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(52,152,219)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441601232633887" id="message-715441601232633887">
+                <div class="chatlog__content">
+                    <div class="markdown">seems like you can deduce a bit </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/32f4ccdd148a155181bfed765a014648.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Amaaroc#9466" data-user-id="251916063204311041" style="">Amaaroc</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441635223404594" id="message-715441635223404594">
+                <div class="chatlog__content">
+                    <div class="markdown">Phone hidden in ass </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(52,152,219)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441700281122858" id="message-715441700281122858">
+                <div class="chatlog__content">
+                    <div class="markdown">yeah it wuld be </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715441725291626518" id="message-715441725291626518">
+                <div class="chatlog__content">
+                    <div class="markdown">ozy specifically publicised it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(52,152,219)">OpossumMan</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441748649836574" id="message-715441748649836574">
+                <div class="chatlog__content">
+                    <div class="markdown">he was captured and then found dead and his body had been clearly tortured </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(52,152,219)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 10:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="715441752785551362" id="message-715441752785551362">
+                <div class="chatlog__content">
+                    <div class="markdown">on <span class="mention">#general</span> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715441790995660821" id="message-715441790995660821">
+                <div class="chatlog__content">
+                    <div class="markdown">which could have been them broadcasting it fro all i know </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715441841784225803" id="message-715441841784225803">
+                <div class="chatlog__content">
+                    <div class="markdown">either way, <span class="mention">#general</span> &#39;s always been fair game </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">03-Jul-20 01:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="728706793135407115" id="message-728706793135407115">
+                <div class="chatlog__content">
+                    <div class="markdown">RIP this server, ROFL </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/27f2ce2f42ea6564d4b115c8d0c9cdbd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frank De Voosere#0551" data-user-id="530153917254860801" style="color: rgb(149,165,166)">Frank De Voosere</span>
+
+
+        <span class="chatlog__timestamp">11-Aug-20 02:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="742859193794560030" id="message-742859193794560030">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="742859269191499776" id="message-742859269191499776">
+                <div class="chatlog__content">
+                    <div class="markdown">There is no evidence of Junta war crimes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">11-Aug-20 02:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="742859417111887913" id="message-742859417111887913">
+                <div class="chatlog__content">
+                    <div class="markdown">They did not commit enough war crimes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(52,152,219)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">11-Aug-20 02:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="742859429757845558" id="message-742859429757845558">
+                <div class="chatlog__content">
+                    <div class="markdown">me omw to kick frank out of all my servers </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/27f2ce2f42ea6564d4b115c8d0c9cdbd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frank De Voosere#0551" data-user-id="530153917254860801" style="color: rgb(149,165,166)">Frank De Voosere</span>
+
+
+        <span class="chatlog__timestamp">11-Aug-20 02:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="742859487915802664" id="message-742859487915802664">
+                <div class="chatlog__content">
+                    <div class="markdown">nooooooooooo </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="742859491816505365" id="message-742859491816505365">
+                <div class="chatlog__content">
+                    <div class="markdown">why? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(52,152,219)">character-confusion</span>
+
+
+        <span class="chatlog__timestamp">11-Aug-20 02:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="742859534162198558" id="message-742859534162198558">
+                <div class="chatlog__content">
+                    <div class="markdown">pingpingpingpingping </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/27f2ce2f42ea6564d4b115c8d0c9cdbd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frank De Voosere#0551" data-user-id="530153917254860801" style="color: rgb(149,165,166)">Frank De Voosere</span>
+
+
+        <span class="chatlog__timestamp">11-Aug-20 02:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="742859553485619360" id="message-742859553485619360">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">ozy specifically publicised it
+</div>o7 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/46ae15098c3949ae34aa5121b73b0427.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="MemesOnPizza#0303" data-user-id="691730338761932941" style="">MemesOnPizza</span>
+
+
+        <span class="chatlog__timestamp">11-Aug-20 02:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="742859577384501379" id="message-742859577384501379">
+                <div class="chatlog__content">
+                    <div class="markdown">Character right now: &quot;Frank, idi nahui&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Evidence%20Locker%20-%20Text%20Channels%20-%20general%20%5B715206457574031412%5D.html_Files/27f2ce2f42ea6564d4b115c8d0c9cdbd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frank De Voosere#0551" data-user-id="530153917254860801" style="color: rgb(149,165,166)">Frank De Voosere</span>
+
+
+        <span class="chatlog__timestamp">11-Aug-20 02:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="742859594329620500" id="message-742859594329620500">
+                <div class="chatlog__content">
+                    <div class="markdown">sorry boo won&#39;t do it again </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 135 message(s)</div>
+</div>
+
+</body>
+</html>
