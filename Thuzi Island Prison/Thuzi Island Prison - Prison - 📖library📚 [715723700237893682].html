@@ -1,0 +1,3109 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Thuzi Island Prison - &#128214;library&#128218;</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/2470a05415a3f56dc4911388d794c426.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Thuzi Island Prison</div>
+        <div class="preamble__entry">Prison / &#128214;library&#128218;</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(230,126,34)">Inmate #6997</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 05:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="715725990831194154" id="message-715725990831194154">
+                <div class="chatlog__content">
+                    <div class="markdown">Hell yeah. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715726038969352255" id="message-715726038969352255">
+                <div class="chatlog__content">
+                    <div class="markdown">I&#39;m gonna check out The Prince by Niccolo Machiavelli. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Deleted User#0000" data-user-id="456226577798135808" style="">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 05:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="715731104782483456" id="message-715731104782483456">
+                <div class="chatlog__content">
+                    <div class="markdown">this time in prision shouldn&#39;t be unused, and im staying here for life, so i better start reading some theory </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715731300564336711" id="message-715731300564336711">
+                <div class="chatlog__content">
+                    <div class="markdown">capitalism and freedom by friedman seems like my first choice </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(230,126,34)">Inmate #6997</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="715731384613863424" id="message-715731384613863424">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;We should start a prison book club.&quot; </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715731432344911902" id="message-715731432344911902">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;What else am I going to spend my time here doing.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="715731599110701187" id="message-715731599110701187">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Book club sounds nice, and to think they think all convicts are psychos&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(230,126,34)">8871</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="715732037536972811" id="message-715732037536972811">
+                <div class="chatlog__content">
+                    <div class="markdown">“I wonder, does this place have anything on chemistry” </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="715732273328160850" id="message-715732273328160850">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Chemistry shmemistry, time to actually read some of theory I talk about&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(230,126,34)">inmate #7861</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="715732296816394310" id="message-715732296816394310">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;a book club would be fun&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(230,126,34)">Inmate #4343</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="715732359584153601" id="message-715732359584153601">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Not the worst use of time, no.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="715732547014754395" id="message-715732547014754395">
+                <div class="chatlog__content">
+                    <div class="markdown">(Ngl this is the most cursed grouping of inmates ever) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(230,126,34)">8871</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="715732566094643320" id="message-715732566094643320">
+                <div class="chatlog__content">
+                    <div class="markdown">“HEY, when you need to know which chemical is hardest to remove from brick walls, come to my cell”
+<strong>grabs chemistry book from shelf</strong> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715732939870306325" id="message-715732939870306325">
+                <div class="chatlog__content">
+                    <div class="markdown">“You know what fuck it”
+<strong>picks up biology book</strong>
+“This might be even more useful” </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(230,126,34)">Inmate #4343</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="715733014755147817" id="message-715733014755147817">
+                <div class="chatlog__content">
+                    <div class="markdown"><strong>looks after shorts in interest</strong>
+<em>hmm, that chemistry book might prove useful...</em> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/3d7e9cb6817b23ce67dbab8dbd697eaa.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Not_a_Threat#0873" data-user-id="419917289228337153" style="">Not_a_Threat</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="715733090420391979" id="message-715733090420391979">
+                <div class="chatlog__content">
+                    <div class="markdown">“This place has a library?” </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715733131935612958" id="message-715733131935612958">
+                <div class="chatlog__content">
+                    <div class="markdown">“Whew, this is going to be way more livable than I thought” </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715733216564084848" id="message-715733216564084848">
+                <div class="chatlog__content">
+                    <div class="markdown"><strong>grabs 3 books on agricultural sceince</strong> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(230,126,34)">Inmate #6997</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="715733323254595645" id="message-715733323254595645">
+                <div class="chatlog__content">
+                    <div class="markdown">(kinda ironic how our prison is better than our median citizen) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="715733328678092901" id="message-715733328678092901">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Well seeing as we are all facing some of worst parts of our careers I guess I should really embrace stoicism&quot;
+
+<strong>picks up The Meditations by Marcus Aurelius and Letters from a Stoic by Seneca</strong> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/3d7e9cb6817b23ce67dbab8dbd697eaa.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Not_a_Threat#0873" data-user-id="419917289228337153" style="">Not_a_Threat</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="715733377164247103" id="message-715733377164247103">
+                <div class="chatlog__content">
+                    <div class="markdown">(Hmmmmm) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(230,126,34)">8871</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="715733425595744311" id="message-715733425595744311">
+                <div class="chatlog__content">
+                    <div class="markdown">(I guess) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/3d7e9cb6817b23ce67dbab8dbd697eaa.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Not_a_Threat#0873" data-user-id="419917289228337153" style="">Not_a_Threat</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="715733532022013982" id="message-715733532022013982">
+                <div class="chatlog__content">
+                    <div class="markdown">“Im only in here for 5 years, so I’ll try and study up on some things that will aid in future projects” </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715733562615267339" id="message-715733562615267339">
+                <div class="chatlog__content">
+                    <div class="markdown">“Education can’t hurt after all” </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="715735159756030053" id="message-715735159756030053">
+                <div class="chatlog__content">
+                    <div class="markdown">(chad 30 year gang) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(230,126,34)">8871</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="715735204203069452" id="message-715735204203069452">
+                <div class="chatlog__content">
+                    <div class="markdown">(Yep) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(230,126,34)">8871</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 07:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="715748493636927488" id="message-715748493636927488">
+                <div class="chatlog__content">
+                    <div class="markdown"><strong>returns books</strong> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 07:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="715748631793106955" id="message-715748631793106955">
+                <div class="chatlog__content">
+                    <div class="markdown">that was fast </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(230,126,34)">8871</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 07:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="715749096283045949" id="message-715749096283045949">
+                <div class="chatlog__content">
+                    <div class="markdown">“I only needed those nooks to find out what I should write on walls with, the janitor answered my question so I don’t need these” </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="715781604072488990" id="message-715781604072488990">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>enters</em> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715781937267998730" id="message-715781937267998730">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>starts reading some le iterature</em> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="715782439548485673" id="message-715782439548485673">
+                <div class="chatlog__content">
+                    <div class="markdown">Let&#39;s get lit erature </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="715782738053038100" id="message-715782738053038100">
+                <div class="chatlog__content">
+                    <div class="markdown">Le iterature </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715782868391034900" id="message-715782868391034900">
+                <div class="chatlog__content">
+                    <div class="markdown">“do you have an idea of what you’ll do when you escape/released?” <span class="chatlog__edited-timestamp" title="28-May-20 09:25 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="715782920773697596" id="message-715782920773697596">
+                <div class="chatlog__content">
+                    <div class="markdown">Hell, I just want to stay here </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783023974416445" id="message-715783023974416445">
+                <div class="chatlog__content">
+                    <div class="markdown">“Who in there right mind would want to stay here?” </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715783083642716190" id="message-715783083642716190">
+                <div class="chatlog__content">
+                    <div class="markdown">“I’ve plotted escape seven times.” </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783150000799744" id="message-715783150000799744">
+                <div class="chatlog__content">
+                    <div class="markdown">Its great, we are really flourishing as friends and have made a great community so far </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(230,126,34)">8871</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783220343472200" id="message-715783220343472200">
+                <div class="chatlog__content">
+                    <div class="markdown">“Honestly, I care not if I leave, but if my message leaves </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783262085185606" id="message-715783262085185606">
+                <div class="chatlog__content">
+                    <div class="markdown">“I mean, sure, but it’s still a prison.” </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(230,126,34)">Inmate #4343</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783298227634230" id="message-715783298227634230">
+                <div class="chatlog__content">
+                    <div class="markdown">ahh i started a trend with the inmate numbers! </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783313150967958" id="message-715783313150967958">
+                <div class="chatlog__content">
+                    <div class="markdown">“They are made to be escaped” <span class="chatlog__edited-timestamp" title="28-May-20 09:27 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(230,126,34)">8871</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783360592740362" id="message-715783360592740362">
+                <div class="chatlog__content">
+                    <div class="markdown">“This prison is baller tho” </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715783412040073236" id="message-715783412040073236">
+                <div class="chatlog__content">
+                    <div class="markdown">“If we take over the island no need” </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783460329095213" id="message-715783460329095213">
+                <div class="chatlog__content">
+                    <div class="markdown">Yeah, but have you noticed that theres basically no guards and such, we run this place basically </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783476150009896" id="message-715783476150009896">
+                <div class="chatlog__content">
+                    <div class="markdown">Thats an Idea </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(230,126,34)">8871</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783557842468875" id="message-715783557842468875">
+                <div class="chatlog__content">
+                    <div class="markdown">“Exactly, I say we overthrow what little resistance we have” </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783590163644417" id="message-715783590163644417">
+                <div class="chatlog__content">
+                    <div class="markdown">I’ll take that guard over by the r section, you take the one by the desk </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715783622204063814" id="message-715783622204063814">
+                <div class="chatlog__content">
+                    <div class="markdown">Maybe more will join <span class="chatlog__edited-timestamp" title="28-May-20 09:28 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(230,126,34)">Inmate #6997</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783648481247242" id="message-715783648481247242">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">ahh i started a trend with the inmate numbers!
+</div><span class="mention" title="character-confusion#4343">@Inmate #4343</span> Thuziland was a weird trend I started, ngl. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(230,126,34)">8871</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783656605745153" id="message-715783656605745153">
+                <div class="chatlog__content">
+                    <div class="markdown">“Trade wit Africa and such until we can start agriculture </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(230,126,34)">Inmate #4343</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783695104999468" id="message-715783695104999468">
+                <div class="chatlog__content">
+                    <div class="markdown">you did start thuziland </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715783722250534924" id="message-715783722250534924">
+                <div class="chatlog__content">
+                    <div class="markdown">based trend </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783749601853480" id="message-715783749601853480">
+                <div class="chatlog__content">
+                    <div class="markdown">What do you say? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783760079093880" id="message-715783760079093880">
+                <div class="chatlog__content">
+                    <div class="markdown">My vision is to leave my ties to the rest of the world away and simply create a monastery and commune for which us convicts can peacefully live out our lives </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(230,126,34)">Inmate #4343</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783768039751731" id="message-715783768039751731">
+                <div class="chatlog__content">
+                    <div class="markdown">(this game we&#39;re invading for sure) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783770258800660" id="message-715783770258800660">
+                <div class="chatlog__content">
+                    <div class="markdown">Should we try it? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(230,126,34)">8871</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783788017352715" id="message-715783788017352715">
+                <div class="chatlog__content">
+                    <div class="markdown">I thought I started invade thuzi </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(230,126,34)">Inmate #6997</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783789137362975" id="message-715783789137362975">
+                <div class="chatlog__content">
+                    <div class="markdown">I thought the first people who started calling it that were rping. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715783809294925837" id="message-715783809294925837">
+                <div class="chatlog__content">
+                    <div class="markdown">Turns out they didn&#39;t know, lmao. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783856912990228" id="message-715783856912990228">
+                <div class="chatlog__content">
+                    <div class="markdown">Idk, I’ll take the guard here. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(230,126,34)">Inmate #4343</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783871043469322" id="message-715783871043469322">
+                <div class="chatlog__content">
+                    <div class="markdown">(ele sarted spelling it wrong) <span class="chatlog__edited-timestamp" title="28-May-20 09:29 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="715783904895959100" id="message-715783904895959100">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>attacks guard</em> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715783939847094362" id="message-715783939847094362">
+                <div class="chatlog__content">
+                    <div class="markdown">GOT THE GUN!!! </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715784013591216129" id="message-715784013591216129">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>fires one shot</em> <span class="chatlog__edited-timestamp" title="28-May-20 09:30 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784040308801637" id="message-715784040308801637">
+                <div class="chatlog__content">
+                    <div class="markdown">What </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(230,126,34)">8871</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784072991080509" id="message-715784072991080509">
+                <div class="chatlog__content">
+                    <div class="markdown">“Calm the fuck down” </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(230,126,34)">Inmate #4343</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784074056433665" id="message-715784074056433665">
+                <div class="chatlog__content">
+                    <div class="markdown">PRISON REVOLT!!! </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784075373183017" id="message-715784075373183017">
+                <div class="chatlog__content">
+                    <div class="markdown">Why are we causing issues </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715784100266639390" id="message-715784100266639390">
+                <div class="chatlog__content">
+                    <div class="markdown">My guys </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(230,126,34)">Inmate #4343</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784116259258410" id="message-715784116259258410">
+                <div class="chatlog__content">
+                    <div class="markdown">We&#39;re overthrowing the guards!!! </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(230,126,34)">8871</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784148056539216" id="message-715784148056539216">
+                <div class="chatlog__content">
+                    <div class="markdown">“I SAID CALM THE FUCK DOWN” </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784187885649971" id="message-715784187885649971">
+                <div class="chatlog__content">
+                    <div class="markdown">Can we just live peacefully and reflect on our actions </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784209859346436" id="message-715784209859346436">
+                <div class="chatlog__content">
+                    <div class="markdown">NOOOO </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715784224526958656" id="message-715784224526958656">
+                <div class="chatlog__content">
+                    <div class="markdown">OVERTHROW </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(230,126,34)">Inmate #4343</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784232156397698" id="message-715784232156397698">
+                <div class="chatlog__content">
+                    <div class="markdown">We can </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715784246186213497" id="message-715784246186213497">
+                <div class="chatlog__content">
+                    <div class="markdown">In our prison commune </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784262648856636" id="message-715784262648856636">
+                <div class="chatlog__content">
+                    <div class="markdown">YESSS </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784268894175262" id="message-715784268894175262">
+                <div class="chatlog__content">
+                    <div class="markdown">Hmmmm </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(230,126,34)">8871</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784273747247164" id="message-715784273747247164">
+                <div class="chatlog__content">
+                    <div class="markdown">“YALL WANT TO START A REVOLUTION AND HALF OF YOU DONT KNOW HOW TO GROW A TOMATO” </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(230,126,34)">inmate #7861</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784280403345509" id="message-715784280403345509">
+                <div class="chatlog__content">
+                    <div class="markdown">Bruh </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715784310430629959" id="message-715784310430629959">
+                <div class="chatlog__content">
+                    <div class="markdown">What the fuck </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715784323541893131" id="message-715784323541893131">
+                <div class="chatlog__content">
+                    <div class="markdown">Is going on </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784325500764180" id="message-715784325500764180">
+                <div class="chatlog__content">
+                    <div class="markdown">TIME TO KILL </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784361919774810" id="message-715784361919774810">
+                <div class="chatlog__content">
+                    <div class="markdown">You pwomise we make a nice isolationist commune? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784366390902884" id="message-715784366390902884">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>shoots other guard</em> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(230,126,34)">inmate #7861</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784396027985942" id="message-715784396027985942">
+                <div class="chatlog__content">
+                    <div class="markdown">Fucking hell </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784417465073694" id="message-715784417465073694">
+                <div class="chatlog__content">
+                    <div class="markdown">“Take this gun!” </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(230,126,34)">inmate #7861</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784443092271154" id="message-715784443092271154">
+                <div class="chatlog__content">
+                    <div class="markdown"><strong>Takes dead guards gun</strong> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(230,126,34)">8871</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784453384962069" id="message-715784453384962069">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>sigh</em> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784468668874772" id="message-715784468668874772">
+                <div class="chatlog__content">
+                    <div class="markdown">Can we put 0588 in solitary </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(230,126,34)">inmate #7861</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784471710007337" id="message-715784471710007337">
+                <div class="chatlog__content">
+                    <div class="markdown">Ha ha </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784484028678175" id="message-715784484028678175">
+                <div class="chatlog__content">
+                    <div class="markdown">Thats the spirit! </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(230,126,34)">8871</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784489955098696" id="message-715784489955098696">
+                <div class="chatlog__content">
+                    <div class="markdown">“Give me a danm gun” </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784544581713961" id="message-715784544581713961">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>shoots the final guard</em> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(230,126,34)">inmate #7861</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784584977186877" id="message-715784584977186877">
+                <div class="chatlog__content">
+                    <div class="markdown"><strong>takes gun</strong> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784587791433870" id="message-715784587791433870">
+                <div class="chatlog__content">
+                    <div class="markdown">“All yours” </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(230,126,34)">inmate #7861</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784596465254420" id="message-715784596465254420">
+                <div class="chatlog__content">
+                    <div class="markdown">Ha ja </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715784613850513489" id="message-715784613850513489">
+                <div class="chatlog__content">
+                    <div class="markdown">Double gun </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784638844370986" id="message-715784638844370986">
+                <div class="chatlog__content">
+                    <div class="markdown">Courtyard next </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/ce2671faf031120492b9b0921100cf3e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="OpossumMan#7861" data-user-id="274254297758171136" style="color: rgb(230,126,34)">inmate #7861</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784639976964157" id="message-715784639976964157">
+                <div class="chatlog__content">
+                    <div class="markdown">You get none </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784655605071893" id="message-715784655605071893">
+                <div class="chatlog__content">
+                    <div class="markdown"><strong>shakes head in disappointment</strong> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784674525315102" id="message-715784674525315102">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">#&#127796;outdoor-courtyard&#127796;</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/9e6a45735e457a80e2c251e64f455e75.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="someguyinshorts#8871" data-user-id="690045063279149078" style="color: rgb(230,126,34)">8871</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784691181027388" id="message-715784691181027388">
+                <div class="chatlog__content">
+                    <div class="markdown">“GIVE ME A DANM GUN </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="715784718229962762" id="message-715784718229962762">
+                <div class="chatlog__content">
+                    <div class="markdown"><strong>goes to cell</strong> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/70e14dfcd78ae3a3672d8d1e7914cabe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ele~#6997" data-user-id="142767548159623169" style="color: rgb(230,126,34)">Inmate #6997</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="715789435085520978" id="message-715789435085520978">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>grabs the armchair</em> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/7d1e7027b6ef3c54762072dbf5485028.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RTR#4992" data-user-id="644717594716405791" style="">RTR</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="715789479889207359" id="message-715789479889207359">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>grabs a sofa</em> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 09:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="715789559475994655" id="message-715789559475994655">
+                <div class="chatlog__content">
+                    <div class="markdown">Builds a fort out of book cases and pillows </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715790969051807747" id="message-715790969051807747">
+                <div class="chatlog__content">
+                    <div class="markdown">My room now <span class="chatlog__edited-timestamp" title="28-May-20 09:57 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715791037020241930" id="message-715791037020241930">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>cleans up bodies and blood</em> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715791266616705066" id="message-715791266616705066">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Breaks book cases into boards</em> <span class="chatlog__edited-timestamp" title="28-May-20 09:59 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715791400553414656" id="message-715791400553414656">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>uses nails to make larger boards and walls for the fort</em> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715791640157225081" id="message-715791640157225081">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>grabs matresses from 3 unused cells</em> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715791716195762226" id="message-715791716195762226">
+                <div class="chatlog__content">
+                    <div class="markdown">“Look at my new area!” </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 10:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="715791802090913884" id="message-715791802090913884">
+                <div class="chatlog__content">
+                    <div class="markdown">Your room will be a cell my guy </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715791842423341102" id="message-715791842423341102">
+                <div class="chatlog__content">
+                    <div class="markdown">We will distribute furniture accordingly </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715791905815789589" id="message-715791905815789589">
+                <div class="chatlog__content">
+                    <div class="markdown">But this is a public space and will continue to be a quiet library </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 10:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="715791976460714014" id="message-715791976460714014">
+                <div class="chatlog__content">
+                    <div class="markdown">I claimed it though </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715792042843963513" id="message-715792042843963513">
+                <div class="chatlog__content">
+                    <div class="markdown">The revolt was also my idea </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715792098351251486" id="message-715792098351251486">
+                <div class="chatlog__content">
+                    <div class="markdown">I got shot three times to live in a cell? </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715792114100994058" id="message-715792114100994058">
+                <div class="chatlog__content">
+                    <div class="markdown">Hell na </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 10:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="715792345085378631" id="message-715792345085378631">
+                <div class="chatlog__content">
+                    <div class="markdown">Buddy </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715792377775783962" id="message-715792377775783962">
+                <div class="chatlog__content">
+                    <div class="markdown">Your interests are not above ours </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715792404535312384" id="message-715792404535312384">
+                <div class="chatlog__content">
+                    <div class="markdown">We agreed on rules </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 10:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="715792446922948609" id="message-715792446922948609">
+                <div class="chatlog__content">
+                    <div class="markdown">I did too </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715792502405333012" id="message-715792502405333012">
+                <div class="chatlog__content">
+                    <div class="markdown">I would like to build a public area that I live in </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 10:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="715792621682950156" id="message-715792621682950156">
+                <div class="chatlog__content">
+                    <div class="markdown">No </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715792657951227934" id="message-715792657951227934">
+                <div class="chatlog__content">
+                    <div class="markdown">That is not how the commune works </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715792701081256027" id="message-715792701081256027">
+                <div class="chatlog__content">
+                    <div class="markdown">Public and private must be strictly separate </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(230,126,34)">Inmate #4343</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 10:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="715792702016585728" id="message-715792702016585728">
+                <div class="chatlog__content">
+                    <div class="markdown">i&#39;m with 51 on this one </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715792735931727923" id="message-715792735931727923">
+                <div class="chatlog__content">
+                    <div class="markdown">public spaces are for all of us, you can&#39;t claim it as your own </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 10:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="715792792139333653" id="message-715792792139333653">
+                <div class="chatlog__content">
+                    <div class="markdown">“Fuck this, I’m going to the server room to build shit.” </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715792843683135550" id="message-715792843683135550">
+                <div class="chatlog__content">
+                    <div class="markdown">(Can you make that channel please) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(230,126,34)">Inmate #4343</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 10:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="715792873798500412" id="message-715792873798500412">
+                <div class="chatlog__content">
+                    <div class="markdown">what channel? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/e76b69e64789591ed6c4cc72e013b4c2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kermit the C_L_A_M#5141" data-user-id="379407840873283589" style="color: rgb(230,126,34)">Inmate #5141</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 10:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="715792894182817815" id="message-715792894182817815">
+                <div class="chatlog__content">
+                    <div class="markdown">I&#39;m not hating on you but we must keep strict rules if this will work </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(230,126,34)">Inmate #4343</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 10:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="715792907168251995" id="message-715792907168251995">
+                <div class="chatlog__content">
+                    <div class="markdown">server room? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/60738b0a5e23d54da89e4a477896d3cd.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ero11#0588" data-user-id="477487083410161678" style="">Ero11</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 10:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="715792911026880523" id="message-715792911026880523">
+                <div class="chatlog__content">
+                    <div class="markdown">(Server room) </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715792920720179202" id="message-715792920720179202">
+                <div class="chatlog__content">
+                    <div class="markdown">Yes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Thuzi%20Island%20Prison%20-%20Prison%20-%20%F0%9F%93%96library%F0%9F%93%9A%20%5B715723700237893682%5D.html_Files/20e70ace75c3c9c91caf8d01ad0b69c4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saruman#1823" data-user-id="467316769992998912" style="">Saruman</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 06:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="716102777243172964" id="message-716102777243172964">
+                <div class="chatlog__content">
+                    <div class="markdown">library </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 139 message(s)</div>
+</div>
+
+</body>
+</html>
