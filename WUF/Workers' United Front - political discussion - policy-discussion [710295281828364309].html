@@ -1,0 +1,3957 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Workers&#39; United Front - policy-discussion</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/0aacf727a3851cd048f13b6b2717a2b7.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Workers&#39; United Front</div>
+        <div class="preamble__entry">political discussion / policy-discussion</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 06:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="710297219399549049" id="message-710297219399549049">
+                <div class="chatlog__content">
+                    <div class="markdown">first </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(122,11,11)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 07:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="710311634169495578" id="message-710311634169495578">
+                <div class="chatlog__content">
+                    <div class="markdown">There are a lot of negative votes so if you have problems with the new party, please express them here. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3d7e9cb6817b23ce67dbab8dbd697eaa.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Not_a_Threat#0873" data-user-id="419917289228337153" style="">Not_a_Threat</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 07:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="710313737550299139" id="message-710313737550299139">
+                <div class="chatlog__content">
+                    <div class="markdown">They seem very lib and a bit bat shit but that’s not a problem for the left I don’t think </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 07:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="710321947031896125" id="message-710321947031896125">
+                <div class="chatlog__content">
+                    <div class="markdown">Hey </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710322809792102433" id="message-710322809792102433">
+                <div class="chatlog__content">
+                    <div class="markdown">The CLFS platform is a roadmap, not an immediate action </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710322854490800248" id="message-710322854490800248">
+                <div class="chatlog__content">
+                    <div class="markdown">these are long-term goals </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3d7e9cb6817b23ce67dbab8dbd697eaa.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Not_a_Threat#0873" data-user-id="419917289228337153" style="">Not_a_Threat</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 07:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="710322924338282547" id="message-710322924338282547">
+                <div class="chatlog__content">
+                    <div class="markdown">I guess that’s understandable </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 07:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="710323259610235000" id="message-710323259610235000">
+                <div class="chatlog__content">
+                    <div class="markdown">My platform is radical by WUF standards lol </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3d7e9cb6817b23ce67dbab8dbd697eaa.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Not_a_Threat#0873" data-user-id="419917289228337153" style="">Not_a_Threat</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 07:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="710323306418405459" id="message-710323306418405459">
+                <div class="chatlog__content">
+                    <div class="markdown">We’ve just had to water our shit down </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710323338672603214" id="message-710323338672603214">
+                <div class="chatlog__content">
+                    <div class="markdown">Because we live in a liberal democracy </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 07:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="710323355001290794" id="message-710323355001290794">
+                <div class="chatlog__content">
+                    <div class="markdown">I think the CLFS is the most left wing party rn </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3d7e9cb6817b23ce67dbab8dbd697eaa.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Not_a_Threat#0873" data-user-id="419917289228337153" style="">Not_a_Threat</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 07:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="710323406251491339" id="message-710323406251491339">
+                <div class="chatlog__content">
+                    <div class="markdown">UASL might be further left </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710323431043760138" id="message-710323431043760138">
+                <div class="chatlog__content">
+                    <div class="markdown">Or at least further lib <span class="chatlog__edited-timestamp" title="13-May-20 07:51 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 07:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="710323433153757236" id="message-710323433153757236">
+                <div class="chatlog__content">
+                    <div class="markdown">I&#39;m committed to staying ideological </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710323545833734154" id="message-710323545833734154">
+                <div class="chatlog__content">
+                    <div class="markdown">Well, we&#39;re both anarchist parties </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710323600615276546" id="message-710323600615276546">
+                <div class="chatlog__content">
+                    <div class="markdown">And we have communist tendencies </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(122,11,11)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 07:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="710323730756141066" id="message-710323730756141066">
+                <div class="chatlog__content">
+                    <div class="markdown">bruh, CLFS believes markets though </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 07:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="710325324113510431" id="message-710325324113510431">
+                <div class="chatlog__content">
+                    <div class="markdown">As an intermediate step </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710325413548785674" id="message-710325413548785674">
+                <div class="chatlog__content">
+                    <div class="markdown">The platform isn&#39;t well laid-out </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710325608730591252" id="message-710325608730591252">
+                <div class="chatlog__content">
+                    <div class="markdown">We aren&#39;t going to stop people from exchanging two things they made with their own labor. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710325933030244372" id="message-710325933030244372">
+                <div class="chatlog__content">
+                    <div class="markdown">We also believe that communism works best post-scarcity, so we&#39;re trying to move to communism as our tech level increases </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 08:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="710330754692939817" id="message-710330754692939817">
+                <div class="chatlog__content">
+                    <div class="markdown">Plus animal liberation </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3ebf2a898561c4752951c91f4eb9a1ec.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wumbologist#1854" data-user-id="445333474006532106" style="">Wumbologist</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 08:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="710335922138251296" id="message-710335922138251296">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">UASL might be further left
+</div><span class="mention" title="Not_a_Threat#0873">@Not_a_Threat</span>  yes </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710335965905944657" id="message-710335965905944657">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">Or at least further lib
+</div><span class="mention" title="Not_a_Threat#0873">@Not_a_Threat</span>  sometimes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="710541633837465619" id="message-710541633837465619">
+                <div class="chatlog__content">
+                    <div class="markdown">We need a libsoc alliance flag </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710541848556470362" id="message-710541848556470362">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" style="">@deleted-role</span> <span class="mention" style="">@deleted-role</span> <span class="mention" style="">@deleted-role</span> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710541957218304001" id="message-710541957218304001">
+                <div class="chatlog__content">
+                    <div class="markdown">What should it be </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710542007512203264" id="message-710542007512203264">
+                <div class="chatlog__content">
+                    <div class="markdown">perhaps a combination of </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710542030752710837" id="message-710542030752710837">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/CFLS_Logo.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/CFLS_Logo.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/57e9d00a8480835c451be7a1767a0cb3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="random_stranger#8889" data-user-id="620178233085919235" style="color: rgb(122,11,11)">random_stranger</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="710542068329480253" id="message-710542068329480253">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Parmesan The Cheese#9962">@Parmesan The Cheese</span> what about just red </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="710542097438081077" id="message-710542097438081077">
+                <div class="chatlog__content">
+                    <div class="markdown">[insert UASL/PLP logos here] </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/ee5ae39355e5dab719bbfacac2c6a07d.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Flero#4282" data-user-id="662448089931579403" style="">Flero (EST/UTC-4)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="710542103322820748" id="message-710542103322820748">
+                <div class="chatlog__content">
+                    <div class="markdown">What&#39;s the CFLS flag? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/57e9d00a8480835c451be7a1767a0cb3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="random_stranger#8889" data-user-id="620178233085919235" style="color: rgb(122,11,11)">random_stranger</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="710542109039657022" id="message-710542109039657022">
+                <div class="chatlog__content">
+                    <div class="markdown">we are all leftists right </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="710542132464844821" id="message-710542132464844821">
+                <div class="chatlog__content">
+                    <div class="markdown">that&#39;s WUF </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710542190874722435" id="message-710542190874722435">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">What&#39;s the CFLS flag?
+</div><span class="mention" title="Flero#4282">@Flero (EST/UTC-4)</span> The black rose </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/ee5ae39355e5dab719bbfacac2c6a07d.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Flero#4282" data-user-id="662448089931579403" style="">Flero (EST/UTC-4)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="710542221912309890" id="message-710542221912309890">
+                <div class="chatlog__content">
+                    <div class="markdown">Huh </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="710542258595954729" id="message-710542258595954729">
+                <div class="chatlog__content">
+                    <div class="markdown">It&#39;s right there </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/57e9d00a8480835c451be7a1767a0cb3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="random_stranger#8889" data-user-id="620178233085919235" style="color: rgb(122,11,11)">random_stranger</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="710542402267381781" id="message-710542402267381781">
+                <div class="chatlog__content">
+                    <div class="markdown">what would you call a Interstellar anarchist commune? <span class="chatlog__edited-timestamp" title="14-May-20 10:22 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710542431149621342" id="message-710542431149621342">
+                <div class="chatlog__content">
+                    <div class="markdown">just asking </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710542483515375689" id="message-710542483515375689">
+                <div class="chatlog__content">
+                    <div class="markdown">and a presidents title </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/ee5ae39355e5dab719bbfacac2c6a07d.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Flero#4282" data-user-id="662448089931579403" style="">Flero (EST/UTC-4)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="710542591183028314" id="message-710542591183028314">
+                <div class="chatlog__content">
+                    <div class="markdown">Like in 1 star system that&#39;s not the sun or multiple star systems? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="710542603225006091" id="message-710542603225006091">
+                <div class="chatlog__content">
+                    <div class="markdown">space commune </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710542632312504432" id="message-710542632312504432">
+                <div class="chatlog__content">
+                    <div class="markdown">cumtown </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/57e9d00a8480835c451be7a1767a0cb3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="random_stranger#8889" data-user-id="620178233085919235" style="color: rgb(122,11,11)">random_stranger</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="710542707390677062" id="message-710542707390677062">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">cumtown
+</div>epic </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="">wumbologist</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="710542776386977794" id="message-710542776386977794">
+                <div class="chatlog__content">
+                    <div class="markdown">If we win the war </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710542844984819742" id="message-710542844984819742">
+                <div class="chatlog__content">
+                    <div class="markdown">We must make Pufferfish the national animal alongside la creatura </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/57e9d00a8480835c451be7a1767a0cb3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="random_stranger#8889" data-user-id="620178233085919235" style="color: rgb(122,11,11)">random_stranger</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="710542891310776413" id="message-710542891310776413">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">Like in 1 star system that&#39;s not the sun or multiple star systems?
+</div>multible systems </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710542935405494283" id="message-710542935405494283">
+                <div class="chatlog__content">
+                    <div class="markdown">gonna make a  stellaris anarchist state <span class="chatlog__edited-timestamp" title="14-May-20 10:24 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/ee5ae39355e5dab719bbfacac2c6a07d.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Flero#4282" data-user-id="662448089931579403" style="">Flero (EST/UTC-4)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="710542952480636981" id="message-710542952480636981">
+                <div class="chatlog__content">
+                    <div class="markdown">Huh </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710543008285851678" id="message-710543008285851678">
+                <div class="chatlog__content">
+                    <div class="markdown">I&#39;m really not sure </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/57e9d00a8480835c451be7a1767a0cb3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="random_stranger#8889" data-user-id="620178233085919235" style="color: rgb(122,11,11)">random_stranger</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543029508767825" id="message-710543029508767825">
+                <div class="chatlog__content">
+                    <div class="markdown">k </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543064573280266" id="message-710543064573280266">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">gonna make a  stellaris anarchist state
+</div><span class="mention" title="random_stranger#8889">@random_stranger</span>  state?? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543077097341038" id="message-710543077097341038">
+                <div class="chatlog__content">
+                    <div class="markdown">red (PLP) + teal (UASL) + rose (CFLS) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/57e9d00a8480835c451be7a1767a0cb3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="random_stranger#8889" data-user-id="620178233085919235" style="color: rgb(122,11,11)">random_stranger</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543085410451558" id="message-710543085410451558">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote"><span class="mention" title="random_stranger#8889">@random_stranger</span>  state??
+</div><span class="mention" title="LordPapania#8458">@LordPapania</span> fuck </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710543117044023336" id="message-710543117044023336">
+                <div class="chatlog__content">
+                    <div class="markdown">anarchist commune </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710543131782938645" id="message-710543131782938645">
+                <div class="chatlog__content">
+                    <div class="markdown">I mean </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="">wumbologist</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543154591432717" id="message-710543154591432717">
+                <div class="chatlog__content">
+                    <div class="markdown">I just wanna grill smh my head </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543166201135125" id="message-710543166201135125">
+                <div class="chatlog__content">
+                    <div class="markdown">black = anarchism </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543176594620527" id="message-710543176594620527">
+                <div class="chatlog__content">
+                    <div class="markdown">Or free territory </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543200976109619" id="message-710543200976109619">
+                <div class="chatlog__content">
+                    <div class="markdown">red (PLP) + teal (UASL) + rose (CFLS) </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710543214460928052" id="message-710543214460928052">
+                <div class="chatlog__content">
+                    <div class="markdown">good flag? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="">wumbologist</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543257259475075" id="message-710543257259475075">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/image0.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/image0.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543275387387998" id="message-710543275387387998">
+                <div class="chatlog__content">
+                    <div class="markdown">yes </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710543299450110047" id="message-710543299450110047">
+                <div class="chatlog__content">
+                    <div class="markdown">Trans Rose </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543330211266662" id="message-710543330211266662">
+                <div class="chatlog__content">
+                    <div class="markdown">I unironically want the trans flag tbh </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="">wumbologist</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543414420045924" id="message-710543414420045924">
+                <div class="chatlog__content">
+                    <div class="markdown">All these libtards saying trans rights </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543425191280830" id="message-710543425191280830">
+                <div class="chatlog__content">
+                    <div class="markdown">Maybe an Anarcho-Transgender flag with a red star </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="">wumbologist</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543439913156688" id="message-710543439913156688">
+                <div class="chatlog__content">
+                    <div class="markdown">[nobody will know what this comment said (:] <span class="chatlog__edited-timestamp" title="14-May-20 10:26 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543608939413636" id="message-710543608939413636">
+                <div class="chatlog__content">
+                    <div class="markdown">Trans-rose </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710543641181028438" id="message-710543641181028438">
+                <div class="chatlog__content">
+                    <div class="markdown">that is our flag </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543657203400805" id="message-710543657203400805">
+                <div class="chatlog__content">
+                    <div class="markdown">Roses are for socdems though </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710543680582320149" id="message-710543680582320149">
+                <div class="chatlog__content">
+                    <div class="markdown">I hate SocDems </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="">wumbologist</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543707757215755" id="message-710543707757215755">
+                <div class="chatlog__content">
+                    <div class="markdown">Nuke em </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543709493657611" id="message-710543709493657611">
+                <div class="chatlog__content">
+                    <div class="markdown">black rose is an anarchist symbol </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543736966217772" id="message-710543736966217772">
+                <div class="chatlog__content">
+                    <div class="markdown">Oh yeah </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710543751876968529" id="message-710543751876968529">
+                <div class="chatlog__content">
+                    <div class="markdown">That works </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/57e9d00a8480835c451be7a1767a0cb3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="random_stranger#8889" data-user-id="620178233085919235" style="color: rgb(122,11,11)">random_stranger</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543767064805508" id="message-710543767064805508">
+                <div class="chatlog__content">
+                    <div class="markdown">just red will work </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543782961086577" id="message-710543782961086577">
+                <div class="chatlog__content">
+                    <div class="markdown">So Trans-Black-Rose </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/57e9d00a8480835c451be7a1767a0cb3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="random_stranger#8889" data-user-id="620178233085919235" style="color: rgb(122,11,11)">random_stranger</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543784856911962" id="message-710543784856911962">
+                <div class="chatlog__content">
+                    <div class="markdown">we are all commies </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/5e6c10705db7b2876cd9ae4ca720b74b.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="J☭lly друг™#7330" data-user-id="218097948599255040" style="">J☭lly друг™</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543831476600913" id="message-710543831476600913">
+                <div class="chatlog__content">
+                    <div class="markdown">i&#39;m down with the black rose </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543837965058129" id="message-710543837965058129">
+                <div class="chatlog__content">
+                    <div class="markdown">Red rose is ew </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/5e6c10705db7b2876cd9ae4ca720b74b.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="J☭lly друг™#7330" data-user-id="218097948599255040" style="">J☭lly друг™</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543840569721104" id="message-710543840569721104">
+                <div class="chatlog__content">
+                    <div class="markdown">hell yeah </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543856499818569" id="message-710543856499818569">
+                <div class="chatlog__content">
+                    <div class="markdown">that&#39;s already the WUF </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/57e9d00a8480835c451be7a1767a0cb3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="random_stranger#8889" data-user-id="620178233085919235" style="color: rgb(122,11,11)">random_stranger</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="710543876842192896" id="message-710543876842192896">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="LordPapania#8458">@LordPapania</span> nah just red </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710544019159121932" id="message-710544019159121932">
+                <div class="chatlog__content">
+                    <div class="markdown">like this </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/Adsz.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/Adsz.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544046262845560" id="message-710544046262845560">
+                <div class="chatlog__content">
+                    <div class="markdown">We can also have just a red flag like the German Soviet republics (like not East Germany) </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710544053808136232" id="message-710544053808136232">
+                <div class="chatlog__content">
+                    <div class="markdown">Yes </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710544068282941483" id="message-710544068282941483">
+                <div class="chatlog__content">
+                    <div class="markdown">Exactly </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/57e9d00a8480835c451be7a1767a0cb3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="random_stranger#8889" data-user-id="620178233085919235" style="color: rgb(122,11,11)">random_stranger</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544071978123265" id="message-710544071978123265">
+                <div class="chatlog__content">
+                    <div class="markdown">but better toned </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="">wumbologist</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544078873559111" id="message-710544078873559111">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/image0.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/image0.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/57e9d00a8480835c451be7a1767a0cb3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="random_stranger#8889" data-user-id="620178233085919235" style="color: rgb(122,11,11)">random_stranger</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544136192786581" id="message-710544136192786581">
+                <div class="chatlog__content">
+                    <div class="markdown">bg gay </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544141720879225" id="message-710544141720879225">
+                <div class="chatlog__content">
+                    <div class="markdown">Or we can have the ants flag </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/57e9d00a8480835c451be7a1767a0cb3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="random_stranger#8889" data-user-id="620178233085919235" style="color: rgb(122,11,11)">random_stranger</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544172339167272" id="message-710544172339167272">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="LordPapania#8458">@LordPapania</span> nah </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544193524727890" id="message-710544193524727890">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/lib-soc_alliance_flag.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/lib-soc_alliance_flag.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710544230866616452" id="message-710544230866616452">
+                <div class="chatlog__content">
+                    <div class="markdown">all three parties </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/57e9d00a8480835c451be7a1767a0cb3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="random_stranger#8889" data-user-id="620178233085919235" style="color: rgb(122,11,11)">random_stranger</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544234574250075" id="message-710544234574250075">
+                <div class="chatlog__content">
+                    <div class="markdown">this looks cool tbh </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="">wumbologist</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544289041744004" id="message-710544289041744004">
+                <div class="chatlog__content">
+                    <div class="markdown">Black star &gt; Black rose </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544310277374043" id="message-710544310277374043">
+                <div class="chatlog__content">
+                    <div class="markdown">no </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544359614971904" id="message-710544359614971904">
+                <div class="chatlog__content">
+                    <div class="markdown">Red Star &gt; Black Rose </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="">wumbologist</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544384382468217" id="message-710544384382468217">
+                <div class="chatlog__content">
+                    <div class="markdown">Yes </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710544413998448732" id="message-710544413998448732">
+                <div class="chatlog__content">
+                    <div class="markdown">And make the red side black </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544479437979711" id="message-710544479437979711">
+                <div class="chatlog__content">
+                    <div class="markdown">Yeah but we&#39;re anarchists not tankies </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710544551802306590" id="message-710544551802306590">
+                <div class="chatlog__content">
+                    <div class="markdown">so red star is kinda a yikes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544609016676420" id="message-710544609016676420">
+                <div class="chatlog__content">
+                    <div class="markdown">We’re LibSocs so some of us are LibMarx </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544638909612082" id="message-710544638909612082">
+                <div class="chatlog__content">
+                    <div class="markdown">histroy has asociated red star with tankies tho </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544648627814451" id="message-710544648627814451">
+                <div class="chatlog__content">
+                    <div class="markdown">Based. </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/image0%20%281%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/image0%20%281%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544675794321412" id="message-710544675794321412">
+                <div class="chatlog__content">
+                    <div class="markdown">yes </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710544730936573953" id="message-710544730936573953">
+                <div class="chatlog__content">
+                    <div class="markdown">And there are plenty of non-marxists here </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710544821151858740" id="message-710544821151858740">
+                <div class="chatlog__content">
+                    <div class="markdown">black rose is all liblefts </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="">wumbologist</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544933940887614" id="message-710544933940887614">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/image0%20%281%29.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/image0%20%281%29.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544995484172349" id="message-710544995484172349">
+                <div class="chatlog__content">
+                    <div class="markdown">Black Rose is just Anarchism </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/5e6c10705db7b2876cd9ae4ca720b74b.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="J☭lly друг™#7330" data-user-id="218097948599255040" style="">J☭lly друг™</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544998248218724" id="message-710544998248218724">
+                <div class="chatlog__content">
+                    <div class="markdown">i like the flag mega made </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="710544999384875068" id="message-710544999384875068">
+                <div class="chatlog__content">
+                    <div class="markdown">bro did u just use photoshop </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710545035028070410" id="message-710545035028070410">
+                <div class="chatlog__content">
+                    <div class="markdown">thx </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545036642877460" id="message-710545036642877460">
+                <div class="chatlog__content">
+                    <div class="markdown">LibMarx use Marxist Symbolism </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="">wumbologist</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545084717989888" id="message-710545084717989888">
+                <div class="chatlog__content">
+                    <div class="markdown">GUYS </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545088899448874" id="message-710545088899448874">
+                <div class="chatlog__content">
+                    <div class="markdown">You know I accept De Leon Arm too </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545089323204632" id="message-710545089323204632">
+                <div class="chatlog__content">
+                    <div class="markdown">not all of us are marxists </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(128,194,111)">Revlise (UTC+2)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545097837641799" id="message-710545097837641799">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/PicsArt_05-14-07.31.35.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/PicsArt_05-14-07.31.35.jpg" alt="Attachment">
+                            </a>
+                    </div>
+                    <div class="chatlog__attachment">
+                            <a href="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/PicsArt_05-14-07.32.16.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/PicsArt_05-14-07.32.16.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="">wumbologist</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545104359915671" id="message-710545104359915671">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/image0%20%282%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/image0%20%282%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128077;" title="&#128077;" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/1f44d.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="710545109061468223" id="message-710545109061468223">
+                <div class="chatlog__content">
+                    <div class="markdown">Done </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/5e6c10705db7b2876cd9ae4ca720b74b.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="J☭lly друг™#7330" data-user-id="218097948599255040" style="">J☭lly друг™</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545122177056858" id="message-710545122177056858">
+                <div class="chatlog__content">
+                    <div class="markdown">noice </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545142305652739" id="message-710545142305652739">
+                <div class="chatlog__content">
+                    <div class="markdown">Yes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545144172249088" id="message-710545144172249088">
+                <div class="chatlog__content">
+                    <div class="markdown">Not all of us are Anarchists </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(128,194,111)">Revlise (UTC+2)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545164392726608" id="message-710545164392726608">
+                <div class="chatlog__content">
+                    <div class="markdown">If the first looks too invasive, but it was purely artistic thing </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710545182268981248" id="message-710545182268981248">
+                <div class="chatlog__content">
+                    <div class="markdown">Nom PLP </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545231740928090" id="message-710545231740928090">
+                <div class="chatlog__content">
+                    <div class="markdown">Black Rose is a general libertarian socialist symbol </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(122,11,11)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545344907313222" id="message-710545344907313222">
+                <div class="chatlog__content">
+                    <div class="markdown">this is pretty hot, ngl </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/PicsArt_05-14-07.32.16%20%281%29.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/PicsArt_05-14-07.32.16%20%281%29.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545375940968549" id="message-710545375940968549">
+                <div class="chatlog__content">
+                    <div class="markdown">extend the stem </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(128,194,111)">Revlise (UTC+2)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545387823300649" id="message-710545387823300649">
+                <div class="chatlog__content">
+                    <div class="markdown">Thanks </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(122,11,11)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545391866609799" id="message-710545391866609799">
+                <div class="chatlog__content">
+                    <div class="markdown">yeah </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545395092029540" id="message-710545395092029540">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Parmesan The Cheese#9962">@Parmesan The Cheese</span> no it isn‘t </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545409315176509" id="message-710545409315176509">
+                <div class="chatlog__content">
+                    <div class="markdown">thx </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545427648217088" id="message-710545427648217088">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="character-confusion#4343">@Senator Character</span> you know what I like This </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/faf514eb83fd1dd38d32c7a075635c46.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wumbologist#4974" data-user-id="706698264195498005" style="">wumbologist</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545442584264746" id="message-710545442584264746">
+                <div class="chatlog__content">
+                    <div class="markdown">Put Pol pot on it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545457004150814" id="message-710545457004150814">
+                <div class="chatlog__content">
+                    <div class="markdown">yes </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545484619448501" id="message-710545484619448501">
+                <div class="chatlog__content">
+                    <div class="markdown">But this is still super Based </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/image0%20%283%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/image0%20%283%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545503401541682" id="message-710545503401541682">
+                <div class="chatlog__content">
+                    <div class="markdown">yes </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710545539157983284" id="message-710545539157983284">
+                <div class="chatlog__content">
+                    <div class="markdown">but im a minimalist </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710545565183901791" id="message-710545565183901791">
+                <div class="chatlog__content">
+                    <div class="markdown">on flags </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545617537073162" id="message-710545617537073162">
+                <div class="chatlog__content">
+                    <div class="markdown">We can simplify it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545661132800100" id="message-710545661132800100">
+                <div class="chatlog__content">
+                    <div class="markdown">ehh...later </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="LordPapania#8458" data-user-id="474142476475564032" style="">LordPapania</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545667029991446" id="message-710545667029991446">
+                <div class="chatlog__content">
+                    <div class="markdown">But I guess we‘ll take the flag that was already made </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="710545691985838130" id="message-710545691985838130">
+                <div class="chatlog__content">
+                    <div class="markdown">yeah </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710545767978369086" id="message-710545767978369086">
+                <div class="chatlog__content">
+                    <div class="markdown">and the version I made could be used as a badge or as a ball </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(128,194,111)">Revlise (UTC+2)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="710546268035743869" id="message-710546268035743869">
+                <div class="chatlog__content">
+                    <div class="markdown">The council would like to inform you that extending the stem is not physically possible </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="710546391390355466" id="message-710546391390355466">
+                <div class="chatlog__content">
+                    <div class="markdown">oh </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(128,194,111)">Revlise (UTC+2)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="710546465738719283" id="message-710546465738719283">
+                <div class="chatlog__content">
+                    <div class="markdown">And I didnt thought of it as an anarchist flag </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="710546469433770041" id="message-710546469433770041">
+                <div class="chatlog__content">
+                    <div class="markdown">someone turn my design into a ball </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(128,194,111)">Revlise (UTC+2)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="710546482092048474" id="message-710546482092048474">
+                <div class="chatlog__content">
+                    <div class="markdown">I just did what you said </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/aaf7cb14268e9c3eba698ba862206e13.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Parmesan The Cheese#9962" data-user-id="375768742833029121" style="">Parmesan The Cheese</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="710546506867802143" id="message-710546506867802143">
+                <div class="chatlog__content">
+                    <div class="markdown">ok </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(128,194,111)">Revlise (UTC+2)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="710546592809353248" id="message-710546592809353248">
+                <div class="chatlog__content">
+                    <div class="markdown">Union of PLP (red), CFLS (black rose) and UASL (teal) </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710546629777686611" id="message-710546629777686611">
+                <div class="chatlog__content">
+                    <div class="markdown">I can redo it </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(122,11,11)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="710546657854488585" id="message-710546657854488585">
+                <div class="chatlog__content">
+                    <div class="markdown">bruh but </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710546674145165343" id="message-710546674145165343">
+                <div class="chatlog__content">
+                    <div class="markdown">that one was so good </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(128,194,111)">Revlise (UTC+2)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="710546756168843344" id="message-710546756168843344">
+                <div class="chatlog__content">
+                    <div class="markdown">Let&#39;s host voting for it then </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(122,11,11)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="710546794248929361" id="message-710546794248929361">
+                <div class="chatlog__content">
+                    <div class="markdown">yeah </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/57e9d00a8480835c451be7a1767a0cb3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="random_stranger#8889" data-user-id="620178233085919235" style="color: rgb(122,11,11)">random_stranger</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="710546847579504652" id="message-710546847579504652">
+                <div class="chatlog__content">
+                    <div class="markdown">this flag debate is so leftist </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710546887777845248" id="message-710546887777845248">
+                <div class="chatlog__content">
+                    <div class="markdown">we cant agree on anything </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(128,194,111)">Revlise (UTC+2)</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="710547328460914728" id="message-710547328460914728">
+                <div class="chatlog__content">
+                    <div class="markdown">Lol </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/57e9d00a8480835c451be7a1767a0cb3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="random_stranger#8889" data-user-id="620178233085919235" style="color: rgb(122,11,11)">random_stranger</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="710547855470886994" id="message-710547855470886994">
+                <div class="chatlog__content">
+                    <div class="markdown">what would you call a anarchist world nation? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/9b607d2b47e14f812bc79ecea15d3882.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#120287;&#120310;&#120306;&#120304;&#120309;#1172" data-user-id="227190488879333377" style="">&#120287;&#120310;&#120306;&#120304;&#120309;</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 10:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="710550565444386826" id="message-710550565444386826">
+                <div class="chatlog__content">
+                    <div class="markdown">Don&#39;t </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/02592545d0a14c1542fbee2e1b352480.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Denestaire#0148" data-user-id="582317142708453406" style="">Chairman of Bruh Moment Thought</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 08:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="710696744677277697" id="message-710696744677277697">
+                <div class="chatlog__content">
+                    <div class="markdown">policy is 4 losers </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710696758950494218" id="message-710696758950494218">
+                <div class="chatlog__content">
+                    <div class="markdown">get tactical! </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710696784212525056" id="message-710696784212525056">
+                <div class="chatlog__content">
+                    <div class="markdown"><a href="https://tenor.com/view/lockandload-lock-load-arnold-schwarzenegger-gif-7977879">https://tenor.com/view/lockandload-lock-load-arnold-schwarzenegger-gif-7977879</a> </div>
+                </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/tenor.png">
+                                            <img class="chatlog__embed-thumbnail" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/tenor.png" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3d7e9cb6817b23ce67dbab8dbd697eaa.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Not_a_Threat#0873" data-user-id="419917289228337153" style="">Not_a_Threat</span>
+
+
+        <span class="chatlog__timestamp">14-May-20 08:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="710696960675545180" id="message-710696960675545180">
+                <div class="chatlog__content">
+                    <div class="markdown">I mean where’s the lie? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="">SatiristicWretch (UTC +5:30)</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 01:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="710775636335001660" id="message-710775636335001660">
+                <div class="chatlog__content">
+                    <div class="markdown">i thought thats what everyone is doing </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3d7e9cb6817b23ce67dbab8dbd697eaa.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Not_a_Threat#0873" data-user-id="419917289228337153" style="">Not_a_Threat</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 09:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="715966518093152256" id="message-715966518093152256">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" style="">@deleted-role</span> would any of you be interested in forming a technocratic party for PI 2.0 ? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/296210cdfdf2e7f65b095ae99bb07e77.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="character-confusion#4343" data-user-id="532351353201360926" style="color: rgb(122,11,11)">Senator Character</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 09:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="715967993540116602" id="message-715967993540116602">
+                <div class="chatlog__content">
+                    <div class="markdown">yo does anyone wanna repurpose this server into a meeting place for leftist parties? - not an actual coalition, just a place to discuss and work on stuff pertaining to the left <span class="chatlog__edited-timestamp" title="29-May-20 09:41 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3d7e9cb6817b23ce67dbab8dbd697eaa.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Not_a_Threat#0873" data-user-id="419917289228337153" style="">Not_a_Threat</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 09:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="715968026188709947" id="message-715968026188709947">
+                <div class="chatlog__content">
+                    <div class="markdown">That could be fun </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/140032abe08d4814f502d1fc31b78dc6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Revlise#2945" data-user-id="662252331215224833" style="color: rgb(128,194,111)">Revlise (UTC+2)</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 09:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="715968033578942514" id="message-715968033578942514">
+                <div class="chatlog__content">
+                    <div class="markdown">Sure </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/10d135e63a61beabd1a4490bb3971bae.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="H man#7177" data-user-id="221989918078009344" style="color: rgb(123,24,124)">H man (UTC+3)</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 09:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="715968054122643536" id="message-715968054122643536">
+                <div class="chatlog__content">
+                    <div class="markdown">Yeah </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SatiristicWretch#8609" data-user-id="693524269237534824" style="">SatiristicWretch (UTC +5:30)</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 09:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="715972144642654218" id="message-715972144642654218">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">yo does anyone wanna repurpose this server into a meeting place for leftist parties? - not an actual coalition, just a place to discuss and work on stuff pertaining to the left
+</div><span class="mention" title="character-confusion#4343">@Senator Character</span> do radical centrists/all compassists get to talk? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/474f6f2a86151a38bb11f3188b86d185.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="P. Rosas#2109" data-user-id="318078437212422145" style="">P. Rosas</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 10:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="715973285900320769" id="message-715973285900320769">
+                <div class="chatlog__content">
+                    <div class="markdown">sounds good to me </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/57e9d00a8480835c451be7a1767a0cb3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="random_stranger#8889" data-user-id="620178233085919235" style="color: rgb(122,11,11)">random_stranger</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 10:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="715977623141875763" id="message-715977623141875763">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Not_a_Threat#0873">@Not_a_Threat</span> me </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/3d7e9cb6817b23ce67dbab8dbd697eaa.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Not_a_Threat#0873" data-user-id="419917289228337153" style="">Not_a_Threat</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 10:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="715979409735155742" id="message-715979409735155742">
+                <div class="chatlog__content">
+                    <div class="markdown">Hmmmmm </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Workers%27%20United%20Front%20-%20political%20discussion%20-%20policy-discussion%20%5B710295281828364309%5D.html_Files/57e9d00a8480835c451be7a1767a0cb3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="random_stranger#8889" data-user-id="620178233085919235" style="color: rgb(122,11,11)">random_stranger</span>
+
+
+        <span class="chatlog__timestamp">29-May-20 10:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="715979715558768851" id="message-715979715558768851">
+                <div class="chatlog__content">
+                    <div class="markdown">HMMMMMMMMMMMMMMMMMMMMMMMMMMMM </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715979761234739340" id="message-715979761234739340">
+                <div class="chatlog__content">
+                    <div class="markdown">MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 178 message(s)</div>
+</div>
+
+</body>
+</html>
